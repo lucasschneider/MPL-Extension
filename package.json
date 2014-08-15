@@ -1,12 +1,43 @@
 {
-  "name": "mpl-koha-shell",
-  "title": "MPL Koha Shell",
+  "name": "mpl-koha-patch",
+  "title": "MPL Koha Patch",
   "id": "3338f72b-be88-4c0b-98ec-d24eeef851b4",
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library",
   "author": "Lucas Schneider",
   "license": "MPL 2.0",
   "version": "0.1",
 
-  "icon": "data/icon-32.png",
-  "icon64": "data/icon-64.png"
+  "icon": "data/MPL/icon-32.png",
+  "icon64": "data/MPL/icon-64.png",
+
+  "private-browsing": true,
+
+  "preferences": [{
+    "name": "flavor",
+    "title": "Choose your Flavor",
+    "description": "Determines the appearance of the extension",
+    "type": "menulist",
+    "value": "MPL",
+    "options": [
+        {
+	  "value": "MID",
+	  "label": "MID"
+	},
+	{
+	  "value": "MPL",
+	  "label": "MPL"
+        },
+	{
+          "value": "SCLS",
+	  "label": "SCLS"
+	}
+    ]
+  },
+  {
+    "name": "validateAddress",
+    "title": "Validate Madison Addresses",
+    "description": "(e.g. restricted, limited use, etc.)",
+    "type": "bool",
+    "value": true
+  }]
 }
