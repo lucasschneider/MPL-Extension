@@ -5,7 +5,7 @@
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library",
   "author": "Lucas Schneider",
   "license": "MPL 2.0",
-  "version": "0.2",
+  "version": "0.1",
 
   "icon": "data/MPL/icon-32.png",
   "icon64": "data/MPL/icon-64.png",
@@ -13,8 +13,8 @@
   "private-browsing": true,
 
   "preferences": [{
-    "name": "flavor",
-    "title": "Choose your Flavor",
+    "name": "skin",
+    "title": "Select a display:",
     "description": "Determines the appearance of the extension",
     "type": "menulist",
     "value": "MPL",

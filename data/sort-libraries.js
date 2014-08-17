@@ -1,3 +1,4 @@
+alert("sortLibraries!");
 var branchList=document.getElementById('branchcode');
 if (branchList !== null) {
 	arrOptions=new Array();
