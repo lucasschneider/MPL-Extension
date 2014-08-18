@@ -31,3 +31,4 @@ if (window.location.pathname === "/cgi-bin/koha/members/memberentry.pl") {
     }
   }
 }
+
