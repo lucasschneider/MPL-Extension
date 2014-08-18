@@ -1,8 +1,6 @@
 if (window.location.pathname === "/cgi-bin/koha/members/memberentry.pl") {
   var tabs = require("sdk/tabs");
-  alert("You're editing a patron record!");
   tabs.activeTab.attach({
-    contentScriptFile: data.url("jquery-2.1.1.min.js")
   });
 
   /* ADDRESS DATA TYPE */
