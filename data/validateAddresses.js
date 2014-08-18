@@ -1,4 +1,3 @@
-alert("validateAddresses!");
 if (window.location.pathname === "/cgi-bin/koha/members/memberentry.pl") {
   var tabs = require("sdk/tabs");
   alert("You're editing a patron record!");
