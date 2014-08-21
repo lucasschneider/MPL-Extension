@@ -32,12 +32,5 @@
 	  "label": "SCLS"
 	}
     ]
-  },
-  {
-    "name": "validateAddress",
-    "title": "Validate Madison Addresses",
-    "description": "(e.g. restricted, limited use, etc.)",
-    "type": "bool",
-    "value": true
   }]
 }

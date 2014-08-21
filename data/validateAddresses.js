@@ -1,6 +1,4 @@
-alert("validateAddresses!");
 if (window.location.pathname === "/cgi-bin/koha/members/memberentry.pl") {
-  alert("You're editing a patron record!");
 
   /* ADDRESS DATA TYPE */
   var Address = function(streetNum,prefix,name,suffix,des,note,t) {
