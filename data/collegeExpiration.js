@@ -1,8 +1,13 @@
-var zip = document.getElementById('zipcode');
+var parseAddress = function() {
+  var addr = document.getElementById('address');
+  var addr2 = document.getElementById('address2');
+  var addressVal = addr.value + " " + addr2.value;
+  var zip = document.getElementById('zipcode');
 
-if (zip != null) zip.onblur = function() {
-  regEx = /53706.*/;
-  if (regEx.test(zip.value)) {
+  addrRegEx = /.*15(10|20) tripp.*|.*970 university.*|.*(625|635|640|650) elm.*|.*(35|420).{0,7}park.*|.*1200 observatory.*|.*16(35|50) kronshage.*|.*(835|917|919|921).{0,6}dayton.*|.*1950 willow.*|.*(615|821|917).{0,6}johnson.*|.*625 babcock.*/i;
+  zipRegEx = /53706(\-[0-9]{4})?|53715(\-[0-9]{4})?/;
+
+  if (zipRegEx.test(zip.value) && addrRegEx.test(addressVal)) {
     date = new Date();
     switch(parseInt(date.getUTCMonth())) {
     case 0:
@@ -20,4 +25,13 @@ if (zip != null) zip.onblur = function() {
     }
     document.getElementById('dateexpiry').value = "05/15/" + year;
   }
+}
+
+var addr = document.getElementById('address');
+var addr2 = document.getElementById('address2');
+var zip = document.getElementById('zipcode');
+if (zip != null && addr != null) {
+  zip.onblur = parseAddress();
+  addr.onblur = parseAddress();
+  addr2.onblur = parseAddress();
 }
