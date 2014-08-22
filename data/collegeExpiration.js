@@ -29,6 +29,9 @@ var parseAddress = function() {
   }
 }
 
-document.getElementById('address').onblur = parseAddress();
-document.getElementById('address2').onblur = parseAddress();
-document.getElementById('zipcode').onblur = parseAddress();
+var addr = document.getElementById('address');
+if (addr != null) addr.onblur = parseAddress;
+var addr2 = document.getElementById('address2');
+if (addr2 != null) addr2.onblur = parseAddress;
+var zip = document.getElementById('zipcode');
+if (zip != null) zip.onblur = parseAddress;
