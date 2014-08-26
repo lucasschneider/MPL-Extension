@@ -9,22 +9,23 @@ var parseAddress = function() {
     var addressVal = addr2 != null ? addr.value + " " + addr2.value : addr.value;
     
     if (zipRegEx.test(zip.value) && addrRegEx.test(addressVal)) {
-      date = new Date();
+      var date = new Date();
       switch(parseInt(date.getUTCMonth())) {
       case 0:
       case 1:
       case 2:
-     case 3:
-        year = date.getUTCFullYear();
-        break;
-      case 4:
-        if (parseInt(date.getUTCDate()) < 15)
-          year = date.getUTCFullYear();
-        break;
+      case 3:
+         year = date.getUTCFullYear();
+         break;
+       case 4:
+         if (parseInt(date.getUTCDate()) < 15)
+           year = date.getUTCFullYear();
+         break;
       default:
         year = (parseInt(date.getUTCFullYear())+1).toString();
       }
-      document.getElementById('dateexpiry').value = "05/15/" + year;
+      var dateExpiry = document.getElementById('dateexpiry');
+      if (dateExpiry != null) dateExpiry.value = "05/15/" + year;
     }
   }
 }

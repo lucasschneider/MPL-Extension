@@ -5,7 +5,7 @@
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library",
   "author": "Lucas Schneider",
   "license": "MPL 2.0",
-  "version": "2.0",
+  "version": "3.0",
 
   "icon": "data/MPL/icon-32.png",
   "icon64": "data/MPL/icon-64.png",
@@ -19,18 +19,46 @@
     "type": "menulist",
     "value": "MPL",
     "options": [
-        {
-	  "value": "MID",
-	  "label": "MID"
-	},
-	{
-	  "value": "MPL",
-	  "label": "MPL"
-        },
-	{
-          "value": "SCLS",
-	  "label": "SCLS"
-	}
+      {
+        "value": "MID",
+	"label": "MID"
+      },
+      {
+        "value": "MPL",
+	"label": "MPL"
+      },
+      {
+        "value": "SCLS",
+	"label": "SCLS"
+      }
     ]
+  },
+  {
+    "name": "patronMsg",
+    "title": "Pre-defined Patron Messages",
+    "description": "Replace several of LibLime's pre-defined patron messages with messages more often used by MPL circ",
+    "type": "bool",
+    "value": true
+  },
+  {
+    "name": "autoUserId",
+    "title": "Autofill OPAC Login Number",
+    "description": "Autofill a patron's OPAC username to the value of their library card",
+    "type": "bool",
+    "value": true
+  },
+  {
+    "name": "preselectPstat",
+    "title": "Pre-select Madison P-STATs",
+    "description": "Pre-selects the MADISON UNDETERMINED PSTAT for new patrons to make it quicker to lookup the correct value",
+    "type": "bool",
+    "value": true
+  },
+  {
+    "name": "validAddr",
+    "title": "Validate Madison Addresses",
+    "description": "Alerts library staff when an unacceptable or restricted Madison address has been entered and sets the proper 5/15 expiration date for dorm addresses",
+    "type": "bool",
+    "value": true
   }]
 }
