@@ -1,91 +1,13 @@
-/*** THIS CODE WAS BORROWED FROM LIBLIME'S
-     members.js FILE AND MUST BE UPDATED WITH EACH KOHA
-     UPDATE ***/
-function confirmSubmit() {
-  if ( confirm( "Are You Sure You Want To Save?" ) ) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-// function to test all fields in forms and nav in different forms(1 ,2 or 3)
-function check_form_borrowers(nav){
-  var statut=0;
-  if (document.form.check_member.value == 1 ) {
-    if (document.form_double.answernodouble) {
-      if( (!(document.form_double.answernodouble.checked))){
-        document.form.nodouble.value=0;
-      } else {
-        document.form.nodouble.value=1;
-      }
-    }
-  } 
-	
-  if (document.form.BorrowerMandatoryField.value != '') {
-    var champ_verif = document.form.BorrowerMandatoryField.value.split ('|');
-    var message ="The following fields are mandatory :\n";
-    var message_champ="";
-    for (var i=0; i<champ_verif.length; i++) {
-      if (document.getElementsByName(""+champ_verif[i]+"")[0]) {
-        var val_champ=eval("document.form."+champ_verif[i]+".value");
-        var ref_champ=eval("document.form."+champ_verif[i]);
-        //check if it's a select
-        if (ref_champ.type=='select-one') {
-          // check to see if first option is selected and is blank
-          if (ref_champ.options[0].selected && ref_champ.options[0].text == ''){
-            // action if field is empty
-            message_champ+=champ_verif[i]+"\n";
-            //test to know if you must show a message with error
-            statut=1;
-          }
-        } else {
-          if ( val_champ == '' ) {
-            // action if the field is not empty
-            message_champ+=champ_verif[i]+"\n";
-            statut=1;
-          }	
-        }
-      }
-    }
-  }
-  //patrons form to test if you checked no to the question of double
-  if (statut!=1 && document.form.check_member.value > 0 ) {
-    if (!(document.form_double.answernodouble.checked)){
-      message ="";
-      message_champ+=("Please confirm suspicious duplicate patron !!! ");
-      statut=1;
-      document.form.nodouble.value=0;
-    } else {
-      document.form.nodouble.value=1;
-    }
-  }
-		
-  if (statut==1){
-    //alert if at least 1 error
-    alert(message+"\n"+message_champ);
-    return false;
-  } else {
-    var doSubmit = confirmSubmit();
-    if ( doSubmit ) {
-      document.form.submit();
-    } else {
-      return false;
-    }
-  }
-}
-/*** END BORROWED CODE ***/
-
 /*** CHECK AGAINST LIST OF UNACCEPTABLE
      AND RESTRICTED ADDRESSES ***/
 function restoreSave() {
   var s = document.getElementsByName('save')[0];
   if (s !== null) {
-    s.type='submit';
     s.value='Save';
     s.onclick = function() {
       return check_form_borrowers();
     };
+    s.type='submit';
     return false;
   }
 }
@@ -97,7 +19,6 @@ function blockSubmit() {
     s.value='Override Block';
     s.onclick = function() {
       restoreSave();
-      return false;
     };
   }
 }
@@ -138,20 +59,20 @@ function parseBadAddr() {
 function parseAddress() {
   var addr = document.getElementById('address');
   var addr2 = document.getElementById('address2');
-  var city = document.getElementById('city');
+  var zip = document.getElementById('zipcode');
   
-  if (city != null && addr != null) {
-    addrRegEx = /[ ]*15(10|20) tripp.*|[ ]*970 university.*|[ ]*(625|635|640|650) elm.*|[ ]*(35|420).{0,7}park.*|[ ]*1200 observatory.*|[ ]*16(35|50) kronshage.*|[ ]*(835|917|919|921).{0,6}dayton.*|[ ]*1950 willow.*|[ ]*(615|821|917).{0,6}johnson.*|[ ]*625 babcock.*/i;
+  if (zip != null && addr != null) {
+    addrRegEx = /.*15(10|20) tripp.*|.*970 university.*|.*(625|635|640|650) elm.*|.*(35|420).{0,7}park.*|.*1200 observatory.*|.*16(35|50) kronshage.*|.*(835|917|919|921).{0,6}dayton.*|.*1950 willow.*|.*(615|821|917).{0,6}johnson.*|.*625 babcock.*/i;
+    zipRegEx = /53706(\-[0-9]{4})?|53715(\-[0-9]{4})?/;
     var addressVal = addr2 != null ? addr.value + " " + addr2.value : addr.value;
-    var cityRegEx = /madison([,]? wi.*)?/i;
     
-    if (addrRegEx.test(addressVal) && cityRegEx.test(city)) {
+    if (zipRegEx.test(zip.value) && addrRegEx.test(addressVal)) {
       date = new Date();
       switch(parseInt(date.getUTCMonth())) {
       case 0:
       case 1:
       case 2:
-      case 3:
+     case 3:
         year = date.getUTCFullYear();
         break;
       case 4:
@@ -169,4 +90,6 @@ function parseAddress() {
 var addr = document.getElementById('address');
 if (addr !== null) addr.onblur = function() {parseBadAddr(); parseAddress();};
 var city = document.getElementById('city');
-if (city !== null) city.onblur = function() {parseBadAddr(); parseAddress();};
+if (city !== null) city.onblur = function() {parseBadAddr();};
+var zip = document.getElementById('zipcode');
+if (zip !== null) zip.onblur = function() {parseAddress();};
