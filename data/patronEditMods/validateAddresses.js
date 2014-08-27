@@ -4,9 +4,6 @@ function restoreSave() {
   var s = document.getElementsByName('save')[0];
   if (s !== null) {
     s.value='Save';
-    s.onclick = function() {
-      return check_form_borrowers();
-    };
     s.type='submit';
     return false;
   }
@@ -17,9 +14,9 @@ function blockSubmit() {
   if (s !== null) {
     s.type='button';
     s.value='Override Block';
-    s.onclick = function() {
+    s.addEventListener('click',function() {
       restoreSave();
-    };
+    });
   }
 }
 
