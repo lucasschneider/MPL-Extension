@@ -5,6 +5,7 @@ function restoreSave() {
   if (s !== null) {
     s.value='Save';
     s.type='submit';
+    s.removeEventListener('click', restoreSave);
     return false;
   }
 }
@@ -14,9 +15,7 @@ function blockSubmit() {
   if (s !== null) {
     s.type='button';
     s.value='Override Block';
-    s.addEventListener('click',function() {
-      restoreSave();
-    });
+    s.addEventListener('click', restoreSave);
   }
 }
 
