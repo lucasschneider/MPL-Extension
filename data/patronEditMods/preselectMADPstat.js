@@ -15,7 +15,7 @@ if (city !== null) {
               break;
             }
           }
-          pstat.selectedIndex = selectedIdx;
+          if (pstat[pstat.selectedIndex].value === "") pstat.selectedIndex = selectedIdx;
         }
       }
     }
