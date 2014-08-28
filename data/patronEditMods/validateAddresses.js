@@ -1,21 +1,32 @@
 /*** CHECK AGAINST LIST OF UNACCEPTABLE
      AND RESTRICTED ADDRESSES ***/
 function restoreSave() {
-  var s = document.getElementsByName('save')[0];
-  if (s !== null) {
-    s.value='Save';
-    s.type='submit';
-    s.removeEventListener('click', restoreSave);
+  var field = document.getElementsByClassName('action')[0];
+  if (field !== null && field.childElementCount === 3) {
+    field.replaceChild(field.children[2],field.children[0]);
+    field.children[0].style="cursor:pointer;";
+    return false;
+  }
+  else {
+    alert("Unable to save. Please refresh the page.");
     return false;
   }
 }
 
 function blockSubmit() {
-  var s = document.getElementsByName('save')[0];
-  if (s !== null) {
-    s.type='button';
-    s.value='Override Block';
-    s.addEventListener('click', restoreSave);
+  var field = document.getElementsByClassName('action')[0];
+  var save = document.getElementsByName('save')[0];
+  if (field !== null && save !== null) {
+    var button = document.createElement('input');
+    button.type='button';
+    button.value='Override Block';
+    button.style='cursor:pointer;';
+    button.addEventListener('click', restoreSave);
+    field.appendChild(button);
+    field.appendChild(field.children[1]);
+    field.appendChild(field.children[0]);
+    field.children[2].style="display:none;";
+    return false;
   }
 }
 
@@ -31,7 +42,7 @@ function parseBadAddr() {
     var salvationRegEx = /[ ]*630 (e|east) washington.*/i;
     var addrVal = addr2 != null && (addr2.value !== null && addr2.value !== "") ? addr.value + ", " + addr2.value : addr.value;
     if (unacceptableRegEx.test(addrVal)) {
-      alert("--- STOP ---\nA library card MUST NOT be issued to this address.\n" + addrVal.toUpperCase() + " is NOT a valid residential address.\n\nInform any patron providing one of these addresses that they must provide proof of a valid residential address in order to get a library card. (You could offer them an internet access card.)\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
+      alert("--- STOP ---\nA library card CANNOT be issued to this address.\n" + addrVal.toUpperCase() + " is NOT a valid residential address.\n\nInform any patron providing one of these addresses that they must provide proof of a valid residential address in order to get a library card. (You could offer them an internet access card.)\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
       blockSubmit();
     }
     else if (restrictedRegEx.test(addrVal)) {
@@ -41,51 +52,16 @@ function parseBadAddr() {
       alert("--- NOTE ---\n1490 MARTIN ST is the Hospitality House, a daytime resource center for homeless and low-income people in Dane County. A LIMITED USE account may be set up, however, all library cards issued to that address MUST be mailed, whether or not the patron provides proof of that address.\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
     }
     else if (salvationRegEx.test(addrVal)) {
-      alert("--- NOTE ---\n630 E WASHINGTON AVE is the Salvation Army. People staying at the Salvation Army cannot receive personal mail there so library cards CANNOT BE MAILED. Patrons must have proof that they are staying at the Salvation Army to get a library card.\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
+      alert("--- NOTE ---\n630 E WASHINGTON AVE is the Salvation Army. People staying at the Salvation Army cannot receive personal mail there so library cards CANNOT BE MAILED. Patrons must have proof that they are staying at the Salvation Army to get a library card (usually through a letter from the director).\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
     }
     else {
-      var s = document.getElementsByName('save')[0];
+      var s = document.getElementsByTagName('action')[0];
       if (s != null && s.value !== 'Override Block') restoreSave();
     }
   }
 }
 
-/*** CHECK FOR COLLEGE DORM ADDRESSES
-     AND SET EXP DATE IF NECESSARY ***/
-function parseAddress() {
-  var addr = document.getElementById('address');
-  var addr2 = document.getElementById('address2');
-  var zip = document.getElementById('zipcode');
-  
-  if (zip != null && addr != null) {
-    addrRegEx = /.*15(10|20) tripp.*|.*970 university.*|.*(625|635|640|650) elm.*|.*(35|420).{0,7}park.*|.*1200 observatory.*|.*16(35|50) kronshage.*|.*(835|917|919|921).{0,6}dayton.*|.*1950 willow.*|.*(615|821|917).{0,6}johnson.*|.*625 babcock.*/i;
-    zipRegEx = /53706(\-[0-9]{4})?|53715(\-[0-9]{4})?/;
-    var addressVal = addr2 != null ? addr.value + " " + addr2.value : addr.value;
-    
-    if (zipRegEx.test(zip.value) && addrRegEx.test(addressVal)) {
-      date = new Date();
-      switch(parseInt(date.getUTCMonth())) {
-      case 0:
-      case 1:
-      case 2:
-     case 3:
-        year = date.getUTCFullYear();
-        break;
-      case 4:
-        if (parseInt(date.getUTCDate()) < 15)
-          year = date.getUTCFullYear();
-        break;
-      default:
-        year = (parseInt(date.getUTCFullYear())+1).toString();
-      }
-      document.getElementById('dateexpiry').value = "05/15/" + year;
-    }
-  }
-}
-
 var addr = document.getElementById('address');
-if (addr !== null) addr.onblur = function() {parseBadAddr(); parseAddress();};
+if (addr !== null) addr.addEventListener('blur',parseBadAddr);
 var city = document.getElementById('city');
-if (city !== null) city.onblur = function() {parseBadAddr();};
-var zip = document.getElementById('zipcode');
-if (zip !== null) zip.onblur = function() {parseAddress();};
+if (city !== null) city.addEventListener('blur',parseBadAddr);

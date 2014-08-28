@@ -5,7 +5,7 @@
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library",
   "author": "Lucas Schneider",
   "license": "MPL 2.0",
-  "version": "3.2",
+  "version": "3.4",
 
   "icon": "data/MPL/icon-32.png",
   "icon64": "data/MPL/icon-64.png",
@@ -41,6 +41,20 @@
     "value": true
   },
   {
+    "name": "validAddr",
+    "title": "Validate Madison Addresses",
+    "description": "Alerts library staff when an unacceptable or restricted Madison address has been entered and sets the proper 5/15 expiration date for dorm addresses",
+    "type": "bool",
+    "value": true
+  },
+  {
+    "name": "collegeExp",
+    "title": "Autofill Patron Expiration for Students",
+    "description": "Automatically filles in the correct 5/15 expiration dates for patrons whose address matches one of the 19 UW-Madison dorms",
+    "type": "bool",
+    "value": true
+  },
+  {
     "name": "autoUserId",
     "title": "Autofill OPAC Login Number",
     "description": "Autofill a patron's OPAC username to the value of their library card",
@@ -51,13 +65,6 @@
     "name": "preselectPstat",
     "title": "Pre-select Madison P-STATs",
     "description": "Pre-selects the MADISON UNDETERMINED PSTAT for new patrons to make it quicker to lookup the correct value",
-    "type": "bool",
-    "value": true
-  },
-  {
-    "name": "validAddr",
-    "title": "Validate Madison Addresses",
-    "description": "Alerts library staff when an unacceptable or restricted Madison address has been entered and sets the proper 5/15 expiration date for dorm addresses",
     "type": "bool",
     "value": true
   }]

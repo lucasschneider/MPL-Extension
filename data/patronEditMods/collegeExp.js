@@ -1,4 +1,6 @@
-var parseAddress = function() {
+/*** CHECK FOR COLLEGE DORM ADDRESSES
+     AND SET EXP DATE IF NECESSARY ***/
+function fillDormExp() {
   var addr = document.getElementById('address');
   var addr2 = document.getElementById('address2');
   var zip = document.getElementById('zipcode');
@@ -9,30 +11,27 @@ var parseAddress = function() {
     var addressVal = addr2 != null ? addr.value + " " + addr2.value : addr.value;
     
     if (zipRegEx.test(zip.value) && addrRegEx.test(addressVal)) {
-      var date = new Date();
+      date = new Date();
       switch(parseInt(date.getUTCMonth())) {
       case 0:
       case 1:
       case 2:
-      case 3:
-         year = date.getUTCFullYear();
-         break;
-       case 4:
-         if (parseInt(date.getUTCDate()) < 15)
-           year = date.getUTCFullYear();
-         break;
+     case 3:
+        year = date.getUTCFullYear();
+        break;
+      case 4:
+        if (parseInt(date.getUTCDate()) < 15)
+          year = date.getUTCFullYear();
+        break;
       default:
         year = (parseInt(date.getUTCFullYear())+1).toString();
       }
-      var dateExpiry = document.getElementById('dateexpiry');
-      if (dateExpiry != null) dateExpiry.value = "05/15/" + year;
+      document.getElementById('dateexpiry').value = "05/15/" + year;
     }
   }
 }
 
 var addr = document.getElementById('address');
-if (addr != null) addr.onblur = parseAddress;
-var addr2 = document.getElementById('address2');
-if (addr2 != null) addr2.onblur = parseAddress;
-var zip = document.getElementById('zipcode');
-if (zip != null) zip.onblur = parseAddress;
+if (addr !== null) addr.addEventListener('blur', fillDormExp);
+var city = document.getElementById('city');
+if (zip !== null) zip.addEventListener('blur', fillDormExp);
