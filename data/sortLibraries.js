@@ -48,7 +48,7 @@ if (pickupList !== null) {
   arrOptions=new Array();
   var selectedText = pickupList.options[pickupList.selectedIndex].text;
   for(i=0;i<pickupList.length;i++){
-    arrOptions,push(new Array(pickupList.options[i].text,pickupList.options[i].value));
+    arrOptions.push(new Array(pickupList.options[i].text,pickupList.options[i].value));
   }
   arrOptions.sort(function (a,b) {
     if (a[0] < b[0]) return -1;
