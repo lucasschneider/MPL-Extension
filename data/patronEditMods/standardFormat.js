@@ -1,5 +1,7 @@
-var email = document.getElementById('email');
-if (email != null) email.onblur = function() {
-  var email = this;
-  email.value = email.value.toLowerCase();
+/*** CORRECT TEXT CASE ***/
+for (var input in document.getElementsByTagName('input')) {
+  if (input.type === 'text') {
+    if (/email|emailpro|B_email/.test(input.id)) input.addEventListener('blur', function() {this.value.toLowerCase()});
+    else input.addEventListener('blur', function() {this.value.toUpperCase()});
+  }
 }
