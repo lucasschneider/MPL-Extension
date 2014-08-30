@@ -55,8 +55,8 @@ function parseBadAddr() {
       alert("--- NOTE ---\n630 E WASHINGTON AVE is the Salvation Army. People staying at the Salvation Army cannot receive personal mail there so library cards CANNOT BE MAILED. Patrons must have proof that they are staying at the Salvation Army to get a library card (usually through a letter from the director).\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
     }
     else {
-      var s = document.getElementsByTagName('action')[0];
-      if (s != null && s.value !== 'Override Block') restoreSave();
+      var field = document.getElementsByClassName('action')[0];
+      if (field != null && field.children[0].value === 'Override Block') restoreSave();
     }
   }
 }
