@@ -44,7 +44,7 @@ function parseBadAddr() {
     if (unacceptableRegEx.test(addrVal)) {
       alert("--- STOP ---\nA library card CANNOT be issued to this address.\n" + addrVal.toUpperCase() + " is NOT a valid residential address.\n\nInform any patron providing one of these addresses that they must provide proof of a valid residential address in order to get a library card. (You could offer them an internet access card.)\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
       var field = document.getElementsByClassName('action')[0];
-      if (field != null && field.children[0].value !== 'Override Block') blockSubmit();
+      if (field !== null && field.children[0].value !== 'Override Block') blockSubmit();
     }
     else if (restrictedRegEx.test(addrVal)) {
       alert("--- NOTE ---\nA library card issued to " + addrVal.toUpperCase() + " must be LIMITED USE.\n\nIn order to have the limited use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
