@@ -73,6 +73,6 @@
     "title": "Pre-select \"Digests Only\"",
     "description": "Pre-selects the \"Digests Only\" option (when available) while selecting patron notification options",
     "type": "bool",
-    "value", true
+    "value": true
   }]
 }

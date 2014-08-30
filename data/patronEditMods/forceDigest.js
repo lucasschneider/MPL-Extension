@@ -11,10 +11,16 @@ function forceDigest(email, digest) {
   }
 }
 
+function advanceNotice(email) {
+  var notice = document.getElementsByName('2-DAYS')[0];
+  if (notice !== null && email2 !== null && email2.checked) notice.children[2].selected = true;
+  else if (notice !== null) notice.children[0].selected = true;
+}
+
 var email1 = document.getElementById('email1');
 var digest1 = document.getElementById('digest1');
-var email2 = document.getElementById('email1');
-var digest2 = document.getElementById('digest1');
+var email2 = document.getElementById('email2');
+var digest2 = document.getElementById('digest2');
 
 if (email1 !== null && digest1 !== null) email1.addEventListener('click', function() {forceDigest(email1,digest1)});
-if (email2 !== null && digest2 !== null) email2.addEventListener('click', function() {forceDigest(email2,digest2)});
+if (email2 !== null && digest2 !== null) email2.addEventListener('click', function() {forceDigest(email2,digest2); advanceNotice(email2)});
