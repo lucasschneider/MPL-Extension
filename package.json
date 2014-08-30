@@ -67,5 +67,12 @@
     "description": "Pre-selects the MADISON UNDETERMINED PSTAT for new patrons to make it quicker to lookup the correct value",
     "type": "bool",
     "value": true
+  },
+  {
+    "name": "forceDigest",
+    "title": "Pre-select \"Digests Only\"",
+    "description": "Pre-selects the \"Digests Only\" option (when available) while selecting patron notification options",
+    "type": "bool",
+    "value", true
   }]
 }
