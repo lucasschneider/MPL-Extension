@@ -15,8 +15,8 @@ function selectPSTAT(censusTract) {
       if (pstat[pstat.selectedIndex].value === "") {
         if (pstat[madUndIdx].value !== "D-X-MAD" && selectedIdx === 0) {
           for (var i = 0; i < pstat.length; i++) {
-            if (pstat.children[i].value === "D-"+censusTract) {
-              selectedIdx = i;
+            if (pstat.children[i].value === "D-X-MAD") {
+              pstat.selectedIndex = i;
               break;
         }
       }
