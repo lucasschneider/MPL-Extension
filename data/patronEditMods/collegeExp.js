@@ -33,7 +33,7 @@ function fillDormExp() {
   }
 }
 
-var addr = document.getElementById('address');
+var adr = document.getElementById('address');
 if (addr !== null) addr.addEventListener('blur', fillDormExp);
 var city = document.getElementById('city');
 if (city !== null) city.addEventListener('blur', fillDormExp);
