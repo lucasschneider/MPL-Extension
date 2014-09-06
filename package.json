@@ -5,7 +5,7 @@
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library",
   "author": "Lucas Schneider",
   "license": "MPL 2.0",
-  "version": "3.5",
+  "version": "3.4",
 
   "icon": "data/MPL/icon-32.png",
   "icon64": "data/MPL/icon-64.png",
@@ -62,9 +62,9 @@
     "value": true
   },
   {
-    "name": "selectTract",
-    "title": "Lookup Census Tract",
-    "description": "Automatically lookup the census tract number and zipcode for a Madison address, if possible",
+    "name": "preselectPstat",
+    "title": "Pre-select Madison P-STATs",
+    "description": "Pre-selects the MADISON UNDETERMINED PSTAT for new patrons to make it quicker to lookup the correct value",
     "type": "bool",
     "value": true
   },
