@@ -52,6 +52,7 @@ if (addr !== null) {
 }
 city = document.getElementById('city');
 if (city !== null) city.addEventListener('blur', queryCensusTract);
+
 // Select D-X-MAD form PSTAT select list
 function selectXMAD(selectList) {
   if (selectList !== null) {
