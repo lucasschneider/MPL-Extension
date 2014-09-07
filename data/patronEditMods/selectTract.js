@@ -82,7 +82,7 @@ function queryCensusTract() {
 
       // Default to MAD UND if tract is empty
       if (selectList[selectList.selectedIndex] === "") selectXMAD(selectList);
-      self.port.emit("queryTract", addr.value.replace(" ","+"));
+      self.port.emit("queryTract", encodeURIComponent(addr.value.replace(" ","+")));
       self.port.on("receivedTract", function (addrTract) {
         var selected = false;
         if (addrTract !== null && addrTract.length === 3) {
