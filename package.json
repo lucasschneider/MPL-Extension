@@ -48,13 +48,6 @@
     "value": true
   },
   {
-    "name": "collegeExp",
-    "title": "Autofill Patron Expiration for Students",
-    "description": "Automatically filles in the correct 5/15 expiration dates for patrons whose address matches one of the 19 UW-Madison dorms",
-    "type": "bool",
-    "value": true
-  },
-  {
     "name": "autoUserId",
     "title": "Autofill OPAC Login Number",
     "description": "Autofill a patron's OPAC username to the value of their library card",
