@@ -86,12 +86,11 @@ function queryCensusTract() {
       self.port.on("receivedTract", function (addrTract) {
         var selected = false;
         if (addrTract !== null && addrTract.length === 3) {
-          addr.value = addrTract[0];
-	  zip.value = addrTract[1];
+	  zip.value = addrTract[0];
 	  fillDormExp();
 
           for (var i = 0; i < selectList.length; i++) {
-            if (selectList.children[i].value === "D-"+addrTract[2]) {
+            if (selectList.children[i].value === "D-"+addrTract[1]) {
               selectList.selectedIndex = i;
 	      result.setAttribute('style','display:inline-block;color:#00c000;');
 	      result.innerHTML = '[SUCCESS]';
