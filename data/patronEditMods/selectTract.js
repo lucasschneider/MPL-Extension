@@ -82,10 +82,10 @@ function queryCensusTract() {
     var cityRegEx = /madison(,? wi(sconsin)?)?/i;
     if (cityRegEx.test(document.getElementById('city').value)) {
       // Generate loading message
-      notice.innerHTML = "Searching for census tract and zipcode... ";
+      notice.textContent = "Searching for census tract and zipcode... ";
       var result = document.createElement('div');
-      result.innerHTML = '';
       notice.appendChild(result);
+      result.textContent = '';
 
       // Default to MAD UND if tract is empty
       if (selectList[selectList.selectedIndex] === "") selectXMAD(selectList);
@@ -101,7 +101,7 @@ function queryCensusTract() {
             if (selectList.children[i].value === "D-"+addrTract[2]) {
               selectList.selectedIndex = i;
 	      result.setAttribute('style','display:inline-block;color:#00c000;');
-	      result.innerHTML = '[MATCH: '+matchAddr+']';
+	      result.textContent = '[MATCH: '+matchAddr+']';
               selected = true;
               break;
             }
@@ -110,7 +110,7 @@ function queryCensusTract() {
         if (!selected) {
 	  selectXMAD(selectList);
 	  result.setAttribute('style','display:inline-block');
-	  result.innerHTML = '[FAILED: please enter zipcode and<br />census tract manually.]';
+	  result.textContent = '[FAILED: please enter zipcode and census tract manually.]';
 	}
       });
     }
