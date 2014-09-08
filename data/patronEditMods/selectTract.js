@@ -43,8 +43,6 @@ function fillDormExp() {
   }
 }
 
-
-
 // Select D-X-MAD form PSTAT select list
 function selectXMAD(selectList) {
   if (selectList !== null) {
@@ -62,6 +60,15 @@ function selectXMAD(selectList) {
       selectList.selectedIndex = i;
     }
   }
+}
+
+function trimAddr(addr) {
+  addrParts = addr.split(" ");
+  addrTrim = '';
+  if (addrParts[0] !== undefined) addrTrim += addrParts[0];
+  if (addrParts[1] !== undefined) addrTrim += " " + addrParts[1];
+  if (addrParts[2] !== undefined) addrTrim += " " + addrParts[2];
+  return addrTrim;
 }
 
 function queryCensusTract() {
@@ -82,18 +89,19 @@ function queryCensusTract() {
 
       // Default to MAD UND if tract is empty
       if (selectList[selectList.selectedIndex] === "") selectXMAD(selectList);
-      self.port.emit("queryTract", encodeURIComponent(addr.value.replace(" ","+")));
+      self.port.emit("queryTract", encodeURIComponent(trimAddr(addr.value)));
       self.port.on("receivedTract", function (addrTract) {
         var selected = false;
         if (addrTract !== null && addrTract.length === 3) {
-	  zip.value = addrTract[0];
+	  var matchAddr = addrTract[0]
+	  zip.value = addrTract[1];
 	  fillDormExp();
 
           for (var i = 0; i < selectList.length; i++) {
-            if (selectList.children[i].value === "D-"+addrTract[1]) {
+            if (selectList.children[i].value === "D-"+addrTract[2]) {
               selectList.selectedIndex = i;
 	      result.setAttribute('style','display:inline-block;color:#00c000;');
-	      result.innerHTML = '[SUCCESS]';
+	      result.innerHTML = '[MATCH: '+matchAddr+']';
               selected = true;
               break;
             }
