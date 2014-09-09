@@ -10,10 +10,3 @@ if(msgSelect != null) {
   cardAtNxtCko.innerHTML = "Use card at next CKO";
   msgSelect.insertBefore(cardAtNxtCko,msgSelect.options[1]);
 }
-
-/*** Bring 'Session Checkouts' list to top ***/
-var yuiG = document.getElementsByClassName('yui-g');
-var recentIssues = document.getElementById('recent-issues');
-if (yuiG !== null && yuiG.length > 1 && recentIssues !== null) {
-  yuiG[yuiG.length-1].appendChild(recentIssues);
-}
