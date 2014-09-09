@@ -43,7 +43,7 @@
   {
     "name": "validAddr",
     "title": "Validate Madison Addresses",
-    "description": "Alerts library staff when an unacceptable or restricted Madison address has been entered and sets the proper 5/15 expiration date for dorm addresses",
+    "description": "Alerts library staff when an unacceptable or restricted Madison address has been entered",
     "type": "bool",
     "value": true
   },
