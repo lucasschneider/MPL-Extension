@@ -84,8 +84,14 @@ function queryCensusTract() {
       // Generate loading message
       notice.textContent = "Searching for census tract and zipcode... ";
       var result = document.createElement('div');
+      result.setAttribute('id','tractResult');
       notice.appendChild(result);
       result.textContent = '';
+      setTimeout(function() {
+      	var tr = document.getElementById('tractResult');
+      	tr.setAttribute('style','display:inline-block');
+      	if (tr !== null && tr.text === '') tr.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
+      }, 5000);
 
       // Default to MAD UND if tract is empty
       if (selectList[selectList.selectedIndex] === "") selectXMAD(selectList);
