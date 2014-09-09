@@ -65,9 +65,9 @@ function selectXMAD(selectList) {
 function trimAddr(addr) {
   addrParts = addr.split(" ");
   addrTrim = '';
-  if (addrParts[0] !== undefined) addrTrim += addrParts[0];
-  if (addrParts[1] !== undefined) addrTrim += " " + addrParts[1];
-  if (addrParts[2] !== undefined) addrTrim += " " + addrParts[2];
+  if (addrParts[0] !== undefined) addrTrim += encodeURIComponent(addrParts[0]);
+  if (addrParts[1] !== undefined) addrTrim += "+" + encodeURIComponent(addrParts[1]);
+  if (addrParts[2] !== undefined) addrTrim += "+" + encodeURIComponent(addrParts[2]);
   return addrTrim;
 }
 
@@ -89,8 +89,10 @@ function queryCensusTract() {
 
       // Default to MAD UND if tract is empty
       if (selectList[selectList.selectedIndex] === "") selectXMAD(selectList);
-      self.port.emit("queryTract", encodeURIComponent(trimAddr(addr.value)));
+      self.port.emit("queryTract", trimAddr(addr.value));
+      console.log(encodeURIComponent(trimAddr(addr.value)));
       self.port.on("receivedTract", function (addrTract) {
+      console.log(addrTract);
         var selected = false;
         if (addrTract !== null && addrTract.length === 3) {
 	  var matchAddr = addrTract[0]
