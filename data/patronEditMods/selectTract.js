@@ -89,16 +89,16 @@ function queryCensusTract() {
       result.textContent = '';
       setTimeout(function() {
       	var tr = document.getElementById('tractResult');
-      	tr.setAttribute('style','display:inline-block');
-      	if (tr !== null && tr.text === '') tr.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
-      }, 5000);
+      	if (tr !== null && tr.textContent === '') {
+	  tr.setAttribute('style','display:inline-block');
+	  tr.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
+	}
+      }, 6000);
 
       // Default to MAD UND if tract is empty
       if (selectList[selectList.selectedIndex] === "") selectXMAD(selectList);
       self.port.emit("queryTract", trimAddr(addr.value));
-      console.log(encodeURIComponent(trimAddr(addr.value)));
       self.port.on("receivedTract", function (addrTract) {
-      console.log(addrTract);
         var selected = false;
         if (addrTract !== null && addrTract.length === 3) {
 	  var matchAddr = addrTract[0]
