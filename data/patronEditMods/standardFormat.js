@@ -12,7 +12,7 @@ if (inputs !== null) {
 /*** CORRECT CITY FORMAT ***/
 var city = document.getElementById('city');
 if (city !== null) city.addEventListener('blur', function() {
-  if (/madison(,? wi(sconsin)?)?|mad/i.test(this.value)) this.value = "MADISON, WI";
+  if (/madison(,? wi(sconsin)?)?|mad/i.test(this.value)) this.value = "MADISON WI";
 });
 
 /*** ALWAYS CHECK HOLD NOTIFICATION ***/
