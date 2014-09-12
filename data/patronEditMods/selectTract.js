@@ -117,29 +117,37 @@ function queryCensusTract() {
       if (selectList[selectList.selectedIndex] === "") selectXMAD(selectList);
       self.port.emit("queryTract", trimAddr(addr.value));
       self.port.on("receivedTract", function (addrTract) {
-        var selected = false;
+        var results = false;
         if (addrTract !== null && addrTract.length === 4) {
 	  var matchAddr = addrTract[0]
 	  zip.value = addrTract[1];
 	  fillDormExp();
 
-          if (addrTract[3]) {
-	    selectMADTown(selectList);
-	    selected = true;
+          if (addrTract[3] !== null && addrTract[3]) {
+            selectMADTown(selectList);
+            result.setAttribute('style','display:inline-block;color:#00c000;');
+            result.textContent = '[MATCH: '+matchAddr+']';
+            results = true;
 	  }
-          else {
+          else if (addrTract[3] !== null) {
             for (var i = 0; i < selectList.length; i++) {
               if (selectList.children[i].value === "D-"+addrTract[2]) {
                 selectList.selectedIndex = i;
                 result.setAttribute('style','display:inline-block;color:#00c000;');
                 result.textContent = '[MATCH: '+matchAddr+']';
-                selected = true;
+                results = true;
                 break;
               }
             }
 	  }
+	  else {
+            selectXMAD(selectList);
+            result.setAttribute('style','display:inline-block');
+            result.textContent = "[FAILED: unable to determine whether addresss was Town of Madison;\nplease enter zipcode and census tract manually.]";
+            results = true;
+          }
 	}
-        if (!selected) {
+        if (!results) {
 	  selectXMAD(selectList);
 	  result.setAttribute('style','display:inline-block');
 	  result.textContent = '[FAILED: please enter zipcode and census tract manually.]';
