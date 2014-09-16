@@ -1,4 +1,7 @@
-var addr = document.getElementById('address');
+addr = document.getElementById('address');
+result = document.createElement('div');
+result.setAttribute('id','tractResult');
+
 if (addr !== null) {
   addr.addEventListener('blur', queryCensusTract);
   var notice = document.createElement('div');
@@ -11,7 +14,7 @@ if (city !== null) city.addEventListener('blur', queryCensusTract);
 
 // COPIED FROM collegeExp.js
 function fillDormExp() {
-  var addr = document.getElementById('address');
+  addr = document.getElementById('address');
   var addr2 = document.getElementById('address2');
   var zip = document.getElementById('zipcode');
   var expiry = document.getElementById('dateexpiry');
@@ -43,12 +46,11 @@ function fillDormExp() {
   }
 }
 
-function selectPSTAT(selectList, value) {
+function selectPSTAT(selectList, value, result) {
   if (selectList !== null && value !== null) {
     for (var i = 0; i < selectList.length; i++) {
       if (selectList.children[i].value === value) {
         selectList.selectedIndex = i;
-        var result = document.getElementById('tractResult');
         if (result !== null) {
           result.setAttribute('style','display:inline-block;color:#00c000;');
           result.textContent = '[MATCH: '+matchAddr+']';
@@ -60,7 +62,8 @@ function selectPSTAT(selectList, value) {
 }
 
 function cleanAddr(addr) {
-  addrParts = addr.split(" ");
+  addr = document.getElementById('address');
+  if (addr !== null) addrParts = addr.value.split(" ");
   addrTrim = '';
   for (var i = 0; i < addrParts.length; i++) {
     if (i === 0) addrTrim += encodeURIComponent(addrParts[i]);
@@ -70,17 +73,17 @@ function cleanAddr(addr) {
 }
 
 function queryCensusTract() {
-  var addr = document.getElementById('address');
+  addr = document.getElementById('address');
   var city = document.getElementById('city');
   var entryForm = document.forms.entryform;
   var selectList = (entryForm !== null) ? entryForm.elements.sort1 : null;
   var notice = document.getElementById('tractNotice');
+  cntySub = null;
+  addrTract = null;
 
   if (addr.value !== "" && city.value !== "" && zip !== null && selectList !== null) {
     // Generate loading message
     notice.textContent = "Searching for census tract and zipcode... ";
-    var result = document.createElement('div');
-    result.setAttribute('id','tractResult');
     notice.appendChild(result);
     result.textContent = '';
     setTimeout(function() {
@@ -92,12 +95,16 @@ function queryCensusTract() {
     }, 6000);
 
     self.port.emit("queryCntySub", cleanAddr(addr.value));
-    self.port.on("receivedCntySub", function (cntySub) {
-      self.port.emit("queryTract", [cntySub,cleanAddr(addr.value)]);
+    console.log("emit queryCntySub");
+    self.port.on("receivedCntySub", function (cntySubDiv) {
+      console.log('on receivedCntySub: '+cntySubDiv);
+      cntySub = cntySubDiv;
+      self.port.emit("queryTract", cleanAddr(addr.value));
+      console.log('emit queryTract');
     });
-    self.port.on("receivedTract", function (cntySubAddrTract) {
-      var cntySub = cntySubAddrTract[0];
-      var addrTract = cntySubAddrTract[1];
+    self.port.on("receivedTract", function (addrTract) {
+      console.log('on receivedTract: '+addrTract);
+      var addrTract = addrTract;
       var results = false;
       if (addrTract !== null && addrTract.length === 3) {
         var matchAddr = addrTract[0];
@@ -106,13 +113,13 @@ function queryCensusTract() {
      
         switch (cntySub) {
 	  case "Blooming Grove town":
-	    selectPSTAT(selectList, "D-BG-T");
+	    selectPSTAT(selectList, "D-BG-T", result);
 	    break;
 	  case "Madison city":
-	    selectPSTAT(selectList, "D-"+addrTract[2]);
+	    selectPSTAT(selectList, "D-"+addrTract[2], result);
 	    break;
 	  case "Madison town":
-	    selectPSTAT(selectList, "D-MAD-T");
+	    selectPSTAT(selectList, "D-MAD-T", result);
 	    break;
 	  default:
 	    selectUND(selectList, "X-UND");
