@@ -46,8 +46,8 @@ function fillDormExp() {
   }
 }
 
-function selectPSTAT(selectList, value, result) {
-  if (selectList !== null && value !== null) {
+function selectPSTAT(selectList, value, result, matchAddr) {
+  if (selectList !== null && value !== null && result !== null && matchAddr !== null) {
     for (var i = 0; i < selectList.length; i++) {
       if (selectList.children[i].value === value) {
         selectList.selectedIndex = i;
@@ -55,6 +55,17 @@ function selectPSTAT(selectList, value, result) {
           result.setAttribute('style','display:inline-block;color:#00c000;');
           result.textContent = '[MATCH: '+matchAddr+']';
         }
+        break;
+      }
+    }
+  }
+}
+
+function selectUND(selectList) {
+  if (selectList !== null) {
+    for (var i = 0; i < selectList.length; i++) {
+      if (selectList.children[i].value === "X-UND") {
+        selectList.selectedIndex = i;
         break;
       }
     }
@@ -87,46 +98,45 @@ function queryCensusTract() {
     notice.appendChild(result);
     result.textContent = '';
     setTimeout(function() {
-      var tr = document.getElementById('tractResult');
-      if (tr !== null && tr.textContent === '') {
-        tr.setAttribute('style','display:inline-block');
-        tr.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
+      if (result !== null && result.textContent === '') {
+        result.setAttribute('style','display:inline-block');
+        result.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
       }
     }, 6000);
 
     self.port.emit("queryCntySub", cleanAddr(addr.value));
-    console.log("emit queryCntySub");
     self.port.on("receivedCntySub", function (cntySubDiv) {
-      console.log('on receivedCntySub: '+cntySubDiv);
       cntySub = cntySubDiv;
       self.port.emit("queryTract", cleanAddr(addr.value));
-      console.log('emit queryTract');
     });
     self.port.on("receivedTract", function (addrTract) {
-      console.log('on receivedTract: '+addrTract);
       var addrTract = addrTract;
       var results = false;
       if (addrTract !== null && addrTract.length === 3) {
         var matchAddr = addrTract[0];
         zip.value = addrTract[1];
         fillDormExp();
-     
         switch (cntySub) {
-	  case "Blooming Grove town":
-	    selectPSTAT(selectList, "D-BG-T", result);
-	    break;
-	  case "Madison city":
-	    selectPSTAT(selectList, "D-"+addrTract[2], result);
-	    break;
-	  case "Madison town":
-	    selectPSTAT(selectList, "D-MAD-T", result);
-	    break;
-	  default:
-	    selectUND(selectList, "X-UND");
+          case "Blooming Grove town":
+            selectPSTAT(selectList, "D-BG-T", result, matchAddr);
+            break;
+          case "Madison city":
+            selectPSTAT(selectList, "D-"+addrTract[2], result, matchAddr);
+            break;
+          case "Madison town":
+            selectPSTAT(selectList, "D-MAD-T", result, matchAddr);
+            break;
+          default:
+            selectUND(selectList);
             result.setAttribute('style','display:inline-block');
-            result.textContent = "[FAILED: unable to determine county subdivision; please enter zipcode and PSTAT manually.]";
-	    break;
+            result.textContent = "[FAILED: unable to determine county subdivision; please enter PSTAT manually.]";
+            break;
         }
+      }
+      else {
+        selectUND(selectList);
+        result.setAttribute('style','display:inline-block');
+        result.textContent = "[FAILED: unable to determine county subdivision; please enter zipcode and PSTAT manually.]";
       }
     });
   }
