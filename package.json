@@ -41,6 +41,13 @@
     "value": true
   },
   {
+    "name": "validAddr",
+    "title": "Validate Madison Addresses",
+    "description": "Alerts library staff when an unacceptable or restricted Madison address has been entered",
+    "type": "bool",
+    "value": true
+  },
+  {
     "name": "autoUserId",
     "title": "Autofill OPAC Login Number",
     "description": "Autofill a patron's OPAC username to the value of their library card",
