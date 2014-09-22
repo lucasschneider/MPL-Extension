@@ -2,7 +2,7 @@ function parseName() {
   var firstName = document.getElementById('firstname');
   var initials = document.getElementById('initials');
   if (firstName !== null && initials !== null) {
-    firstName.value = firstName.value.trim().replace(/\s{2,}/g, ' ')
+    firstName.value = firstName.value;
     var names = firstName.value.split(' ');
     var len = names.length;
     if (len > 1) initials.value = names[1][0];

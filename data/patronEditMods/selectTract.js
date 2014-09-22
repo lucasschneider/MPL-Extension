@@ -72,8 +72,7 @@ function selectUND(selectList) {
   }
 }
 
-function cleanAddr(addr) {
-  addr = document.getElementById('address');
+function cleanAddr(addr) {;
   if (addr !== null) addrParts = addr.value.split(" ");
   addrTrim = '';
   for (var i = 0; i < addrParts.length; i++) {
@@ -104,10 +103,10 @@ function queryCensusTract() {
       }
     }, 6000);
 
-    self.port.emit("queryCntySub", cleanAddr(addr.value));
+    self.port.emit("queryCntySub", cleanAddr(addr));
     self.port.on("receivedCntySub", function (cntySubDiv) {
       cntySub = cntySubDiv;
-      self.port.emit("queryTract", cleanAddr(addr.value));
+      self.port.emit("queryTract", cleanAddr(addr));
     });
     self.port.on("receivedTract", function (addrTract) {
       var addrTract = addrTract;
