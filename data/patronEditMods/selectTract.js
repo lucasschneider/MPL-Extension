@@ -1,4 +1,5 @@
 addr = document.getElementById('address');
+city = document.getElementById('city');
 result = document.createElement('div');
 result.setAttribute('id','tractResult');
 
@@ -9,8 +10,7 @@ if (addr !== null) {
   notice.setAttribute('style','margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
   addr.parentElement.appendChild(notice);
 }
-var city = document.getElementById('city');
-if (city !== null) city.addEventListener('blur', queryCensusTract);
+if (city !== null) city.addEventListener('blur', function() {pullCity(this.value); queryCensusTract();});
 
 // COPIED FROM collegeExp.js
 function fillDormExp() {
@@ -99,9 +99,23 @@ function cleanAddr(addr) {;
   return addrTrim;
 }
 
+function pullCity(city) {
+  console.log(city);
+  var cty = '';
+  if (city !== '') {
+    ctyArr = city.replace(/[^a-zA-Z 0-9]+/g,'').toLowerCase().split(' ');
+    for (i = 0; i < cty.length-1; i++) {
+      if (i === 0) cty += ctyArr[i];
+      else cty += " "+ctyArr[i];
+    }
+  }
+  console.log(cty);
+  return cty;
+}
+
 function queryCensusTract() {
   addr = document.getElementById('address');
-  var city = document.getElementById('city');
+  var city = document.getElementById('city'); //City state field
   var entryForm = document.forms.entryform;
   var selectList = (entryForm !== null) ? entryForm.elements.sort1 : null;
   var notice = document.getElementById('tractNotice');
@@ -118,14 +132,16 @@ function queryCensusTract() {
         result.setAttribute('style','display:inline-block');
         result.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
       }
-    }, 6000);
+    }, 7000);
 
-    self.port.emit("queryCntySub", cleanAddr(addr));
+    self.port.emit("queryCntySub", cleanAddr(addr),pullCity(city.value));
     self.port.on("receivedCntySub", function (cntySubDiv) {
+      console.log('received: '+cntySubDiv);
       cntySub = cntySubDiv;
-      self.port.emit("queryTract", cleanAddr(addr));
+      self.port.emit("queryTract", cleanAddr(addr),pullCity(city.value));
     });
     self.port.on("receivedTract", function (addrTract) {
+      console.log('received: '+addrTract);
       if (addrTract !== null && addrTract.length === 3) {
         var matchAddr = addrTract[0];
         zip.value = addrTract[1];
@@ -140,12 +156,12 @@ function queryCensusTract() {
           case "Madison town":
             selectPSTAT(selectList, "D-MAD-T", result, matchAddr);
             break;
-          /*case "Middleton city":
+          case "Middleton city":
             selectMID(selectList, result, matchAddr);
             break;
           case "Middleton town":
             selectPSTAT(selectList, "D-MID-T", result, matchAddr);
-            break;*/
+            break;
           default:
             selectUND(selectList);
             result.setAttribute('style','display:inline-block');
