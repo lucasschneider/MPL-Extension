@@ -98,6 +98,8 @@
       console.log("clean addr: " + cleanAddr(addr) + " pulled city: " + pullCity(city.value));
       self.port.emit("queryCntySub", [cleanAddr(addr), pullCity(city.value)]);
       self.port.on("receivedCntySub", function (cntySub) {
+        // cntySub[0] = cntySub; cntySub[1] = matchAddr;
+        var matchAddr = cntySub[1];
         console.log('received cnty sub: ' + cntySub);
         window.cntySub = cntySub;
         switch (window.cntySub) {
