@@ -12,10 +12,26 @@
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
     if (addr !== null) {
-      addrParts = addr.value.split(" ");
+      addrParts = addr.value.toLowerCase().split(" ");
     }
     addrTrim = '';
-    for (i = 0; i < addrParts.length; i++) {
+    for (i = 0; i < addrParts.length-1; i++) {
+      switch (addrParts[i]) {
+      case "n":
+        addrParts[i] = "north";
+        break;
+      case "e":
+        addrParts[i] = "east";
+        break;
+      case "s":
+        addrParts[i] = "south";
+        break;
+      case "w":
+        addrParts[i] = "west";
+        break;
+      default:
+        break;
+      }
       if (i === 0) {
         addrTrim += encodeURIComponent(addrParts[i]);
       } else {
@@ -26,7 +42,6 @@
   }
 
   function pullCity(city) {
-    console.log(city);
     var cty = '', ctyArr, i;
     if (city !== null) {
       ctyArr = city.replace(/[^a-zA-Z 0-9]+/g, '').toLowerCase().split(' ');
@@ -38,7 +53,6 @@
         }
       }
     }
-    console.log(cty);
     return cty;
   }
 
@@ -95,14 +109,11 @@
         }
       }, 7000);
 
-      console.log("clean addr: " + cleanAddr(addr) + " pulled city: " + pullCity(city.value));
       self.port.emit("queryCntySub", [cleanAddr(addr), pullCity(city.value)]);
       self.port.on("receivedCntySub", function (cntySub) {
         // cntySub[0] = cntySub; cntySub[1] = matchAddr;
         var matchAddr = cntySub[1];
-        console.log('received cnty sub: ' + cntySub);
-        window.cntySub = cntySub;
-        switch (window.cntySub) {
+        switch (cntySub[0]) {
 
         /*** FREQUENTLY USED PSTATS ***/
         case "Blooming Grove town":
@@ -116,7 +127,6 @@
           self.port.on("receivedTract", function (addrTract) {
             // addrTract[0] = matchedAddress; addrTract[1] = matchedZip
             // addrTract[2] = censusTract
-            console.log('received tract: ' + addrTract);
             if (addrTract !== null && addrTract.length === 3) {
               var matchAddr = addrTract[0];
               zip.value = addrTract[1];
