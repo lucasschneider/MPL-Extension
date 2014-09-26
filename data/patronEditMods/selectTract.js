@@ -251,9 +251,24 @@
           break;
         // For "Blanchardville village" see RECIPROCAL COUNTIES
         // For "Blooming Grove town" see FREQUENTLY USED PSTATS
-        case "":
-          selectPSTAT(selectList, "", result, matchAddr);
+        case "Blue Mounds town":
+          selectPSTAT(selectList, "D-BM-T", result, matchAddr);
           break;
+        case "Blue Mounds village":
+          selectPSTAT(selectList, "D-BM-V", result, matchAddr);
+          break;
+        // For "Brigham town" see RECIPROCAL COUNTIES
+        case "Bristol town":
+          selectPSTAT(selectList, "D-BRI-T", result, matchAddr);
+          break;
+        // For "Brodhead city" (Green County) see DUPLICATE SUBDIVISION NAMES
+        // For "Brodhead city" (Rock County) see DUPlICATE SUBDIVISION NAMES
+        case "Brooklyn town":
+          selectPSTAT(selectList, "G-BRO-T", result, matchAddr);
+          break;
+        // For "Brooklyn village" (Dane County) see DUPLICATE SUBDIVISION NAMES
+        // For "Brooklyn village" (Green County) see DUPLICATE SUBDIVISION NAMES
+        // For "Brownsville village" see RECIPROCAL COUNTIES
         // For "Fitchburg city" see FREQUENTLY USED PSTATS
         // For "Madison city" see FREQUENTLY USED PSTATS
         // For "Madison town" see FREQUENTLY USED PSTATS
@@ -295,6 +310,9 @@
           break;
         case "Blanchardville village":
           selectPSTAT(selectList, "O-SWLS-BLA", result, matchAddr);
+          break;
+        case "Brigham town": // IOWA COUNTY
+          selectPSTAT(selectList, "", result, matchAddr);
           break;
         /*** DUPLICATE SUBDIVISION NAMES AND DEFAULT ***/
         default:
