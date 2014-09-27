@@ -15,7 +15,7 @@
       addrParts = addr.value.toLowerCase().split(" ");
     }
     addrTrim = '';
-    for (i = 0; i < addrParts.length-1; i++) {
+    for (i = 0; i < addrParts.length - 1; i++) {
       switch (addrParts[i]) {
       case "n":
         addrParts[i] = "north";
@@ -118,8 +118,8 @@
         /*** FREQUENTLY USED PSTATS ***/
         case "Blooming Grove town":
           selectPSTAT(selectList, "D-BG-T", result, matchAddr);
-          break
-        case "Cottage Grove town"
+          break;
+        case "Cottage Grove town":
           selectPSTAT(selectList, "D-CG-T", result, matchAddr);
           break;
         case "Cottage Grove village":
@@ -325,7 +325,7 @@
         // For "Clyman village" see RECIPROCAL COUNTIES
         case "Colburn town":
           selectPSTAT(selectList, "A-COL-T", result, matchAddr);
-          break
+          break;
         // For "Cold Spring town" see RECIPROCAL COUNTIES
         // For "Columbus city" (Columbia County) see DUPLICATE SUBDIVISION NAMES
         // For "Columbus city" (Dodge County) see DUPLICATE SUBDIVISION NAMES
@@ -347,7 +347,7 @@
         case "Cross Plains village":
           selectPSTAT(selectList, "D-CP-V", result, matchAddr);
           break;
-         case "Dane town":
+        case "Dane town":
           selectPSTAT(selectList, "D-DAN-T", result, matchAddr);
           break;
         case "Dane village":
@@ -533,7 +533,7 @@
         // For "Johnson Creek village" see RECIPROCAL COUNTIES
         case "Jordan town":
           selectPSTAT(selectList, "G-JOR-T", result, matchAddr);
-          break
+          break;
         case "Junction City village":
           selectPSTAT(selectList, "P-JNC-V", result, matchAddr);
           break;
@@ -721,7 +721,7 @@
           break;
         case "Kingston village": // GREEN LAKE COUNTY
           selectPSTAT(selectList, "O-WLS-KNGV", result, matchAddr);
-          break
+          break;
         case "Koshkonong town": // JEFFERSON COUNTY
           selectPSTAT(selectList, "O-MWFLS-KOS", result, matchAddr);
           break;
@@ -748,7 +748,7 @@
           break;
         case "Lone Rock village": // RICHLAND COUNTY
           selectPSTAT(selectList, "O-SWLS-LRV", result, matchAddr);
-          break
+          break;
         case "Lowell town": // DODGE COUNTY
           selectPSTAT(selectList, "O-MWFLS-LOWT", result, matchAddr);
           break;
@@ -775,7 +775,7 @@
           break;
         case "Milford town": // JEFFERSON COUNTY
           selectPSTAT(selectList, "O-MWFLS-MIL", result, matchAddr);
-          break
+          break;
         case "Milton city": // ROCK COUNTY
           selectPSTAT(selectList, "O-ALS-MIL-C", result, matchAddr);
           break;
@@ -829,7 +829,7 @@
           break;
         case "Packwaukee town": // MARQUETTE COUNTY
           selectPSTAT(selectList, "O-WLS-PCKT", result, matchAddr);
-          break
+          break;
         case "Palmyra town": // JEFFERSON COUNTY
           selectPSTAT(selectList, "O-MWFLS-PAL", result, matchAddr);
           break;
@@ -877,6 +877,51 @@
           break;
         case "Sullivan village": // JEFFERSON COUNTY
           selectPSTAT(selectList, "O-MWFLS-SLV", result, matchAddr);
+          break;
+        case "Sumner town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-ST", result, matchAddr);
+          break;
+        case "Theresa town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-THE", result, matchAddr);
+          break;
+        case "Theresa village": // DODGE VILLAGE
+          selectPSTAT(selectList, "O-MWFLS-THV", result, matchAddr);
+          break;
+        case "Trenton town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-TRE", result, matchAddr);
+          break;
+        case "Waldwick town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-WLT", result, matchAddr);
+          break;
+        case "Waterloo city": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "", result, matchAddr);
+          break;
+        case "Waterloo town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "", result, matchAddr);
+          break;
+        case "Watertown town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "", result, matchAddr);
+          break;
+        case "Waupun city": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-WP", result, matchAddr);
+          break;
+        case "Westfield village": //  MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-WSFV", result, matchAddr);
+          break;
+        case "Whitewater city": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-WW", result, matchAddr);
+          break;
+        case "Williamstown town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-WIL", result, matchAddr);
+          break;
+        case "Willow town": // RICHLAND COUNTY
+          selectPSTAT(selectList, "O-SWLS-WIT", result, matchAddr);
+          break;
+        case "Wonewoc village": // JUNEAU COUNNTY
+          selectPSTAT(selectList, "O-WRLS-WWV", result, matchAddr);
+          break;
+        case "Wyoming town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-WYT", result, matchAddr);
           break;
 
         /*** DUPLICATE SUBDIVISION NAMES, UNUSED, AND DEFAULT ***/
