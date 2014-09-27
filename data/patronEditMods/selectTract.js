@@ -118,6 +118,12 @@
         /*** FREQUENTLY USED PSTATS ***/
         case "Blooming Grove town":
           selectPSTAT(selectList, "D-BG-T", result, matchAddr);
+          break
+        case "Cottage Grove town"
+          selectPSTAT(selectList, "D-CG-T", result, matchAddr);
+          break;
+        case "Cottage Grove village":
+          selectPSTAT(selectList, "D-CG-V", result, matchAddr);
           break;
         case "Fitchburg city":
           selectPSTAT(selectList, "D-FIT-T", result, matchAddr);
@@ -146,6 +152,7 @@
         case "Middleton town":
           selectPSTAT(selectList, "D-MID-T", result, matchAddr);
           break;
+
          /*** UNDETERMINABLE COUNTY SUBDIVISIONS ***/
         case "Sun Prairie city":
           selectPSTAT(selectList, "D-X-SUN", result, matchAddr);
@@ -159,6 +166,7 @@
           result.setAttribute('style', 'display:inline-block');
           result.textContent = "[FAILED: automatic generation only occurs for libraries that sort by census tract or county subdivision.]";
           break;
+
          /*** MAIN LIST ***/
         case "Adams city":
           selectPSTAT(selectList, "A-ADM-C", result, matchAddr);
@@ -262,14 +270,281 @@
           selectPSTAT(selectList, "D-BRI-T", result, matchAddr);
           break;
         // For "Brodhead city" (Green County) see DUPLICATE SUBDIVISION NAMES
-        // For "Brodhead city" (Rock County) see DUPlICATE SUBDIVISION NAMES
+        // For "Brodhead city" (Rock County) see DUPLICATE SUBDIVISION NAMES
         case "Brooklyn town":
           selectPSTAT(selectList, "G-BRO-T", result, matchAddr);
           break;
         // For "Brooklyn village" (Dane County) see DUPLICATE SUBDIVISION NAMES
         // For "Brooklyn village" (Green County) see DUPLICATE SUBDIVISION NAMES
         // For "Brownsville village" see RECIPROCAL COUNTIES
+        case "Browntown village":
+          selectPSTAT(selectList, "G-BROW-V", result, matchAddr);
+          break;
+        // For "Buena Vista town" (Portage County) see DUPLICATE SUBDIVISION NAMES
+        // For "Buena Vista town" (Rich County) see DUPLICATE SUBDIVISION NAMES
+        // For "Buffalo town" see RECIPROCAL COUNTIES
+        case "Burke town":
+          selectPSTAT(selectList, "D-BUR-T", result, matchAddr);
+          break;
+        // For "Burnett town" see RECIPROCAL COUNTIES
+        case "Cadiz town":
+          selectPSTAT(selectList, "G-CAD-T", result, matchAddr);
+          break;
+        // For "Calamus town" see RECIPROCAL COUNTIES
+        case "Caledonia town":
+          selectPSTAT(selectList, "C-CAL-T", result, matchAddr);
+          break;
+        case "Cambria village":
+          selectPSTAT(selectList, "C-CAM-V", result, matchAddr);
+          break;
+        // For "Cambridge village" (Dane County) see DUPLICATE SUBDIVISION NAMES
+        // For "Cambridge village" (Jefferson County) see DUPLICATE SUBDIVISION NAMES
+        case "Cameron town":
+          selectPSTAT(selectList, "W-CAM-T", result, matchAddr);
+          break;
+        case "Carson town":
+          selectPSTAT(selectList, "P-CAR-T", result, matchAddr);
+          break;
+        case "Cary town":
+          selectPSTAT(selectList, "W-CAR-T", result, matchAddr);
+          break;
+        // For "Cazenovia village" (Sauk County) see DUPLICATE SUBDIVISION NAMES
+        // For "Cazenovia village" (Richland County) see DUPLICATE SUBDIVISION NAMES
+        // For "Chester town" see RECIPROCAL COUNTIES
+        case "Christiana town":
+          selectPSTAT(selectList, "D-CHR-T", result, matchAddr);
+          break;
+        // For "Clark Co No Library" see UNUSED
+        // For "Clark Co With Library" see UNUSED
+        case "Clarno town":
+          selectPSTAT(selectList, "G-CLA-T", result, matchAddr);
+          break;
+        // For "Clinton village" see RECIPROCAL COUNTIES
+        // For "Clyde town" see RECIPROCAL COUNTIES
+        // For "Clyman town" see RECIPROCAL COUNTIES
+        // For "Clyman village" see RECIPROCAL COUNTIES
+        case "Colburn town":
+          selectPSTAT(selectList, "A-COL-T", result, matchAddr);
+          break
+        // For "Cold Spring town" see RECIPROCAL COUNTIES
+        // For "Columbus city" (Columbia County) see DUPLICATE SUBDIVISION NAMES
+        // For "Columbus city" (Dodge County) see DUPLICATE SUBDIVISION NAMES
+        case "Columbus town":
+          selectPSTAT(selectList, "C-COL-T", result, matchAddr);
+          break;
+        // For "Concord town" see RECIPROCAL COUNTIES
+        // For "Cottage Grove town" see FREQUENTLY USED PSTATS
+        // For "Cottage Grove village" see FREQUENTLY USED PSTATS
+        case "Courtland town":
+          selectPSTAT(selectList, "C-COU-T", result, matchAddr);
+          break;
+        case "Cranmoor town":
+          selectPSTAT(selectList, "W-CRAN-T", result, matchAddr);
+          break;
+        case "Cross Plains town":
+          selectPSTAT(selectList, "D-CP-T", result, matchAddr);
+          break;
+        case "Cross Plains village":
+          selectPSTAT(selectList, "D-CP-V", result, matchAddr);
+          break;
+         case "Dane town":
+          selectPSTAT(selectList, "D-DAN-T", result, matchAddr);
+          break;
+        case "Dane village":
+          selectPSTAT(selectList, "D-DAN-V", result, matchAddr);
+          break;
+        case "Decatur town":
+          selectPSTAT(selectList, "D-DEC-T", result, matchAddr);
+          break;
+        case "Deerfield town":
+          selectPSTAT(selectList, "D-DEE-T", result, matchAddr);
+          break;
+        case "Deerfield village":
+          selectPSTAT(selectList, "D-DEE-V", result, matchAddr);
+          break;
+        case "Deforest village":
+          selectPSTAT(selectList, "D-DF-V", result, matchAddr);
+          break;
+        case "Dekorra town":
+          selectPSTAT(selectList, "C-DEK-T", result, matchAddr);
+          break;
+        case "Dell Prairie town":
+          selectPSTAT(selectList, "A-DEL-T", result, matchAddr);
+          break;
+        case "Dellona town":
+          selectPSTAT(selectList, "S-DELL-T", result, matchAddr);
+          break;
+        case "Delton town":
+          selectPSTAT(selectList, "S-DELT-T", result, matchAddr);
+          break;
+        case "Dewey town":
+          selectPSTAT(selectList, "P-DEW-T", result, matchAddr);
+          break;
+        case "Dexter town":
+          selectPSTAT(selectList, "W-DEX-T", result, matchAddr);
+          break;
+        // For "Dodge Co No Library" see UNUSED
+        // For "Dodge Co With Library" see UNUSED
+        // For "Dodgeville city" see RECIPROCAL COUNTIES
+        // For "Dodgeville town" see RECIPROCAL COUNTIES
+        // For "Douglas town" see RECIPROCAL COUNTIES
+        case "Doylestown village":
+          selectPSTAT(selectList, "C-DOY-V", result, matchAddr);
+          break;
+        case "Dunkirk Town":
+          selectPSTAT(selectList, "D-DUNK-T", result, matchAddr);
+          break;
+        case "Dunn town":
+          selectPSTAT(selectList, "D-DUNN-T", result, matchAddr);
+          break;
+        // For "Eastern Shores Library System" see UNUSED
+        case "Easton town":
+          selectPSTAT(selectList, "A-EST-T", result, matchAddr);
+          break;
+        case "Eau Pleine town":
+          selectPSTAT(selectList, "", result, matchAddr);
+          break;
+        // For "Edgerton city" see RECIPROCAL COUNTIES
+        // For "Elba town" see RECIPROCAL COUNTIES
+        // For "Elroy city" see RECIPROCAL COUNTIES
+        // For "Emmet town" see RECIPROCAL COUNTIES
+        // For "Endeavor village" see RECIPROCAL COUNTIES
+        // For "Evansville city" see RECIPROCAL COUNTIES
+        case "Excelsior town":
+          selectPSTAT(selectList, "S-EXC-T", result, matchAddr);
+          break;
+        case "Exeter town":
+          selectPSTAT(selectList, "G-EXE-T", result, matchAddr);
+          break;
+        case "Fairfield town":
+          selectPSTAT(selectList, "S-FAI-T", result, matchAddr);
+          break;
+        case "Fall River village":
+          selectPSTAT(selectList, "C-FR-V", result, matchAddr);
+          break;
+        // For "Farmington town" see RECIPROCAL COUNTIES
         // For "Fitchburg city" see FREQUENTLY USED PSTATS
+        // For "Fort Atkinson city" see RECIPROCAL COUNTIES
+        case "Fort Winnebago town":
+          selectPSTAT(selectList, "C-FW-T", result, matchAddr);
+          break;
+        case "Fountain Prairie town":
+          selectPSTAT(selectList, "C-FP-T", result, matchAddr);
+          break;
+        // For "Fox Lake city" see RECIPROCAL COUNTIES
+        // For "Fox Lake town" see RECIPROCAL COUNTIES
+        case "Franklin town":
+          selectPSTAT(selectList, "S-FRA-T", result, matchAddr);
+          break;
+        case "Freedom town":
+          selectPSTAT(selectList, "S-FRE-T", result, matchAddr);
+          break;
+        case "Friendship village":
+          selectPSTAT(selectList, "A-FRN-V", result, matchAddr);
+          break;
+        case "Friesland village":
+          selectPSTAT(selectList, "C-FRI-V", result, matchAddr);
+          break;
+        case "Grand Rapids town":
+          selectPSTAT(selectList, "W-GRAP-T", result, matchAddr);
+          break;
+        case "Grant town":
+          selectPSTAT(selectList, "P-GRT-T", result, matchAddr);
+          break;
+        // For "Green Lake Co No Library" see UNUSED
+        // For "Green Lake Co With Library" see UNUSED
+        // For "Green Lake city" see RECIPROCAL COUNTIES
+        case "Greenfield town":
+          selectPSTAT(selectList, "S-GRE-T", result, matchAddr);
+          break;
+        case "Hampden town":
+          selectPSTAT(selectList, "C-HAM-T", result, matchAddr);
+          break;
+        case "Hansen Town":
+          selectPSTAT(selectList, "W-HAN-T", result, matchAddr);
+          break;
+        // For "Hartford city" see RECIPROCAL COUNTIES
+        // For "Hebron town" see RECIPROCAL COUNTIES
+        // For "Helenville town" see RECIPROCAL COUNTIES
+        // For "Herman town" see RECIPROCAL COUNTIES
+        case "Hewitt village":
+          selectPSTAT(selectList, "W-HEW-V", result, matchAddr);
+          break;
+        // For "Highland town" see RECIPROCAL COUNTIES
+        case "Hiles town":
+          selectPSTAT(selectList, "W-HIL-T", result, matchAddr);
+          break;
+        case "Hillpoint village":
+          selectPSTAT(selectList, "S-HILL-V", result, matchAddr);
+          break;
+        // For "Hollandale village" see RECIPROCAL COUNTIES
+        case "Honey Creek town":
+          selectPSTAT(selectList, "S-HC-T", result, matchAddr);
+          break;
+        // For "Horicon city" see RECIPROCAL COUNTIES
+        // For "Hubbard town" see RECIPROCAL COUNTIES
+        case "Hull town":
+          selectPSTAT(selectList, "P-HUL-T", result, matchAddr);
+          break;
+        // For "Hustisford town" see RECIPROCAL COUNTIES
+        // For "Hustisford village" see RECIPROCAL COUNTIES
+        // For "ILL Out-of-State" see UNUSED
+        // For "ILL-Arrowhead Library System" see UNUSED
+        // For "ILL-Eastern Shores Library System" see UNUSED
+        // For "ILL-Eastern Shores Library System" see UNUSED
+        // For "ILL-Kenosha County Library System" see UNUSED
+        // For "ILL-Lakeshores Library System" see UNUSED
+        // For "ILL-Manitowoc-calumet Library System" see UNUSED
+        // For "ILL-Mid-Wisconsin Federated Library System" see UNUSED
+        // For "ILL-Milwaukee Co Federated Library System" see UNUSED
+        // For "ILL-Nicolet Federated Library System" see UNUSED
+        // For "ILL-Northern Waters Library System" see UNUSED
+        // For "ILL-Outagamie Waupaca Library System" see UNUSED
+        // For "ILL-Southwest Wisconsin Library System" see UNUSED
+        // For "ILL-Waukesha County Federated Library System" see UNUSED
+        // For "ILL-Winding Rivers Library System" see UNUSED
+        // For "ILL-Winnefox Library System" see UNUSED
+        // For "ILL-Wisconsin Valley Library System" see UNUSED
+        // For "Indianhead Federated Library System" see UNUSED
+        // For "Interlibrary Loan" see UNUSED
+        // For "Internal" see UNUSED
+        // For "Iowa Co No Library" see UNUSED
+        // For "Iowa Co With Library" see UNUSED
+        // for "Iron Ridge village" see RECIPROCAL COUNTIES
+        case "Ironton town":
+          selectPSTAT(selectList, "S-IRO-T", result, matchAddr);
+          break;
+        case "Ironton village":
+          selectPSTAT(selectList, "S-IRO-V", result, matchAddr);
+          break;
+        // For "Ithaca town" see RECIPROCAL COUNTIES
+        // For "Ixonia town" see RECIPROCAL COUNTIES
+        // For "Jackson Co No Library" see UNUSED
+        // For "Jackson Co With Library" see UNUSED
+        case "Jackson town":
+          selectPSTAT(selectList, "A-JAK-T", result, matchAddr);
+          break;
+        // For "Janesville city" see RECIPROCAL COUNTIES
+        // For "Jefferson Co No Library" see UNUSED
+        // For "Jefferson Co With Library" see UNUSED
+        // For "Jefferson City" see RECIPROCAL COUNTIES
+        // For "Jefferson town" (Green County) see DUPLICATE SUBDIVISION NAMES
+        // For "Jefferson town" (Jefferson County) see DUPLICATE SUBDIVISION NAMES
+        // For "Johnson Creek village" see RECIPROCAL COUNTIES
+        case "Jordan town":
+          selectPSTAT(selectList, "G-JOR-T", result, matchAddr);
+          break
+        case "Junction City village":
+          selectPSTAT(selectList, "P-JNC-V", result, matchAddr);
+          break;
+        // For "Juneau Co No Library" see UNUSED
+        // For "Juneau Co With Library" see UNUSED
+        // For "Juneau city" see RECIPROCAL COUNTIES
+        // For "Kekoskee village" see RECIPROCAL COUNTIES
+        // For "Kenosha County Library System" see UNUSED
+        // For "Kildare town" see RECIPROCAL COUNTIES
+        // For "Kingston town" see RECIPROCAL COUNTIES
+        // For "Kingston village" see RECIPROCAL COUNTIES
         // For "Madison city" see FREQUENTLY USED PSTATS
         // For "Madison town" see FREQUENTLY USED PSTATS
         // For "Middleton city" see UNDETERMINABLE COUNTY SUBDIVISIONS
@@ -277,6 +552,7 @@
         // For "Monona city" see UNDETERMINABLE COUNTY SUBDIVISIONS
         // For "Sun Prairie city" see UNDETERMINABLE COUNTY SUBDIVISIONS
         // For "Verona city" see UNDETERMINABLE COUNTY SUBDIVISIONS
+
         /*** RECIPROCAL COUNTIES ***/
         case "Arena town": // IOWA COUNTY
           selectPSTAT(selectList, "O-SWLS-ART", result, matchAddr);
@@ -285,7 +561,7 @@
           selectPSTAT(selectList, "O-SWLS-ARV", result, matchAddr);
           break;
         case "Ashippun town": // DODGE COUNTY
-          selectPSTAT(selectList, "O-MWFLS", result, matchAddr);
+          selectPSTAT(selectList, "O-MWFLS-ASH", result, matchAddr);
           break;
         case "Avoca village": // IOWA COUNTY
           selectPSTAT(selectList, "O-SWLS-AVV", result, matchAddr);
@@ -308,13 +584,302 @@
         case "Berlin city": // GREEN LAKE COUNTY
           selectPSTAT(selectList, "O-WLS-BLC", result, matchAddr);
           break;
-        case "Blanchardville village":
+        case "Blanchardville village": // LAFAYETTE, IOWA COUNTY
           selectPSTAT(selectList, "O-SWLS-BLA", result, matchAddr);
           break;
         case "Brigham town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-BRT", result, matchAddr);
+          break;
+        case "Buffalo town": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-BUFT", result, matchAddr);
+          break;
+        case "Burnett town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-BRT", result, matchAddr);
+          break;
+        case "Calamus town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-CALT", result, matchAddr);
+          break;
+        case "Chester town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-CHE", result, matchAddr);
+          break;
+        case "Clinton village": // ROCK COUNTY
+          selectPSTAT(selectList, "O-ALS-CLI-V", result, matchAddr);
+          break;
+        case "Clyde town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-CLT", result, matchAddr);
+          break;
+        case "Clyman town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-CLYT", result, matchAddr);
+          break;
+        case "Clyman village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-CLYV", result, matchAddr);
+          break;
+        case "Cold Spring town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-CSP", result, matchAddr);
+          break;
+        case "Concord town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-CON", result, matchAddr);
+          break;
+        case "Dodgeville City": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-DOC", result, matchAddr);
+          break;
+        case "Dodgeville town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-DOT", result, matchAddr);
+          break;
+        case "Douglas town": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-DUGT", result, matchAddr);
+          break;
+        case "Edgerton city": // ROCK COUNTY
           selectPSTAT(selectList, "", result, matchAddr);
           break;
-        /*** DUPLICATE SUBDIVISION NAMES AND DEFAULT ***/
+        case "Elba town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-ELBT", result, matchAddr);
+          break;
+        case "Elroy city": // JUNEAU COUNTY
+          selectPSTAT(selectList, "O-WRLS-ELC", result, matchAddr);
+          break;
+        case "Emmet town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-EMM", result, matchAddr);
+          break;
+        case "Endeavor village": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-ENV", result, matchAddr);
+          break;
+        case "Evansville city": // ROCK COUNTY
+          selectPSTAT(selectList, "O-ALS-EVA-C", result, matchAddr);
+          break;
+        case "Farmington town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-FAR", result, matchAddr);
+          break;
+        case "Fort Atkinson city": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-FC", result, matchAddr);
+          break;
+        case "Fox Lake city": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-FXC", result, matchAddr);
+          break;
+        case "Fox Lake town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-FXT", result, matchAddr);
+          break;
+        case "Green Lake city": // GREEN LAKE COUNTY
+          selectPSTAT(selectList, "O-WLS-GLC", result, matchAddr);
+          break;
+        case "Hartford city": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HAR", result, matchAddr);
+          break;
+        case "Hebron Town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HEB", result, matchAddr);
+          break;
+        case "Helenville town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HLV", result, matchAddr);
+          break;
+        case "Herman town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HRT", result, matchAddr);
+          break;
+        case "Highland town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-HIT", result, matchAddr);
+          break;
+        case "Horicon city": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HORC", result, matchAddr);
+          break;
+        case "Hubbard town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HBT", result, matchAddr);
+          break;
+        case "Hustisford town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HUST", result, matchAddr);
+          break;
+        case "Hustisford village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-HUSV", result, matchAddr);
+          break;
+        case "Iron Ridge village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-IRV", result, matchAddr);
+          break;
+        case "Ithaca town": // RICHLAND COUNTY
+          selectPSTAT(selectList, "O-SWLS-ITT", result, matchAddr);
+          break;
+        case "Ixonia town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-IXT", result, matchAddr);
+          break;
+        case "Janesville city": // ROCK COUNTY
+          selectPSTAT(selectList, "O-ALS-JAN-C", result, matchAddr);
+          break;
+        case "Jefferson city": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-JC", result, matchAddr);
+          break;
+        case "Johnson Creek village": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-JO", result, matchAddr);
+          break;
+        case "Juneau city": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-JUNC", result, matchAddr);
+          break;
+        case "Kekoskee village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-KEK", result, matchAddr);
+          break;
+        case "Kildare town": // JUNEAU COUNTY
+          selectPSTAT(selectList, "O-WRLS-KILDT", result, matchAddr);
+          break;
+        case "Kingston town": // GREEN LAKE COUNTY
+          selectPSTAT(selectList, "O-WLS-KNGT", result, matchAddr);
+          break;
+        case "Kingston village": // GREEN LAKE COUNTY
+          selectPSTAT(selectList, "O-WLS-KNGV", result, matchAddr);
+          break
+        case "Koshkonong town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-KOS", result, matchAddr);
+          break;
+        case "Lac La Belle village": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LLB", result, matchAddr);
+          break;
+        case "Lake Mills city": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LC", result, matchAddr);
+          break;
+        case "Lake Mills town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LT", result, matchAddr);
+          break;
+        case "Lebanon town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LBT", result, matchAddr);
+          break;
+        case "Leroy town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LER", result, matchAddr);
+          break;
+        case "Lomira town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LOMT", result, matchAddr);
+          break;
+        case "Lomira village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LOMV", result, matchAddr);
+          break;
+        case "Lone Rock village": // RICHLAND COUNTY
+          selectPSTAT(selectList, "O-SWLS-LRV", result, matchAddr);
+          break
+        case "Lowell town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LOWT", result, matchAddr);
+          break;
+        case "Lowell village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-LOWV", result, matchAddr);
+          break;
+        case "Lyndon town": // JUNEAU COUNTY
+          selectPSTAT(selectList, "O-WRLS-LYNT", result, matchAddr);
+          break;
+        case "Mackford town": // GREEN LAKE COUNTY
+          selectPSTAT(selectList, "O-WLS-MCKT", result, matchAddr);
+          break;
+        case "Manchester town": // GREEN LAKE COUNTY
+          selectPSTAT(selectList, "O-WLS-MANT", result, matchAddr);
+          break;
+        case "Markesan city": // GREEN LAKE COUNTY
+          selectPSTAT(selectList, "O-WLS-MKC", result, matchAddr);
+          break;
+        case "Mauston city": // JUNEAU COUNTY
+          selectPSTAT(selectList, "O-WRLS-MAUC", result, matchAddr);
+          break;
+        case "Mayville city": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-MYC", result, matchAddr);
+          break;
+        case "Milford town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-MIL", result, matchAddr);
+          break
+        case "Milton city": // ROCK COUNTY
+          selectPSTAT(selectList, "O-ALS-MIL-C", result, matchAddr);
+          break;
+        case "Mineral Point city": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-MPC", result, matchAddr);
+          break;
+        case "Mineral Point town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-MPT", result, matchAddr);
+          break;
+        case "Montello city": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-MONV", result, matchAddr);
+          break;
+        case "Montello town": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-MONT", result, matchAddr);
+          break;
+        case "Moscow town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-MOT", result, matchAddr);
+          break;
+        case "Moundville town": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-MOUT", result, matchAddr);
+          break;
+        case "Necedah Village": // JUNEAU COUNTY
+          selectPSTAT(selectList, "O-WRLS-NECV", result, matchAddr);
+          break;
+        case "Neosho village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-NEO", result, matchAddr);
+          break;
+        case "Neshkoro village": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-NSKV", result, matchAddr);
+          break;
+        case "New Lisbon city": // JUNEAU COUNTY
+          selectPSTAT(selectList, "O-WRLS-NLC", result, matchAddr);
+          break;
+        case "Oak Grove town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-OGT", result, matchAddr);
+          break;
+        case "Oakland town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-OT", result, matchAddr);
+          break;
+        case "Orfordville city": // ROCK COUNTY
+          selectPSTAT(selectList, "O-ALS-ORF-C", result, matchAddr);
+          break;
+        case "Orion town": // RICHLAND COUNTY
+          selectPSTAT(selectList, "O-SWLS-ORT", result, matchAddr);
+          break;
+        case "Oxford town": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-OXT", result, matchAddr);
+          break;
+        case "Oxford village": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-OXV", result, matchAddr);
+          break;
+        case "Packwaukee town": // MARQUETTE COUNTY
+          selectPSTAT(selectList, "O-WLS-PCKT", result, matchAddr);
+          break
+        case "Palmyra town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-PAL", result, matchAddr);
+          break;
+        case "Palmyra village": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-PA", result, matchAddr);
+          break;
+        case "Portland town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-PRT", result, matchAddr);
+          break;
+        case "Princeton city": // GREEN LAKE
+          selectPSTAT(selectList, "O-WLS-PRC", result, matchAddr);
+          break;
+        case "Pulaksi town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-PUT", result, matchAddr);
+          break;
+        case "Randolph village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-RANV", result, matchAddr);
+          break;
+        case "Reeseville village": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-RESV", result, matchAddr);
+          break;
+        case "Richland Center city": // RICHLAND COUNTY
+          selectPSTAT(selectList, "O-SWLS", result, matchAddr);
+          break;
+        case "Richland town": // RICHLAND COUNTY
+          selectPSTAT(selectList, "O-SWLS-RIT", result, matchAddr);
+          break;
+        case "Ridgeway town": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-RID", result, matchAddr);
+          break;
+        case "Ridgeway village": // IOWA COUNTY
+          selectPSTAT(selectList, "O-SWLS-RIDV", result, matchAddr);
+          break;
+        case "Rubicon town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-RUB", result, matchAddr);
+          break;
+        case "Seven Mile Creek town": // JUNEAU COUNTY
+          selectPSTAT(selectList, "O-WRLS-7MCT", result, matchAddr);
+          break;
+        case "Shields town": // DODGE COUNTY
+          selectPSTAT(selectList, "O-MWFLS-SHT", result, matchAddr);
+          break;
+        case "Sullivan town": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-SLT", result, matchAddr);
+          break;
+        case "Sullivan village": // JEFFERSON COUNTY
+          selectPSTAT(selectList, "O-MWFLS-SLV", result, matchAddr);
+          break;
+
+        /*** DUPLICATE SUBDIVISION NAMES, UNUSED, AND DEFAULT ***/
         default:
           selectUND(selectList);
           result.setAttribute('style', 'display:inline-block');
