@@ -545,11 +545,144 @@
         // For "Kildare town" see RECIPROCAL COUNTIES
         // For "Kingston town" see RECIPROCAL COUNTIES
         // For "Kingston village" see RECIPROCAL COUNTIES
+        // For "Koshkonong town" see RECIPROCAL COUNTIES
+        // For "Lac La Belle village" see RECIPROCAL COUNTIES
+        // For "Lafayette Co No Library" see UNUSED
+        // For "Lafayette Co With Library" see UNUSED
+        case "Lake Delton village":
+          selectPSTAT(selectList, "S-LD-V", result, matchAddr);
+          break;
+        // For "Lake Mills city" see RECIPROCAL COUNTIES
+        // For "Lake Mills town" see RECIPROCAL COUNTIES
+        // for "Lakeshores Library System" see UNUSED
+        case "Lanark town":
+          selectPSTAT(selectList, "P-LAN-T", result, matchAddr);
+          break;
+        case "Lavalle town":
+          selectPSTAT(selectList, "S-LV-T", result, matchAddr);
+          break;
+        case "Lavalle village":
+          selectPSTAT(selectList, "S-LV-V", result, matchAddr);
+          break;
+        // For "Lebanon town" see RECIPROCAL COUNTIES
+        case "Leeds town":
+          selectPSTAT(selectList, "C-LEE-T", result, matchAddr);
+          break;
+        case "Leola town":
+          selectPSTAT(selectList, "A-LEO-T", result, matchAddr);
+          break;
+        // For "Leroy town" see RECIPROCAL COUNTIES
+        case "Lewiston town":
+          selectPSTAT(selectList, "C-LEW-T", result, matchAddr);
+          break;
+        case "Lime Ridge village":
+          selectPSTAT(selectList, "S-LR-V", result, matchAddr);
+          break;
+        // For "Lincoln town" (Adams County) see DUPLICATE SUBDIVISION NAMES
+        // For "Lincoln town" (Wood County) see DUPLICATE SUBDIVISION NAMES
+        case "Linwood town":
+          selectPSTAT(selectList, "P-LIN-T", result, matchAddr);
+          break;
+        case "Lodi city":
+          selectPSTAT(selectList, "C-LOD-C", result, matchAddr);
+          break;
+        case "Lodi town":
+          selectPSTAT(selectList, "C-LOD-T", result, matchAddr);
+          break;
+        case "Loganville village":
+          selectPSTAT(selectList, "S-LOG-V", result, matchAddr);
+          break;
+        // For "Lomira town" see RECIPROCAL COUNTIES
+        // For "Lomira village" see RECIPROCAL COUNTIES
+        // For "Lone Rock village" see RECIPROCAL COUNTIES
+        // For "Lowell town" see RECIPROCAL COUNTIES
+        // For "Lowell village" see RECIPROCAL COUNTIES
+        case "Lowville town":
+          selectPSTAT(selectList, "C-LOW-T", result, matchAddr);
+          break;
+        // For "Lyndon town" see RECIPROCAL COUNTIES
+        // For "Mackford town" see RECIPROCAL COUNTIES
         // For "Madison city" see FREQUENTLY USED PSTATS
         // For "Madison town" see FREQUENTLY USED PSTATS
+        // For "Manchester town" see RECIPROCAL COUNTIES
+        // For "Manitowoc-Calumet Library System" see UNUSED
+        case "Maple Bluff village":
+          selectPSTAT(selectList, "D-MB-V", result, matchAddr);
+          break;
+        // For "Marathon Co With Library" see UNUSED
+        case "Marcellon town":
+          selectPSTAT(selectList, "C-MARC-T", result, matchAddr);
+          break;
+        // For "Markesan city see RECIPROCAL COUNTIES
+        // For "Marquette Co No Library" see UNUSED
+        // For "Marquette Co With Library" see UNUSED
+        case "Marshall village":
+          selectPSTAT(selectList, "D-MARS-V", result, matchAddr);
+          break;
+        case "Marshfield city":
+          selectPSTAT(selectList, "W-MAR-C", result, matchAddr);
+          break;
+        case "Marshfield town":
+          selectPSTAT(selectList, "W-MAR-T", result, matchAddr);
+          break;
+        // For "Mauston city" see RECIPROCAL COUNTIES
+        // For "Mayville city" see RECIPROCAL COUNTIES
+        case "Mazomanie town":
+          selectPSTAT(selectList, "D-MAZ-T", result, matchAddr);
+          break;
+        case "Mazomanie village":
+          selectPSTAT(selectList, "D-MAZ-V", result, matchAddr);
+          break;
+        case "Mcfarland village":
+          selectPSTAT(selectList, "D-MCF-V", result, matchAddr);
+          break;
+        case "Medina town":
+          selectPSTAT(selectList, "D-MED-T", result, matchAddr);
+          break;
+        case "Merrimac town":
+          selectPSTAT(selectList, "S-MER-T", result, matchAddr);
+          break;
+        case "Merrimac village":
+          selectPSTAT(selectList, "S-MER-V", result, matchAddr);
+          break;
+        // For "Mid-Wisconsin Federated Library System" see UNUSED
         // For "Middleton city" see UNDETERMINABLE COUNTY SUBDIVISIONS
         // For "Middleton town" see FREQUENTLY USED PSTATS
+        // For "Milford town" see RECIPROCAL COUNTIES
+        case "Milladore town":
+          selectPSTAT(selectList, "W-MILL-T", result, matchAddr);
+          break;
+        case "Milladore village":
+          selectPSTAT(selectList, "W-MILL-V", result, matchAddr);
+          break;
+        // For "Milton city: see RECIPROCAL COUNTIES
+        // For "Milwaukee County Federated Library System" see UNUSED
+        // For "Mineral Point city" see RECIPROCAL COUNTIES
+        // For "Mineral Point town" see RECIPROCAL COUNTIES
         // For "Monona city" see UNDETERMINABLE COUNTY SUBDIVISIONS
+        case "Monroe City":
+          selectPSTAT(selectList, "G-MONR-C", result, matchAddr);
+          break;
+        // For "Monroe School District" see UNUSED  
+        // For "Monroe town" (Adams County) see DUPLICATE SUBDIVISION NAMES
+        // For "Monroe town" (Green County) see DUPLICATE SUBDIVISION NAMES
+        // For "Montello city" see RECIPROCAL COUNTIES
+        // For "Montello town" see RECIPROCAL COUNTIES
+        case "Monticello village":
+          selectPSTAT(selectList, "G-MONT-V", result, matchAddr);
+          break;
+        case "Montrose town":
+          selectPSTAT(selectList, "D-MONT-T", result, matchAddr);
+          break;
+        // For "Moscow town" see RECIPROCAL COUNTIES
+        // For "Moundville town" see RECIPROCAL COUNTIES
+        case "Mount Horeb village":
+          selectPSTAT(selectList, "D-MH-V", result, matchAddr);
+          break;
+        case "Mount Pleasant town":
+          selectPSTAT(selectList, "G-MP-T", result, matchAddr);
+          break;
+        // For "Necedah village" see RECIPROCAL COUNTIES
         // For "Sun Prairie city" see UNDETERMINABLE COUNTY SUBDIVISIONS
         // For "Verona city" see UNDETERMINABLE COUNTY SUBDIVISIONS
 
