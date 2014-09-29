@@ -59,7 +59,7 @@
   function selectUND(selectList) {
     var addr = document.getElementById('address'),
       i;
-    if (addr !== null && addr.value === '' && selectList !== null) {
+    if (addr !== null && selectList.children[selectList.selectedIndex].value === '' && selectList !== null) {
       for (i = 0; i < selectList.length; i++) {
         if (selectList.children[i].value === "X-UND") {
           selectList.selectedIndex = i;
@@ -90,7 +90,7 @@
     }
   }
 
-  function queryCensusTract() {
+  function queryPSTAT() {
     var addr = document.getElementById('address'),
       city = document.getElementById('city'), //City state field
       entryForm = document.forms.entryform,
@@ -1057,7 +1057,7 @@
                 } else if (cntySub[0] === "Randolph village") {
                   selectPSTAT(selectList, "C-RAN-VC", result, matchAddr);
                 } else if (cntySub[0] === "Wisconsin Dells city") {
-                  selectPSTAT(selectList, "C-WID-CC", result, matchAddr);
+                  selectPSTAT(selectList, "C-WD-CC", result, matchAddr);
                 }
                 break;
               case "Dane":
@@ -1531,10 +1531,10 @@
   }
 
   if (addr !== null) {
-    addr.addEventListener('blur', queryCensusTract);
+    addr.addEventListener('blur', queryPSTAT);
     addr.parentElement.appendChild(notice);
   }
   if (city !== null) {
-    city.addEventListener('blur', function () {pullCity(this.value); queryCensusTract(); });
+    city.addEventListener('blur', function () {pullCity(this.value); queryPSTAT(); });
   }
   }()); //end use strict
