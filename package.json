@@ -74,5 +74,12 @@
     "description": "Automatically generates a patron's middle initials from the first name field",
     "type": "bool",
     "value": true
+  },
+  {
+    "name": "refreshFactFinder",
+    "title": "Automatically Refresh American Fact Finder",
+    "description": "Automatically refresh American Fact Finder if it's open in a tab to avoid timeouts",
+    "type": "bool",
+    "value": true
   }]
 }
