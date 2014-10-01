@@ -35,8 +35,8 @@
   },
   {
     "name": "patronMsg",
-    "title": "Pre-defined Patron Messages",
-    "description": "Replace several of LibLime's pre-defined patron messages with messages more often used by MPL circ",
+    "title": "Additional Patron Messages",
+    "description": "Replace several of LibLime's predefined patron messages with messages more often used by MPL circ",
     "type": "bool",
     "value": true
   },
@@ -55,23 +55,23 @@
     "value": true
   },
   {
-    "name": "selectTract",
-    "title": "Lookup Census Tract",
+    "name": "selectPSTAT",
+    "title": "Lookup PSTAT",
     "description": "Automatically lookup the census tract number and zipcode for a Madison address, if possible",
     "type": "bool",
     "value": true
   },
   {
     "name": "forceDigest",
-    "title": "Pre-select \"Digests Only\"",
-    "description": "Pre-selects the \"Digests Only\" option (when available) while selecting patron notification options",
+    "title": "Preselect \"Digests Only\"",
+    "description": "Preselects the \"Digests Only\" option (when available) while selecting patron notification options",
     "type": "bool",
     "value": true
   },
   {
     "name": "middleName",
     "title": "Generate Middle Initials",
-    "description": "Automatically generates a patron's middle initials from the first name field",
+    "description": "Automatically generates a patron's middle initial from the first name field",
     "type": "bool",
     "value": true
   },
