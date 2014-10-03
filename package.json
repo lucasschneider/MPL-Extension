@@ -78,7 +78,7 @@
   {
     "name": "refreshFactFinder",
     "title": "Automatically Refresh American Fact Finder",
-    "description": "Automatically refresh American Fact Finder every 15 minutes if it's open in a tab to avoid timeouts",
+    "description": "Automatically refresh American Fact Finder when its tab is activated to avoid timeouts",
     "type": "bool",
     "value": true
   }]
