@@ -5,7 +5,7 @@
       initials = document.getElementById('initials'),
       names,
       len;
-    if (firstName !== null && initials !== null) {
+    if (firstName !== null && initials !== null && initials.value === '') {
       names = firstName.value.split(' ');
       len = names.length;
       if (len > 1) {
