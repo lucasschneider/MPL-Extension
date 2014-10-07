@@ -5,10 +5,10 @@
       initials = document.getElementById('initials'),
       names,
       len;
-    if (firstName !== null && initials !== null) {
+    if (firstName !== null && !/^[ 	]+/.test(firstName.value) && initials !== null) {
       names = firstName.value.split(' ');
       len = names.length;
-      if (len > 1) {
+      if (len > 1 && names[1]) {
         initials.value = names[1][0];
       } else {
         initials.value = "";
