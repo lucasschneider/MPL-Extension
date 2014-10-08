@@ -63,8 +63,8 @@
   },
   {
     "name": "forceDigest",
-    "title": "Preselect \"Digests Only\"",
-    "description": "Preselects the \"Digests Only\" option (when available) while selecting patron notification options",
+    "title": "Autoselect \"Digests Only\"",
+    "description": "Automatically selects the \"Digests Only\" option (when available) while selecting patron notification options",
     "type": "bool",
     "value": true
   },
