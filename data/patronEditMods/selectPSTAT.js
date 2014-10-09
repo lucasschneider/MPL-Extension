@@ -34,6 +34,8 @@
       }
       if (i === 0) {
         addrTrim += encodeURIComponent(addrParts[i]);
+      } else if (i === addrParts.length - 1) {
+        if (!/\#?[0-9]+/.test(addrParts[i])) addrTrim += "+" + encodeURIComponent(addrParts[i]);
       } else {
         addrTrim += "+" + encodeURIComponent(addrParts[i]);
       }

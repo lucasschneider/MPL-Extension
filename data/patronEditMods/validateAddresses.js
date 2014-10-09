@@ -76,7 +76,7 @@ function parseBadAddr() {
       if (bn.value !== '') {
         bn.value += "\n\n"
       }
-      bn.value += "Patron's account is Limited Use due to address (1590 MARTIN ST). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
+      bn.value += "Patron's account is Limited Use due to address (" + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
       if (ptVal === 'AD') patronType.value = 'LU';
       else if (ptVal === 'JU') patronType.value = 'LUJ';
 
@@ -85,7 +85,7 @@ function parseBadAddr() {
       if (bn.value !== '') {
         bn.value += "\n\n"
       }
-      bn.value += "Patron's account is Limited Use due to address (630 E WASHINGTON AVE). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
+      bn.value += "Patron's account is Limited Use due to address (" + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
       if (ptVal === 'AD') patronType.value = 'LU';
       else if (ptVal === 'JU') patronType.value = 'LUJ';
     } else {
