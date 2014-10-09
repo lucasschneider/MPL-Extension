@@ -15,7 +15,7 @@
       addrParts = addr.value.toLowerCase().split(" ");
     }
     addrTrim = '';
-    for (i = 0; i < addrParts.length - 1; i++) {
+    for (i = 0; i < addrParts.length; i++) {
       switch (addrParts[i]) {
       case "n":
         addrParts[i] = "north";
@@ -57,35 +57,19 @@
   }
 
   function selectUND(selectList) {
-    var addr = document.getElementById('address'),
-      i;
+    var addr = document.getElementById('address');
     if (addr !== null && selectList.children[selectList.selectedIndex].value === '' && selectList !== null) {
-      for (i = 0; i < selectList.length; i++) {
-        if (selectList.children[i].value === "X-UND") {
-          selectList.selectedIndex = i;
-          break;
-        }
-      }
+      selectList.value = "X-UND";
     }
   }
 
   function selectPSTAT(selectList, value, result, matchAddr) {
-    var selected = false,
-      i;
     if (selectList !== null && value !== null && result !== null && matchAddr !== null) {
-      for (i = 0; i < selectList.length; i++) {
-        if (selectList.children[i].value === value) {
-          selectList.selectedIndex = i;
-          selected = true;
-          if (result !== null && value !== "D-X-SUN") {
-            result.setAttribute('style', 'display:inline-block;color:#00c000;');
-            result.textContent = '[MATCH: ' + matchAddr + ']';
-          }
-          break;
-        }
-      }
-      if (!selected) {
-        selectUND(selectList);
+      
+      selectList.value = value;
+      if (value !== "D-X-SUN") {
+        result.setAttribute('style', 'display:inline-block;color:#00c000;');
+        result.textContent = '[MATCH: ' + matchAddr + ']';
       }
     }
   }

@@ -63,9 +63,4 @@ if(msgSelect != null) {
   fullEmail.value = "Email box is full; unable to send notices by email. Holds, if any, are suspended. Email was: ";
   fullEmail.innerHTML =  "Email box is full";
   badEmailGroup.appendChild(fullEmail);
-
-  var clearingHouse = document.createElement('option');
-  clearingHouse.value = "This account is a clearing house for emails that could not be delivered to the recipient and is not monitored by staff. For further information, please contact your local library directly.";
-  clearingHouse.innerHTML =  "Account is clearing house for emails";
-  badEmailGroup.appendChild(clearingHouse);
 }

@@ -30,12 +30,29 @@ function blockSubmit() {
   }
 }
 
+function curDate() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+  return month + '/' + day + '/' + year;
+}
+
 function parseBadAddr() {
-  var addr = document.getElementById('address');
-  var addr2 = document.getElementById('address2');
-  var city = document.getElementById('city');
-  var cityRegEx = /madison([,]? wi.*)?/i;
-  if (addr !== null && city !== null && cityRegEx.test(city.value)) {
+  var addr = document.getElementById('address'),
+    addr2 = document.getElementById('address2'),
+    city = document.getElementById('city'),
+    bn = document.getElementById('borrowernotes');
+    patronType = document.getElementsByName('categorycode')[0],
+    ptVal = null;
+    if (patronType !== null) {
+      ptVal = patronType.value;
+    }
+      
+    cityRegEx = /madison([,]? wi.*)?/i;
+  if (addr !== null && city !== null && cityRegEx.test(city.value) && bn !== null && patronType !== null) {
     var unacceptableRegEx = /[ ]*1819 aberg.*|[ ]*1317 applegate.*|[ ]*4581 (w|west) beltline.*|[ ]*147 (s|south) butler st.*|[ ]*115 (w|west) doty.*|[ ]*4230 (e|east) towne.*|[ ]*6441 enterprise.*|[ ]*2935 fish ?hatchery.*|[ ]*(802 (e|east)|408 (w|west)) gorham.*|[ ]*210 martin luther king.*|[ ]*3902 milwaukee.*|[ ]*4514 monona.*|[ ]*12(02|06) northport.*|[ ]*6666 odana.*|[ ]*12(28|40) (s|south) park.*|[ ]*1360 regent.*|[ ]*2120 rimrock.*|[ ]*3150 st paul.*|[ ]*103 (s|south) (2nd|second).*|[ ]*1213 (n|north) sherman.*|[ ]*731 state.*|[ ]*2701 university.*|[ ]*((322|512|1245) (e|east)|(116|625|668) (w|west)) washington.*/i;
     var restrictedRegEx = /[ ]*1955 atwood.*|[ ]*221 (s|south) baldwin.*|[ ]*306 (n|north) brooks.*|[ ]*2009 (e|east) dayton.*|[ ]*4117 dwight.*|[ ]*300 femrite.*|[ ]*4 (n|north) hancock.*|[ ]*3501 kipling.*|[ ]*4202 monona.*|[ ]*4006 nakoosa.*|[ ]*422 (n|north).*|[ ]*5706 odana.*|[ ]*202 (n|north) pat?terson.*|[ ]*1301 (williamson|willy).*/i;
     var martinStRegEx = /[ ]*1490 martin.*/i;
@@ -48,16 +65,39 @@ function parseBadAddr() {
     }
     else if (restrictedRegEx.test(addrVal)) {
       alert("--- NOTE ---\nA library card issued to " + addrVal.toUpperCase() + " must be LIMITED USE.\n\nIn order to have the limited use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
-    }
-    else if (martinStRegEx.test(addrVal)) {
+      if (bn.value !== '') {
+        bn.value += "\n\n"
+      }
+      bn.value += "Patron's account is Limited Use due to address (" + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
+      if (ptVal === 'AD') patronType.value = 'LU';
+      else if (ptVal === 'JU') patronType.value = 'LUJ';
+    } else if (martinStRegEx.test(addrVal)) {
       alert("--- NOTE ---\n1490 MARTIN ST is the Hospitality House, a daytime resource center for homeless and low-income people in Dane County. A LIMITED USE account may be set up, however, all library cards issued to that address MUST be mailed, whether or not the patron provides proof of that address.\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
-    }
-    else if (salvationRegEx.test(addrVal)) {
+      if (bn.value !== '') {
+        bn.value += "\n\n"
+      }
+      bn.value += "Patron's account is Limited Use due to address (1590 MARTIN ST). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
+      if (ptVal === 'AD') patronType.value = 'LU';
+      else if (ptVal === 'JU') patronType.value = 'LUJ';
+
+    } else if (salvationRegEx.test(addrVal)) {
       alert("--- NOTE ---\n630 E WASHINGTON AVE is the Salvation Army. People staying at the Salvation Army cannot receive personal mail there so library cards CANNOT BE MAILED. Patrons must have proof that they are staying at the Salvation Army to get a library card (usually through a letter from the director).\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
-    }
-    else {
+      if (bn.value !== '') {
+        bn.value += "\n\n"
+      }
+      bn.value += "Patron's account is Limited Use due to address (630 E WASHINGTON AVE). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
+      if (ptVal === 'AD') patronType.value = 'LU';
+      else if (ptVal === 'JU') patronType.value = 'LUJ';
+    } else {
       var field = document.getElementsByClassName('action')[0];
-      if (field != null && field.children[0].value === 'Override Block') restoreSave();
+      if (field != null && field.children[0].value === 'Override Block') {
+        restoreSave();
+      }
+      if (ptVal === 'LUJ') {
+        patronType.value = 'JU';
+      } else if (ptVal = 'LU') {
+        patronType.value = 'AD';
+      }
     }
   }
 }
