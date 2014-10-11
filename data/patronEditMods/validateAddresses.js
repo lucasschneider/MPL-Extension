@@ -51,7 +51,7 @@ function parseBadAddr() {
       ptVal = patronType.value;
     }
       
-    cityRegEx = /madison([,]? wi.*)?/i;
+    cityRegEx = /madison([,]? wi.*)?|monona([,]? wi.*)?/i;
   if (addr !== null && city !== null && cityRegEx.test(city.value) && bn !== null && patronType !== null) {
     var unacceptableRegEx = /[ ]*1819 aberg.*|[ ]*1317 applegate.*|[ ]*4581 (w|west) beltline.*|[ ]*147 (s|south) butler st.*|[ ]*115 (w|west) doty.*|[ ]*4230 (e|east) towne.*|[ ]*6441 enterprise.*|[ ]*2935 fish ?hatchery.*|[ ]*(802 (e|east)|408 (w|west)) gorham.*|[ ]*210 martin luther king.*|[ ]*3902 milwaukee.*|[ ]*4514 monona.*|[ ]*12(02|06) northport.*|[ ]*6666 odana.*|[ ]*12(28|40) (s|south) park.*|[ ]*1360 regent.*|[ ]*2120 rimrock.*|[ ]*3150 st paul.*|[ ]*103 (s|south) (2nd|second).*|[ ]*1213 (n|north) sherman.*|[ ]*731 state.*|[ ]*2701 university.*|[ ]*((322|512|1245) (e|east)|(116|625|668) (w|west)) washington.*/i;
     var restrictedRegEx = /[ ]*1955 atwood.*|[ ]*221 (s|south) baldwin.*|[ ]*306 (n|north) brooks.*|[ ]*2009 (e|east) dayton.*|[ ]*4117 dwight.*|[ ]*300 femrite.*|[ ]*4 (n|north) hancock.*|[ ]*3501 kipling.*|[ ]*4202 monona.*|[ ]*4006 nakoosa.*|[ ]*422 (n|north).*|[ ]*5706 odana.*|[ ]*202 (n|north) pat?terson.*|[ ]*1301 (williamson|willy).*/i;
