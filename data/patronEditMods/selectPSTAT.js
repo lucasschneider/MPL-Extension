@@ -93,7 +93,7 @@
           result.setAttribute('style', 'display:inline-block');
           result.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
         }
-      }, 7000);
+      }, 12000);
 
       self.port.emit("queryCntySub", [cleanAddr(addr), pullCity(city.value)]);
       self.port.on("receivedCntySub", function (cntySub) {

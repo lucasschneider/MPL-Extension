@@ -57,7 +57,7 @@
   {
     "name": "selectPSTAT",
     "title": "Lookup PSTAT",
-    "description": "Automatically lookup the census tract number and zipcode for a Madison address, if possible",
+    "description": "Automatically lookup PSTAT value for all libraries in the SCLS that sort by county subdivision or census tract number",
     "type": "bool",
     "value": true
   },
