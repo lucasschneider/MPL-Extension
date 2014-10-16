@@ -85,13 +85,13 @@
 
     if (addr.value !== "" && city.value !== "" && zip !== null && selectList !== null) {
       // Generate loading message
-      notice.textContent = "Searching for census tract and zipcode... ";
+      notice.textContent = "Searching for sort value and zipcode... ";
       notice.appendChild(result);
       result.textContent = '';
       setTimeout(function () {
         if (result !== null && result.textContent === '') {
-          result.setAttribute('style', 'display:inline-block');
-          result.textContent = '[NOTE: Server slow to respond—please enter zipcode and census tract manually]';
+          result.setAttribute('style', 'display:inline-block;color:#a5a500;');
+          result.textContent = '[NOTE: Server slow to respond—please enter zipcode and sort field manually]';
         }
       }, 12000);
 
