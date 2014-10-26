@@ -4,10 +4,12 @@
     city = document.getElementById('city'),
     zip = document.getElementById('zipcode'),
     notice = document.createElement('div'),
-    result = document.createElement('div');
+    PSTATResult = document.createElement('div'),
+    zipResult = document.createElement('div');
   notice.id = 'tractNotice';
   notice.setAttribute('style', 'margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
-  result.setAttribute('id', 'tractResult');
+  PSTATResult.setAttribute('id', 'tractResult');
+  zipResult.setAttribute('id', 'tractResult');
 
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
@@ -67,11 +69,10 @@
 
   function selectPSTAT(selectList, value, result, matchAddr) {
     if (selectList !== null && value !== null && result !== null && matchAddr !== null) {
-      
       selectList.value = value;
       if (value !== "D-X-SUN") {
         result.setAttribute('style', 'display:inline-block;color:#00c000;');
-        result.textContent = '[MATCH: ' + matchAddr + ']';
+        result.textContent = ' [MATCH: ' + matchAddr + ']';
       }
     }
   }
@@ -86,18 +87,31 @@
     if (addr.value !== "" && city.value !== "" && zip !== null && selectList !== null) {
       // Generate loading message
       notice.textContent = "Searching for sort value and zipcode... ";
-      notice.appendChild(result);
-      result.textContent = '';
+      notice.appendChild(PSTATResult);
+      notice.appendChild(zipResult);
+      PSTATResult.textContent = '';
+      zipResult.textContent = '';
       setTimeout(function () {
-        if (result !== null && result.textContent === '') {
-          result.setAttribute('style', 'display:inline-block;color:#a5a500;');
-          result.textContent = '[NOTE: Server slow to respond—please enter zipcode and sort field manually]';
+        if (PSTATResult !== null && PSTATResult.textContent === '') {
+          PSTATResult.setAttribute('style', 'display:inline-block;color:#a5a500;');
+          PSTATResult.textContent = '[NOTE: Server slow to respond—please enter zipcode and sort field manually]';
         }
       }, 12000);
 
+      self.port.emit("queryZCTA5", [cleanAddr(addr), pullCity(city.value)]);
+      self.port.on("receivedZCTA5", function (zip) {
+        var zipElt = document.getElementById('zipcode');
+        if (zipElt !== null) {
+          zipElt.value = zip;
+          zipResult.setAttribute('style', 'display:inline-block;color:#00c000;');
+          zipResult.textContent = '[ZIP FOUND]';
+        }
+      });
+      
       self.port.emit("queryCntySub", [cleanAddr(addr), pullCity(city.value)]);
       self.port.on("receivedCntySub", function (cntySub) {
-        // cntySub[0] = cntySub; cntySub[1] = matchAddr;
+        // cntySub[0] = cntySub;
+        // cntySub[1] = matchAddr;
         var matchAddr = cntySub[1];
         switch (cntySub[0]) {
 
@@ -117,12 +131,11 @@
         case "Madison city":
           self.port.emit("queryTract", [cleanAddr(addr), pullCity(city.value)]);
           self.port.on("receivedTract", function (addrTract) {
-            // addrTract[0] = matchedAddress; addrTract[1] = matchedZip
-            // addrTract[2] = censusTract
-            if (addrTract !== null && addrTract.length === 3) {
+            // addrTract[0] = matchedAddress
+            // addrTract[1] = censusTract
+            if (addrTract !== null && addrTract.length === 2) {
               var matchAddr = addrTract[0];
-              zip.value = addrTract[1];
-              selectPSTAT(selectList, "D-" + addrTract[2], result, matchAddr);
+              selectPSTAT(selectList, "D-" + addrTract[1], result, matchAddr);
               // Defined in collegeExp.js
               window.fillDormExp();
             } else {

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <setting data-jetpack-id="3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack" pref="extensions.3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack.skin" pref-name="skin" title="Select a display:" type="menulist">
+    Determines the appearance of the extension
+    <menulist>
+      <menupopup>
+        <menuitem label="MID" value="MID"/>
+        <menuitem label="MPL" value="MPL"/>
+        <menuitem label="SCLS" value="SCLS"/>
+      </menupopup>
+    </menulist>
+  </setting>
+  <setting data-jetpack-id="3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack" pref="extensions.3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack.patronMsg" pref-name="patronMsg" title="Additional Patron Messages" type="bool">Replace several of LibLime's predefined patron messages with messages more often used by MPL circ</setting>
+  <setting data-jetpack-id="3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack" pref="extensions.3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack.validAddr" pref-name="validAddr" title="Validate Madison Addresses" type="bool">Alerts library staff when an unacceptable or restricted Madison address has been entered</setting>
+  <setting data-jetpack-id="3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack" pref="extensions.3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack.autoUserId" pref-name="autoUserId" title="Autofill OPAC Login Number" type="bool">Autofill a patron's OPAC username to the value of their library card</setting>
+  <setting data-jetpack-id="3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack" pref="extensions.3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack.selectPSTAT" pref-name="selectPSTAT" title="Lookup PSTAT" type="bool">Automatically lookup PSTAT value for all libraries in the SCLS that sort by county subdivision or census tract number</setting>
+  <setting data-jetpack-id="3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack" pref="extensions.3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack.forceDigest" pref-name="forceDigest" title="Autoselect &quot;Digests Only&quot;" type="bool">Automatically selects the &quot;Digests Only&quot; option (when available) while selecting patron notification options</setting>
+  <setting data-jetpack-id="3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack" pref="extensions.3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack.middleName" pref-name="middleName" title="Generate Middle Initials" type="bool">Automatically generates a patron's middle initial from the first name field</setting>
+</vbox>
