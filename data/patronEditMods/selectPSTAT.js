@@ -4,11 +4,11 @@
     city = document.getElementById('city'),
     zip = document.getElementById('zipcode'),
     notice = document.createElement('div'),
-    PSTATResult = document.createElement('div'),
-    zipResult = document.createElement('div');
+    result = document.createElement('span'),
+    zipResult = document.createElement('span');
   notice.id = 'tractNotice';
   notice.setAttribute('style', 'margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
-  PSTATResult.setAttribute('id', 'tractResult');
+  result.setAttribute('id', 'tractResult');
   zipResult.setAttribute('id', 'tractResult');
 
   function cleanAddr(addr) {
@@ -87,14 +87,14 @@
     if (addr.value !== "" && city.value !== "" && zip !== null && selectList !== null) {
       // Generate loading message
       notice.textContent = "Searching for sort value and zipcode... ";
-      notice.appendChild(PSTATResult);
+      notice.appendChild(result);
       notice.appendChild(zipResult);
-      PSTATResult.textContent = '';
+      result.textContent = '';
       zipResult.textContent = '';
       setTimeout(function () {
-        if (PSTATResult !== null && PSTATResult.textContent === '') {
-          PSTATResult.setAttribute('style', 'display:inline-block;color:#a5a500;');
-          PSTATResult.textContent = '[NOTE: Server slow to respond—please enter zipcode and sort field manually]';
+        if (result !== null && result.textContent === '') {
+          result.setAttribute('style', 'display:inline-block;color:#a5a500;');
+          result.textContent = '[NOTE: Server slow to respond—please enter zipcode and sort field manually]';
         }
       }, 12000);
 
@@ -104,7 +104,7 @@
         if (zipElt !== null) {
           zipElt.value = zip;
           zipResult.setAttribute('style', 'display:inline-block;color:#00c000;');
-          zipResult.textContent = '[ZIP FOUND]';
+          zipResult.textContent = '--ZIP FOUND--';
         }
       });
       
