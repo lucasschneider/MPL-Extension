@@ -11,6 +11,21 @@
   result.setAttribute('id', 'tractResult');
   zipResult.setAttribute('id', 'tractResult');
 
+  // Address Toggle Bar
+  var toggleBar = document.createElement('div'),
+    ch1 = document.createElement('span'),
+    ch2 = document.createElement('span');
+
+  toggleBar.id = 'toggleBar';
+  toggleBar.setAttribute('style', 'border: solid 2px #111;border-radius:10px;height:15px;font-size:13px;font-weight:bold;text-align:center;color:#111;');
+  ch1.id = 'ch1';
+  ch1.textContext = 'Find PSTAT by primary address';
+  ch2.id = 'ch2';
+  ch2.textContext = 'Find PSTAT by secondary address';
+
+  toggleBar.appendChild(ch1);
+  toggleBar.appendChild(ch2);
+
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
     if (addr !== null) {
@@ -1531,6 +1546,10 @@
 
   if (addr !== null) {
     addr.addEventListener('blur', queryPSTAT);
+    var stNum = document.getElementById('streetnumber');
+    if (stNum !== null) {
+      stNum.appendChild(toggleBar);
+    }
     addr.parentElement.appendChild(notice);
   }
   if (city !== null) {
