@@ -1,27 +1,42 @@
 (function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
   /*global self*/
   var addr = document.getElementById('address'),
+    bAddr = document.getElementById('B_address'),
     city = document.getElementById('city'),
     zip = document.getElementById('zipcode'),
     notice = document.createElement('div'),
     result = document.createElement('span'),
-    zipResult = document.createElement('span');
+    zipResult = document.createElement('span'),
+    // Address Toggle Bar
+    toggleBar = document.createElement('li'),
+    ch1 = document.createElement('div'),
+    ch2 = document.createElement('div');
   notice.id = 'tractNotice';
   notice.setAttribute('style', 'margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
   result.setAttribute('id', 'tractResult');
   zipResult.setAttribute('id', 'tractResult');
 
-  // Address Toggle Bar
-  var toggleBar = document.createElement('div'),
-    ch1 = document.createElement('span'),
-    ch2 = document.createElement('span');
-
+  if (bAddr !== null) {
+    bAddr = bAddr.parentElement;
+  }
   toggleBar.id = 'toggleBar';
-  toggleBar.setAttribute('style', 'border: solid 2px #111;border-radius:10px;height:15px;font-size:13px;font-weight:bold;text-align:center;color:#111;');
+  toggleBar.setAttribute('style', 'border: solid 2px #111;border-radius:10px;height:15px;width:432px;font-size:13px;font-weight:bold;text-align:center;color:#111;cursor:pointer;padding:0;margin-bottom:1em;');
+  toggleBar.appendChild(ch1);
   ch1.id = 'ch1';
-  ch1.textContext = 'Find PSTAT by primary address';
+  ch1.innerHTML = 'Find PSTAT by primary address';
+  ch1.style = 'width: 215px;display:inline-block;border-right:solid 2px #111;border-radius:10px;background:#00c000;';
+  ch1.addEventListener('click', function () {
+    this.style = 'width: 215px;display:inline-block;border-right:solid 2px #111;border-radius:10px;background:#00c000;';
+    document.getElementById('ch2').style = 'width: 215px;display:inline-block;';
+  });
+  toggleBar.appendChild(ch2);
   ch2.id = 'ch2';
-  ch2.textContext = 'Find PSTAT by secondary address';
+  ch2.innerHTML = 'Find PSTAT by secondary address';
+  ch2.style = 'width: 215px;display:inline-block;';
+  ch2.addEventListener('click', function () {
+    this.style = 'width: 215px;display:inline-block;border-left:solid 2px #111;border-radius:10px;background:#00c000;';
+    document.getElementById('ch1').style = 'width: 215px;display:inline-block;';
+  });
 
   toggleBar.appendChild(ch1);
   toggleBar.appendChild(ch2);
@@ -52,7 +67,9 @@
       if (i === 0) {
         addrTrim += encodeURIComponent(addrParts[i]);
       } else if (i === addrParts.length - 1) {
-        if (!/\#?[0-9]+/.test(addrParts[i])) addrTrim += "+" + encodeURIComponent(addrParts[i]);
+        if (!/\#?[0-9]+/.test(addrParts[i])) {
+          addrTrim += "+" + encodeURIComponent(addrParts[i]);
+        }
       } else {
         addrTrim += "+" + encodeURIComponent(addrParts[i]);
       }
@@ -122,7 +139,7 @@
           zipResult.textContent = '--ZIP FOUND--';
         }
       });
-      
+
       self.port.emit("queryCntySub", [cleanAddr(addr), pullCity(city.value)]);
       self.port.on("receivedCntySub", function (cntySub) {
         // cntySub[0] = cntySub;
@@ -1546,11 +1563,10 @@
 
   if (addr !== null) {
     addr.addEventListener('blur', queryPSTAT);
-    var stNum = document.getElementById('streetnumber');
-    if (stNum !== null) {
-      stNum.appendChild(toggleBar);
-    }
     addr.parentElement.appendChild(notice);
+  }
+  if (bAddr !== null) {
+    bAddr.parentNode.insertBefore(toggleBar, bAddr);
   }
   if (city !== null) {
     city.addEventListener('blur', function () {pullCity(this.value); queryPSTAT(); });
