@@ -1,45 +1,51 @@
 (function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
   /*global self*/
   var addr = document.getElementById('address'),
-    bAddr = document.getElementById('B_address'),
     city = document.getElementById('city'),
     zip = document.getElementById('zipcode'),
     notice = document.createElement('div'),
     result = document.createElement('span'),
     zipResult = document.createElement('span'),
     // Address Toggle Bar
-    toggleBar = document.createElement('li'),
-    ch1 = document.createElement('div'),
-    ch2 = document.createElement('div');
+    topMenu = document.getElementById('toplevelmenu'),
+    pstatSelect = document.createElement('select'),
+    pstatSelectWrapper = document.createElement('li'),
+    pstatSelectMain = document.createElement('option'),
+    pstatSelectAlt = document.createElement('option');
   notice.id = 'tractNotice';
   notice.setAttribute('style', 'margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
   result.setAttribute('id', 'tractResult');
   zipResult.setAttribute('id', 'tractResult');
 
-  if (bAddr !== null) {
-    bAddr = bAddr.parentElement;
+  // Address Toggle BAR
+  pstatSelectMain.value = "main";
+  pstatSelectMain.innerHTML = "Find PSTAT by 'Main Address'";
+  pstatSelectMain.selected = true;
+  pstatSelectAlt.value = "alt";
+  pstatSelectAlt.innerHTML = "Find PSTAT by 'Alternate Address'";
+  pstatSelect.id = "pstatSelect";
+  pstatSelect.appendChild(pstatSelectMain);
+  pstatSelect.appendChild(pstatSelectAlt);
+  pstatSelectWrapper.appendChild(pstatSelect);
+  if (topMenu !== null) {
+    topMenu.appendChild(pstatSelectWrapper);
   }
-  toggleBar.id = 'toggleBar';
-  toggleBar.setAttribute('style', 'border: solid 2px #111;border-radius:10px;height:15px;width:432px;font-size:13px;font-weight:bold;text-align:center;color:#111;cursor:pointer;padding:0;margin-bottom:1em;');
-  toggleBar.appendChild(ch1);
-  ch1.id = 'ch1';
-  ch1.innerHTML = 'Find PSTAT by primary address';
-  ch1.style = 'width: 215px;display:inline-block;border-right:solid 2px #111;border-radius:10px;background:#00c000;';
-  ch1.addEventListener('click', function () {
-    this.style = 'width: 215px;display:inline-block;border-right:solid 2px #111;border-radius:10px;background:#00c000;';
-    document.getElementById('ch2').style = 'width: 215px;display:inline-block;';
-  });
-  toggleBar.appendChild(ch2);
-  ch2.id = 'ch2';
-  ch2.innerHTML = 'Find PSTAT by secondary address';
-  ch2.style = 'width: 215px;display:inline-block;';
-  ch2.addEventListener('click', function () {
-    this.style = 'width: 215px;display:inline-block;border-left:solid 2px #111;border-radius:10px;background:#00c000;';
-    document.getElementById('ch1').style = 'width: 215px;display:inline-block;';
-  });
 
-  toggleBar.appendChild(ch1);
-  toggleBar.appendChild(ch2);
+  pstatSelect.addEventListener('change', function() {
+    pstatSel = document.getElementById('pstatSelect');
+    if (pstatSel !== null) {
+      if (pstatSel.selectedOptions[0].value === "main") {
+        addr = document.getElementById('address');
+        city = document.getElementById('city');
+        zip = document.getElementById('zipcode');
+      }
+      else if (pstatSel.selectedOptions[0].value === "alt") {
+        addr = document.getElementById('B_address');
+        city = document.getElementById('B_city');
+        zip = document.getElementById('B_zipcode');
+      }
+    }
+  });
 
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
@@ -1564,9 +1570,6 @@
   if (addr !== null) {
     addr.addEventListener('blur', queryPSTAT);
     addr.parentElement.appendChild(notice);
-  }
-  if (bAddr !== null) {
-    bAddr.parentNode.insertBefore(toggleBar, bAddr);
   }
   if (city !== null) {
     city.addEventListener('blur', function () {pullCity(this.value); queryPSTAT(); });
