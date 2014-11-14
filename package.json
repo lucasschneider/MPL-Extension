@@ -34,6 +34,13 @@
     ]
   },
   {
+    "name": "cssMods",
+    "title": "Koha Style Improvements",
+    "description": " Improve the look to the LibLime Koha staff client by applying several modification to the website's style sheets.",
+    "type": "bool",
+    "value": true
+  },
+  {
     "name": "patronMsg",
     "title": "Additional Patron Messages",
     "description": "Replace several of LibLime's predefined patron messages with messages more often used by MPL circ",
