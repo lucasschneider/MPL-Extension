@@ -26,9 +26,8 @@
 
   function blockSubmit() {
     var field = document.getElementsByClassName('action')[0],
-      save = document.getElementsByName('save')[0],
       button;
-    if (field !== null && save !== null) {
+    if (field !== null) {
       button = document.createElement('input');
       button.type = 'button';
       button.value = 'Override Block';
@@ -117,7 +116,7 @@
       i,
       field;
     if (addr !== null && city !== null && cityRegEx.test(city.value) && bn !== null) {
-      addrVal = addr2 !== null && (addr2.value !== null && addr2.value !== "") ? addr.value + ", " + addr2.value : addr.value;
+      addrVal = addr2 !== null && (addr2.value !== null && addr2.value !== "") ? addr.value + " " + addr2.value : addr.value;
 
       if (/[ ]*1490 martin.*/i.test(addrVal)) {
         foundBadAddr = true;
@@ -150,6 +149,7 @@
           if (field !== null && field.children[0].value !== 'Override Block') {
             blockSubmit();
           }
+	  foundBadAddr = true;
         }
       }
       // Test for restricted addresses
@@ -167,6 +167,7 @@
             bn.value += "Patron's account is Limited Use due to address (" + restricted[i].place + ", " + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
           }
         }
+	foundBadAddr = true;
       }
       if (!foundBadAddr) {
         field = document.getElementsByClassName('action')[0];

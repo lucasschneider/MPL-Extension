@@ -1265,7 +1265,7 @@
           selectPSTAT(selectList, "O-WLS-DUGT", result, matchAddr);
           break;
         case "Edgerton city": // ROCK COUNTY
-          selectPSTAT(selectList, "", result, matchAddr);
+          selectPSTAT(selectList, "O-ALS-EDG-C", result, matchAddr);
           break;
         case "Elba town": // DODGE COUNTY
           selectPSTAT(selectList, "O-MWFLS-ELBT", result, matchAddr);
