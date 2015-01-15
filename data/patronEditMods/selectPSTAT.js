@@ -6,30 +6,10 @@
     notice = document.createElement('div'),
     result = document.createElement('span'),
     zipResult = document.createElement('span'),
-    // Address Toggle Bar
-    topMenu = document.getElementById('toplevelmenu'),
-    pstatSelect = document.createElement('select'),
-    pstatSelectWrapper = document.createElement('li'),
-    pstatSelectMain = document.createElement('option'),
-    pstatSelectAlt = document.createElement('option');
   notice.id = 'tractNotice';
   notice.setAttribute('style', 'margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
   result.setAttribute('id', 'tractResult');
   zipResult.setAttribute('id', 'tractResult');
-
-  // Address Toggle BAR
-  pstatSelectMain.value = "main";
-  pstatSelectMain.innerHTML = "Find PSTAT by 'Main Address'";
-  pstatSelectMain.selected = true;
-  pstatSelectAlt.value = "alt";
-  pstatSelectAlt.innerHTML = "Find PSTAT by 'Alternate Address'";
-  pstatSelect.id = "pstatSelect";
-  pstatSelect.appendChild(pstatSelectMain);
-  pstatSelect.appendChild(pstatSelectAlt);
-  pstatSelectWrapper.appendChild(pstatSelect);
-  if (topMenu !== null) {
-    topMenu.appendChild(pstatSelectWrapper);
-  }
 
   pstatSelect.addEventListener('change', function() {
     pstatSel = document.getElementById('pstatSelect');
