@@ -5,27 +5,11 @@
     zip = document.getElementById('zipcode'),
     notice = document.createElement('div'),
     result = document.createElement('span'),
-    zipResult = document.createElement('span'),
+    zipResult = document.createElement('span');
   notice.id = 'tractNotice';
   notice.setAttribute('style', 'margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
   result.setAttribute('id', 'tractResult');
   zipResult.setAttribute('id', 'tractResult');
-
-  pstatSelect.addEventListener('change', function() {
-    pstatSel = document.getElementById('pstatSelect');
-    if (pstatSel !== null) {
-      if (pstatSel.selectedOptions[0].value === "main") {
-        addr = document.getElementById('address');
-        city = document.getElementById('city');
-        zip = document.getElementById('zipcode');
-      }
-      else if (pstatSel.selectedOptions[0].value === "alt") {
-        addr = document.getElementById('B_address');
-        city = document.getElementById('B_city');
-        zip = document.getElementById('B_zipcode');
-      }
-    }
-  });
 
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
