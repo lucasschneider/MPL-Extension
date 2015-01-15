@@ -1,13 +1,18 @@
 <html>
 <head>
   <style type="text/css" media="all">
+    html {
+      margin: 0;
+      padding: 0;
+    }
     body {
+      margin: 0;
+      padding: 5px;
       background-color: #eee;
     }
     div {
-      height: 20px;
-      width: 100%;
-      padding-top: 15px;
+      min-height: 20px;
+      margin-top: 15px;
       color: #1c6677;
       font-size: 20px;
       font-weight: bold;
@@ -25,6 +30,20 @@
     a:focus {
       outline: 0;
     }
+    #addNote {
+      width: 250px;
+      margin: 15px auto 0;
+      padding: 5px;
+      border: 2px solid #1c6677;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #addNote:hover {
+      color: #eee;
+      background: #1c6677;
+      cursor: pointer;
+    }
   </style>
   </head>
   <body>
@@ -34,5 +53,6 @@
     <div>&gt; <a href="http://madisonpubliclibrary.org" target="_blank">MPL Home Page</a></div>
     <div>&gt; <a href="http://mplnet.pbworks.com" target="_blank">MPL Staff Wiki</a></div>
     <div>&gt; <a href="http://www.madisonpubliclibrary.org/research/referenc2" target="_blank">MPL Reference Tools</a></div>
+    <div id="addNote">Add Payment Plan Note</div>
   </body>
 </html>
