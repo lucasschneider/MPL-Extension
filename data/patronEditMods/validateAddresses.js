@@ -93,17 +93,17 @@
       ],
       restricted = [
         new Address("221 s(outh)? baldwin", "Port St Vincent"),
-        new Address("2009 e(ast)? dayton", "Arc Dayton"),
+        new Address("2009 e(ast)? dayton", "ARC Dayton"),
         new Address("4117 dwight", "Dwight Halfway House"),
         new Address("300 femrite", "Telurian"),
         new Address("4 n(orth)? hancock", "Off Square Club"),
         new Address("3501 kipling", "Schwert Halfway House"),
-        new Address("4202 monona", "Arc Maternal Infant Program"),
+        new Address("4202 monona", "ARC Maternal Infant Program"),
         new Address("4006 Nakoosa", "Porchlight/Safe Haven"),
         new Address("422 n(orth)?", "Arise Family Services"),
         new Address("5706 odana", "Foster Halfway House"),
         new Address("810 w(est)? olin", "Rebos Chris Farley House"),
-        new Address("202 n(orth)? patt?erson", "Arc Patterson"),
+        new Address("202 n(orth)? patt?erson", "ARC Patterson"),
         new Address("2720 rimrock", "Youth Services of Southern Wisconsin"),
         new Address("312 wisconsin", "Bethel Lutheran Church"),
         new Address("1301 williamson", "Port St Vincent")
@@ -166,8 +166,8 @@
           if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
             bn.value += "Patron's account is Limited Use due to address (" + restricted[i].place + ", " + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
           }
+	  foundBadAddr = true;
         }
-	foundBadAddr = true;
       }
       if (!foundBadAddr) {
         field = document.getElementsByClassName('action')[0];

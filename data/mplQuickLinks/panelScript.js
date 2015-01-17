@@ -1,4 +1,5 @@
 var addNote = document.getElementById('addNote'),
+  addr2PSTAT = document.getElementById('addr2PSTAT'),
   QLToggle = document.getElementById('QLToggle'),
   TToggle = document.getElementById('TToggle'),
   quickLinks = document.getElementById('quickLinks'),
@@ -6,6 +7,12 @@ var addNote = document.getElementById('addNote'),
 if (addNote !== null) {
   addNote.addEventListener('click', function () {
     self.port.emit('addPaymentPlanNote');
+  });
+}
+
+if (addr2PSTAT !== null) {
+  addr2PSTAT.addEventListener('click', function () {
+    self.port.emit('addr2PSTAT');
   });
 }
 

@@ -1,8 +1,7 @@
 (function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
   /*global self*/
-  var addr = document.getElementById('address'),
-    city = document.getElementById('city'),
-    zip = document.getElementById('zipcode'),
+  var addrElt = document.getElementById('address'),
+    cityElt = document.getElementById('city'),
     notice = document.createElement('div'),
     result = document.createElement('span'),
     zipResult = document.createElement('span');
@@ -79,20 +78,29 @@
     }
   }
 
-  function queryPSTAT() {
+  function queryPSTATPrep() {
     var addr = document.getElementById('address'),
-      city = document.getElementById('city'), //City state field
-      entryForm = document.forms.entryform,
+      city = document.getElementById('city');
+    if (addr !== null && city !== null) {
+      queryPSTAT(addr, city, false);
+    }
+  }
+
+  function queryPSTAT(addr, city, queryB) {
+    var entryForm = document.forms.entryform,
       selectList = (entryForm !== null) ? entryForm.elements.sort1 : null,
       notice = document.getElementById('tractNotice');
 
-    if (addr.value !== "" && city.value !== "" && zip !== null && selectList !== null) {
+    if (addr.value !== "" && city.value !== "" && selectList !== null) {
+      // Placement of results notifier
+      addr.parentElement.appendChild(notice);
+
       // Generate loading message
       notice.textContent = "Searching for sort value and zipcode... ";
-      notice.appendChild(result);
-      notice.appendChild(zipResult);
       result.textContent = '';
       zipResult.textContent = '';
+      notice.appendChild(result);
+      notice.appendChild(zipResult);
       setTimeout(function () {
         if (result !== null && result.textContent === '') {
           result.setAttribute('style', 'display:inline-block;color:#a5a500;');
@@ -102,12 +110,19 @@
 
       self.port.emit("queryZCTA5", [cleanAddr(addr), pullCity(city.value)]);
       self.port.on("receivedZCTA5", function (zip) {
-        var zipElt = document.getElementById('zipcode');
-        if (zipElt !== null) {
-          zipElt.value = zip;
-          zipResult.setAttribute('style', 'display:inline-block;color:#00c000;');
-          zipResult.textContent = '--ZIP FOUND--';
-        }
+        var zipElt = document.getElementById('zipcode'),
+	  zipEltB = document.getElementById('B_zipcode');
+        if (queryB) {
+	  if (zipEltB !== null) {
+	    zipEltB.value = zip;
+	  }
+	} else {
+          if (zipElt !== null) {
+            zipElt.value = zip;
+            zipResult.setAttribute('style', 'display:inline-block;color:#00c000;');
+            zipResult.textContent = '--ZIP FOUND--';
+          }
+	}
       });
 
       self.port.emit("queryCntySub", [cleanAddr(addr), pullCity(city.value)]);
@@ -1530,12 +1545,20 @@
       });
     }
   }
+  
+   if (addrElt !== null) {
+    addrElt.addEventListener('blur', queryPSTATPrep);
+    addrElt.parentElement.appendChild(notice);
+  }
+  if (cityElt !== null) {
+    cityElt.addEventListener('blur', function () {pullCity(this.value); queryPSTATPrep(); });
+  }
 
-  if (addr !== null) {
-    addr.addEventListener('blur', queryPSTAT);
-    addr.parentElement.appendChild(notice);
-  }
-  if (city !== null) {
-    city.addEventListener('blur', function () {pullCity(this.value); queryPSTAT(); });
-  }
+  self.port.on("addr2PSTAT", function () {
+    var addrB = document.getElementById('B_address'),
+      cityB = document.getElementById('B_city');
+    if (addrB !== null && cityB !== null) {
+      queryPSTAT(addrB, cityB, true);
+    }
+  });
   }()); //end use strict
