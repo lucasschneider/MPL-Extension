@@ -5,8 +5,8 @@ if(msgSelect != null) {
   if (msgSelect.options[4].value === "Special Note") msgSelect.remove(4);
 
   var cardAtNxtCko = document.createElement('option');
-  cardAtNxtCko.value = "Patron must use library card at next checkout. ";
-  cardAtNxtCko.innerHTML = "Use card at next CKO";
+  cardAtNxtCko.value = "Patron must have library card at next checkout. ";
+  cardAtNxtCko.innerHTML = "Have card at next CKO";
   msgSelect.insertBefore(cardAtNxtCko,msgSelect.options[1]);
   
   var addNotesLabel = document.createElement('label');
