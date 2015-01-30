@@ -18,10 +18,26 @@ if (inputs !== null) {
 }
 
 /*** CORRECT CITY FORMAT ***/
-var city = document.getElementById('city');
-if (city !== null) city.addEventListener('blur', function() {
+var city = document.getElementById('city'),
+  city2 = document.getElementById('B_city'),
+  city3 = document.getElementById('altcontactaddress3');
+if (city !== null) {
+  city.addEventListener('blur', parseMadisonWI);
+}
+
+if (city2 !== null) {
+  city2.addEventListener('blur', parseMadisonWI);
+}
+
+if (city3 !== null) {
+  city3.addEventListener('blur', parseMadisonWI);
+}
+
+function parseMadisonWI () {
   if (/madison(,? wi(sconsin)?)?|mad/i.test(this.value)) this.value = "MADISON WI";
-});
+  this.value = this.value.replace(/,/,'');
+}
+
 
 /*** ALWAYS CHECK HOLD NOTIFICATION ***/
 var hold = document.getElementById('email4');

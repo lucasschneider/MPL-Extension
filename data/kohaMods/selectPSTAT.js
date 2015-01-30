@@ -88,7 +88,7 @@
 
   function queryPSTAT(addr, city, queryB) {
     var entryForm = document.forms.entryform,
-      selectList = (entryForm !== null) ? entryForm.elements.sort1 : null,
+      selectList = (entryForm !== undefined && entryForm !== null) ? entryForm.elements.sort1 : null,
       notice = document.getElementById('tractNotice');
 
     if (addr.value !== "" && city.value !== "" && selectList !== null) {
@@ -378,7 +378,7 @@
         case "Deerfield village":
           selectPSTAT(selectList, "D-DEE-V", result, matchAddr);
           break;
-        case "Deforest village":
+        case "DeForest village":
           selectPSTAT(selectList, "D-DF-V", result, matchAddr);
           break;
         case "Dekorra town":
@@ -1546,19 +1546,28 @@
     }
   }
   
-   if (addrElt !== null) {
+  if (addrElt !== null) {
     addrElt.addEventListener('blur', queryPSTATPrep);
     addrElt.parentElement.appendChild(notice);
   }
   if (cityElt !== null) {
-    cityElt.addEventListener('blur', function () {pullCity(this.value); queryPSTATPrep(); });
+    cityElt.addEventListener('blur', function() {
+      pullCity(this.value);
+      queryPSTATPrep();
+    });
   }
 
-  self.port.on("addr2PSTAT", function () {
-    var addrB = document.getElementById('B_address'),
-      cityB = document.getElementById('B_city');
-    if (addrB !== null && cityB !== null) {
-      queryPSTAT(addrB, cityB, true);
+  self.port.on("querySecondaryPSTAT", function() {
+    var qspElt = document.getElementById('querySecondaryPSTAT');
+    if (qspElt !== undefined && qspElt !== null) {
+      var addrB = document.getElementById('B_address'),
+        cityB = document.getElementById('B_city');
+      if (addrB !== null && cityB !== null && addrB.value !== '' && cityB.value !== '') {
+        queryPSTAT(addrB, cityB, true);
+      } else {
+        alert('You may only generate the PSTAT value from the ALTERNATE ADDRESS section, NOT the alternate contact section underneath.');
+      }
+      qspElt.remove();
     }
   });
   }()); //end use strict

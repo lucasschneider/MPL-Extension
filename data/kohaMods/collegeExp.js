@@ -13,7 +13,7 @@
       date,
       year;
 
-    if (zip !== null && addr !== null && expiry.value === '') {
+    if (zip !== null && addr !== null && expiry !== null && expiry.value === '') {
       addressVal = addr2 !== null ? addr.value + " " + addr2.value : addr.value;
       if (zipRegEx.test(zip.value) && addrRegEx.test(addressVal)) {
         date = new Date();
