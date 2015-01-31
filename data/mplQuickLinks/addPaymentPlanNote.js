@@ -1,5 +1,4 @@
-var opacNote = document.getElementById('opacnote'),
-  circNote = document.getElementById('borrowernotes'),
+var circNote = document.getElementById('borrowernotes'),
   categoryCode = document.getElementsByClassName('categorycode'),
  startingBalance,
  date,
@@ -9,7 +8,7 @@ var opacNote = document.getElementById('opacnote'),
  year,
  expiryDate = '',
  currDate = '';
-if (opacNote !== null && circNote !== null) {
+if (circNote !== null) {
   startingBalance = prompt('What is the patron\'s starting balance for this payment plan?');
   if (startingBalance !== null && startingBalance !== '') {
     date = new Date();
@@ -34,13 +33,9 @@ if (opacNote !== null && circNote !== null) {
     currDate += day + '/' + date.getUTCFullYear();
     year = incrementYear ? date.getUTCFullYear() + 1 : date.getUTCFullYear();
     expiryDate += month + '/' + day + '/' + year;
-    if (opacNote.value !== null && opacNote.value !== '') {
-      opacNote.value += "\n\n";
-    }
     if (circNote.value !== null && circNote.value !== '') {
       circNote.value += "\n\n";
     }
-    opacNote.value += 'AT MADISON PUBLIC LIBRARY ONLY, you are allowed to checkout if you pay $1.00 per item. FULL payment is required outside of MPL. NO Outerloan or Rental checkouts allowed while on the plan. Holds are allowed only as copy specific on MPL items. Plan is void if new fees are added. Patron’s account is limited use while they are on the plan. Starting balance was $' + startingBalance + '. Charges must be paid by ' + expiryDate + '. Plan started on '+ currDate + ' ';
     circNote.value += 'AT MADISON PUBLIC LIBRARY ONLY, patron is allowed to checkout if they pay $1.00 per item. FULL payment is required outside of MPL. NO Outerloan or Rental checkouts allowed while on the plan. Holds are allowed only as copy specific on MPL items. Plan is void if new fees are added. Patron’s account is limited use while they are on the plan. Starting balance was $' + startingBalance + '. Charges must be paid by ' + expiryDate + '. Plan started on '+ currDate + ' ';
     if (categoryCode !== null && categoryCode[0].value === 'AD') {
       categoryCode[0].value = 'LU';
