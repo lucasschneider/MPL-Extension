@@ -13,7 +13,10 @@
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
     if (addr !== null) {
-      addrParts = addr.value.toLowerCase().split(" ");
+      if (/madison(,? wi(sconsin)?)?|mad/i.test(addr.value)) {
+      	addr.value = "MADISON WI";
+      }
+      addrParts = addr.value.toLowerCase().replace(/,/,'').split(" ");
     }
     addrTrim = '';
     for (i = 0; i < addrParts.length; i++) {
