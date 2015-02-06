@@ -13,10 +13,7 @@
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
     if (addr !== null) {
-      if (/madison(,? wi(sconsin)?)?|mad/i.test(addr.value)) {
-      	addr.value = "MADISON WI";
-      }
-      addrParts = addr.value.toLowerCase().replace(/,/,'').split(" ");
+      addrParts = addr.value.toLowerCase().split(" ");
     }
     addrTrim = '';
     for (i = 0; i < addrParts.length; i++) {
@@ -1555,6 +1552,7 @@
   }
   if (cityElt !== null) {
     cityElt.addEventListener('blur', function() {
+      parseMadisonWI(this);
       pullCity(this.value);
       queryPSTATPrep();
     });
@@ -1573,4 +1571,23 @@
       qspElt.remove();
     }
   });
+
+/*** CORRECT CITY FORMAT ***/
+var city2 = document.getElementById('B_city'),
+  city3 = document.getElementById('altcontactaddress3');
+
+if (city2 !== null) {
+  city2.addEventListener('blur', function() {parseMadisonWI(this);});
+}
+
+if (city3 !== null) {
+  city3.addEventListener('blur', function() {parseMadisonWI(this);});
+}
+
+function parseMadisonWI (elt) {
+  if (/madison(,? wi(sconsin)?)?|mad/i.test(elt.value)) elt.value = "MADISON WI";
+  elt.value = elt.value.replace(/,/,'');
+}
+
+
   }()); //end use strict

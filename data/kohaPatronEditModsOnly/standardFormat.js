@@ -21,6 +21,7 @@ if (inputs !== null) {
 var city = document.getElementById('city'),
   city2 = document.getElementById('B_city'),
   city3 = document.getElementById('altcontactaddress3');
+
 if (city !== null) {
   city.addEventListener('blur', parseMadisonWI);
 }
@@ -37,7 +38,6 @@ function parseMadisonWI () {
   if (/madison(,? wi(sconsin)?)?|mad/i.test(this.value)) this.value = "MADISON WI";
   this.value = this.value.replace(/,/,'');
 }
-
 
 /*** ALWAYS CHECK HOLD NOTIFICATION ***/
 var hold = document.getElementById('email4');
