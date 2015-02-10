@@ -1571,6 +1571,14 @@
       qspElt.remove();
     }
   });
+  
+  self.port.on("querySecondaryPSTAT", function() {
+    var qspFailElt = document.getElementById('querySecondaryPSTATFail');
+    if (qspFailElt !== undefined && qspFailElt !== null) {
+      alert("You must be currently editing a patron\'s record to generate the PSTAT value from their alternate address");
+      qspElt.remove();
+    }
+  });
 
 /*** CORRECT CITY FORMAT ***/
 var city2 = document.getElementById('B_city'),
