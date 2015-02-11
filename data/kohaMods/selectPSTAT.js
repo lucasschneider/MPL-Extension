@@ -1572,11 +1572,11 @@
     }
   });
   
-  self.port.on("querySecondaryPSTAT", function() {
+  self.port.on("querySecondaryPSTATFail", function() {
     var qspFailElt = document.getElementById('querySecondaryPSTATFail');
     if (qspFailElt !== undefined && qspFailElt !== null) {
       alert("You must be currently editing a patron\'s record to generate the PSTAT value from their alternate address");
-      qspElt.remove();
+      qspFailElt.remove();
     }
   });
 
