@@ -165,6 +165,15 @@
         case "Madison town":
           selectPSTAT(selectList, "D-MAD-T", result, matchAddr);
           break;
+        case "Middleton city":
+       	  if (/.*(aspen c|aurora s|blackhawk r|blackhawk c|1(8(09|[1-9][0-9])|9[0-9]{2}) bristol s|cayuga s|cobblestone c|1(2[6-9][0-9]|[3-9][0-9]{2}) deming w|elderwood c|7([0-7][0-9]{2}|800) elmwood ave|foxridge c|greenway b|grosse point d|henry c|henry s|(1[2-7][0-9][02468]|1[4-7][0-9][13579]) n(orth)? high point r|hillcrest a|7([0-5][0-9]{2}|600) hubbard a).*/i.test(matchAddr)) {
+       	  } else {
+            selectUND(selectList);
+            result.setAttribute('style', 'display:inline-block');
+            result.textContent = "[FAILED: unable to determine county subdivision; please enter PSTAT manually.]";
+       	  }
+       	 }
+       	 break;
         case "Middleton town":
           selectPSTAT(selectList, "D-MID-T", result, matchAddr);
           break;
@@ -175,7 +184,6 @@
           result.setAttribute('style', 'display:inline-block');
           result.textContent = "[FAILED: automatic generation only occurs for libraries that sort by census tract or county subdivision.]";
           break;
-        case "Middleton city":
         case "Monona city":
         case "Verona city":
           selectUND(selectList);
