@@ -166,11 +166,24 @@
           selectPSTAT(selectList, "D-MAD-T", result, matchAddr);
           break;
         case "Middleton city":
-       	  if (/.*(aspen c|aurora s|blackhawk r|blackhawk c|1(8(09|[1-9][0-9])|9[0-9]{2}) bristol s|cayuga s|cobblestone c|1(2[6-9][0-9]|[3-9][0-9]{2}) deming w|elderwood c|7([0-7][0-9]{2}|800) elmwood ave|foxridge c|greenway b|grosse point d|henry c|henry s|(1[2-7][0-9][02468]|1[4-7][0-9][13579]) n(orth)? high point r|hillcrest a|7([0-5][0-9]{2}|600) hubbard a).*/i.test(matchAddr)) {
+       	  if (/.*(aspen c|aurora s|blackhawk r|blackhawk c|1(8(09|[1-9][0-9])|9[0-9]{2}) bristol s|cayuga s|cobblestone c|1(2[6-9][0-9]|[3-9][0-9]{2}) deming w|elderwood c|7([0-7][0-9]{2}|800) elmwood ave|foxridge c|greenway b|grosse point d|henry c|henry s|(1[2-7][0-9][02468]|1[4-7][0-9][13579]) n(orth)? high point r|hillcrest a|7([0-5][0-9]{2}|600) hubbard a|john q\.? hammons d|market s|meadow c|1[7-9][0-9][02468] middleton s|1[7-9][0-9]{2} park s|(1[4-6][0-9][02468]|1[7-9][0-9][02468]) parmenter s|(1322|1[4-9][0-9]{2}) pleasant view r|quarry r|research w|reservoir r|7[0-4][0-9][02468] south a|stratford c|sunset c|terrace a|[78][0-9]{3} university a).*/i.test(matchAddr)) {
+       	    selectPSTAT(selectList, "D-MID-C1", result, matchAddr);
+       	  } else if (/.*(boundary r|briarcliff l|camberwell c|canterbury c|clovernook (c|r)|club c|devonshire c|falcon c|fargo c|fortune d|1[0-5][0-9]{2} n(orth)? gammon r|granite c|e(ast)? hamstead c|w(est)? hampstead c|hunter'?s c|7[4-6][0-9]{2} kenyon d|lannon stone c|1[2-6][0-9]{2} middleton s|muirfield c|15[0-9]{2} park s|park shores c|1[4-6][0-9][13579] pond view (c|r)|quartz c|red oak c|rooster r|sandstone c|sellery s|shirley (c|s)sleepy hollow c|7[2-4][0-9][13579] south a|squire c|stone glen d|stonefield c|6[3-7][0-9]{2} stonefield r|sweeney d|voss p|westchester d|n(orth)? westfield r|windfield w|woodgate r|wydown c).*/i.test(matchAddr)) {
+       	    selectPSTAT(selectList, "D-MID-C2", result, matchAddr);
+       	  } else if (/.*().*/i.test(matchAddr)) {
+       	    selectPSTAT(selectList, "D-MID-C3", result, matchAddr);
+       	  } else if (/.*().*/i.test(matchAddr)) {
+       	    selectPSTAT(selectList, "D-MID-C4", result, matchAddr);
+       	  } else if (/.*().*/i.test(matchAddr)) {
+       	    selectPSTAT(selectList, "D-MID-C5", result, matchAddr);
+       	  } else if (/.*().*/i.test(matchAddr)) {
+       	    selectPSTAT(selectList, "D-MID-C6", result, matchAddr);
+       	  } else if (/.*().*/i.test(matchAddr)) {
+       	    selectPSTAT(selectList, "D-MID-C7", result, matchAddr);
        	  } else {
             selectUND(selectList);
             result.setAttribute('style', 'display:inline-block');
-            result.textContent = "[FAILED: unable to determine county subdivision; please enter PSTAT manually.]";
+            result.textContent = "[FAILED: unable to determine Middleton district; please enter PSTAT manually.]";
        	  }
        	 }
        	 break;
