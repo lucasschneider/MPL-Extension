@@ -172,9 +172,9 @@
        	    selectPSTAT(selectList, "D-MID-C2", result, matchAddr);
        	  } else if (/.*(anderson a|beechwood c|boulder l|[0-9]{3}[02468] branch s)|2[0-2][0-9]{2} bristol s|clark s|columbus d|coolidge c|cooper (a|c)|countryside d|cypress t|dohse c|(6[2-5][0-9][13579]|6[6-9][0-9]{2}) elmwood a|franklin a|gateway s|6[3-9][0-9]{2} hubbard a|lee s|maple (c|s)|mayflower d|(6[6-9][0-9]{2}|7[0-2][0-9]{2}) maywood a|meadowcrest l|2[01][0-9]{2} middleton s|nina c|north a|orchid l|(16[0-9]{2}|1[7-9][0-9][13579]|2[0-4][0-9]{2}) park s|park lawn p|2[0-4][0-9][13579] parmenter s|pinta c|santa maria c|shady oak c|(6[3-9][0-9]{2}|7[01][0-9][13579]) south a|62[0-9]{2} stonefield r|(6[6-9][0-9][13579]|6(6[5-9][02468]|[7-9][0-9][02468])|7[0-4][0-9][02468]) university a|violet p|walnut c|willow t|wood r|wood c).*/i.test(matchAddr)) {
        	    selectPSTAT(selectList, "D-MID-C3", result, matchAddr);
-       	  } else if (/.*(alder c|allen b|amherst r|[0-9]{3}[13579] branch s|6[1-5][0-9][13579] century a|century harbor r|charing cross l|countryside l|dewey c|6[2-5][0-9]{2} elmwood a|s(outh)? gateway s|lake s|lakefield c|lakeview (a|b)|6[2-5][0-9]{2} maywood a|maywood c|mendota a|middleton beach r|middleton springs d|mound s|oakwood p|overlook p|paske c|pheasant l).*/i.test(matchAddr)) {
+       	  } else if (/.*(alder c|allen b|amherst r|[0-9]{3}[13579] branch s|6[1-5][0-9][13579] century a|century harbor r|charing cross l|countryside l|dewey c|6[2-5][0-9]{2} elmwood a|s(outh)? gateway s|lake s|lakefield c|lakeview (a|b)|6[2-5][0-9]{2} maywood a|maywood c|mendota a|middleton beach r|middleton springs d|mound s|oakwood p|overlook p|paske c|pheasant l|(6([1-5][0-9]{2}|6([01][0-9]|2[0-2]))|6(2(5[1-9]|[6-9][0-9])|[3-5][0-9][13579])|63[0-9]{2}) university a).*/i.test(matchAddr)) {
        	    selectPSTAT(selectList, "D-MID-C4", result, matchAddr);
-       	  } else if (/.*().*/i.test(matchAddr)) {
+       	  } else if (/.*(airport r|alpha l|bauer c|belle fontaine b|black opal a|bravo l|calla p|caneel t|capitol view r|cardinal d|(6[89][0-9]{2}|[789][0-9]{3}) century a|century p|charis t|charlie l|companion l|delta l|[23][0-9]{3} deming w|discovery d|(6[89][0-9][02468]|7[0-6][0-9]{2}) donna d|eagle d|echo l|evergreen r|fairway p|feather l|flagstone c|forsythia (c|s)|7[0-4][0-9]{2} friendship l|glenn l|glenview c|graber r|(n(orth)?|s(outh)?|w(est)?) greenview d|3[3-9][0-9][02468] high r|kasten c|knool c|laura l|lily l|lisa l|lynn (c|s)|29[0-9]{2} meadowbrook r|misty valley d|mockingbird l|montclair d|murphy d|newton c|niebler l|nightingale (c|l)|northbrook d|nursery d|park c|(2[6-8][0-9][02468]|(29[0-9]{2}|3[0-2][0-9]{2})|3[3-7][0-9]{2}) park s).*/i.test(matchAddr)) {
        	    selectPSTAT(selectList, "D-MID-C5", result, matchAddr);
        	  } else if (/.*().*/i.test(matchAddr)) {
        	    selectPSTAT(selectList, "D-MID-C6", result, matchAddr);
@@ -201,7 +201,7 @@
         case "Verona city":
           selectUND(selectList);
           result.setAttribute('style', 'display:inline-block');
-          result.textContent = "[FAILED: automatic generation only occurs for libraries that sort by census tract or county subdivision.]";
+          result.textContent = "[FAILED: automatic gnereation only occurs for libraries that sort by census tract or county subdivision.]";
           break;
 
          /*** MAIN LIST ***/
