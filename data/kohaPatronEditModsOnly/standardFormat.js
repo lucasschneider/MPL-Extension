@@ -6,7 +6,7 @@ if (inputs !== null) {
     else {
       inputs[i].addEventListener('blur', function() {
         this.value = this.value.toUpperCase().replace(/\s{2,}/g, ' ');
-        if (/^[ 	]+/.test(this.value)) {
+        if (/^[ 	]+$/.test(this.value)) {
           this.value = ' ';
         }
 	else {

@@ -170,7 +170,7 @@
        	    selectPSTAT(selectList, "D-MID-C1", result, matchAddr);
        	  } else if (/.*(boundary r|briarcliff l|camberwell c|canterbury c|clovernook (c|r)|club c|devonshire c|falcon c|fargo c|fortune d|1[0-5][0-9]{2} n(orth)? gammon r|granite c|e(ast)? hamstead c|w(est)? hampstead c|1[23][0-9][13579] n(orth)? high point r|hunter'?s c|7[4-6][0-9]{2} kenyon d|knights c|lannon stone c|1[2-6][0-9]{2} middleton s|muirfield c|15[0-9]{2} park s|park shores c|1[4-6][0-9][13579] pond view (c|r)|quartz c|red oak c|rooster r|sandstone c|sellery s|shirley (c|s)sleepy hollow c|7[2-4][0-9][13579] south a|squire c|stone glen d|stonefield c|6[3-7][0-9]{2} stonefield r|sweeney d|voss p|westchester d|n(orth)? westfield r|windfield w|woodgate r|wydown c).*/i.test(matchAddr)) {
        	    selectPSTAT(selectList, "D-MID-C2", result, matchAddr);
-       	  } else if (/.*(anderson a|beechwood c|boulder l|[0-9]{3}[02468] branch s)|2[0-2][0-9]{2} bristol s|clark s|columbus d|coolidge c|cooper (a|c)|countryside d|cypress t|dohse c|(6[2-5][0-9][13579]|6[6-9][0-9]{2}) elmwood a|franklin a|gateway s|6[3-9][0-9]{2} hubbard a|lee s|maple (c|s)|mayflower d|(6[6-9][0-9]{2}|7[0-2][0-9]{2}) maywood a|meadowcrest l|2[01][0-9]{2} middleton s|nina c|north a|orchid l|(16[0-9]{2}|1[7-9][0-9][13579]|2[0-4][0-9]{2}) park s|park lawn p|2[0-4][0-9][13579] parmenter s|pinta c|santa maria c|shady oak c|(6[3-9][0-9]{2}|7[01][0-9][13579]) south a|62[0-9]{2} stonefield r|(6[6-9][0-9][13579]|6(6[5-9][02468]|[7-9][0-9][02468])|7[0-4][0-9][02468]) university a|violet p|walnut c|willow t|wood r|wood c).*/i.test(matchAddr)) {
+       	  } else if (/.*(anderson a|beechwood c|boulder l|[0-9]{3}[02468] branch s|2[0-2][0-9]{2} bristol s|clark s|columbus d|coolidge c|cooper (a|c)|countryside d|cypress t|dohse c|(6[2-5][0-9][13579]|6[6-9][0-9]{2}) elmwood a|franklin a|gateway s|6[3-9][0-9]{2} hubbard a|lee s|maple (c|s)|mayflower d|(6[6-9][0-9]{2}|7[0-2][0-9]{2}) maywood a|meadowcrest l|2[01][0-9]{2} middleton s|nina c|north a|orchid l|(16[0-9]{2}|1[7-9][0-9][13579]|2[0-4][0-9]{2}) park s|park lawn p|2[0-4][0-9][13579] parmenter s|pinta c|santa maria c|shady oak c|(6[3-9][0-9]{2}|7[01][0-9][13579]) south a|62[0-9]{2} stonefield r|(6[6-9][0-9][13579]|6(6[5-9][02468]|[7-9][0-9][02468])|7[0-4][0-9][02468]) university a|violet p|walnut c|willow t|wood r|wood c).*/i.test(matchAddr)) {
        	    selectPSTAT(selectList, "D-MID-C3", result, matchAddr);
        	  } else if (/.*(alder c|allen b|amherst r|[0-9]{3}[13579] branch s|6[1-5][0-9][13579] century a|century harbor r|charing cross l|countryside l|dewey c|6[2-5][0-9]{2} elmwood a|s(outh)? gateway s|lake s|lakefield c|lakeview (a|b)|6[2-5][0-9]{2} maywood a|maywood c|mendota a|middleton beach r|middleton springs d|mound s|oakwood p|overlook p|paske c|pheasant l|(6([1-5][0-9]{2}|6([01][0-9]|2[0-2]))|6(2(5[1-9]|[6-9][0-9])|[3-5][0-9][13579])|63[0-9]{2}) university a).*/i.test(matchAddr)) {
        	    selectPSTAT(selectList, "D-MID-C4", result, matchAddr);
@@ -185,8 +185,7 @@
             result.setAttribute('style', 'display:inline-block');
             result.textContent = "[FAILED: unable to determine Middleton district; please enter PSTAT manually.]";
        	  }
-       	 }
-       	 break;
+       	  break;
         case "Middleton town":
           selectPSTAT(selectList, "D-MID-T", result, matchAddr);
           break;
