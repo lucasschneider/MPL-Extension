@@ -2,7 +2,9 @@
 var msgSelect = document.getElementById('type');
 
 if(msgSelect != null) {
-  if (msgSelect.options[4].value === "Special Note") msgSelect.remove(4);
+  if (msgSelect.options[4].value === "Special Note") {
+    msgSelect.remove(4);
+  }
 
   var cardAtNxtCko = document.createElement('option');
   cardAtNxtCko.value = "Patron must have library card at next checkout. ";
@@ -45,7 +47,7 @@ if(msgSelect != null) {
   returnedMailGroup.appendChild(poRtd);
 
   var cardRtd = document.createElement('option');
-  cardRtd.value = "Card was mailed to patron to establish proof of address, but was ret'd by PO. Card is now at MAD. When patron provides new address, please contact MAD-CIRC so card can be mailed again. smt";
+  cardRtd.value = "Card was mailed to patron to establish proof of address, but was ret'd by PO. Card is now at MAD. When patron provides new address, please contact MAD-CIRC so card can be mailed again. ";
   cardRtd.innerHTML = "Library card returned by post office";
   returnedMailGroup.appendChild(cardRtd);
 

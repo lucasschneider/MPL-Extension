@@ -164,7 +164,7 @@
             bn.value += "\n\n";
           }
           if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
-            bn.value += "Patron's account is Limited Use due to address (" + restricted[i].place + ", " + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
+            bn.value += "Patron's account is Limited Use due to address (" + restricted[i].place + ", " + addrVal.toUpperCase() + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
           }
 	  foundBadAddr = true;
         }

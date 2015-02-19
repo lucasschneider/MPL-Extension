@@ -9,7 +9,7 @@
       names = firstName.value.split(' ');
       len = names.length;
       if (len > 1 && names[1]) {
-        initials.value = names[1][0];
+        initials.value = names[1][0].toUpperCase();
       } else {
         initials.value = "";
       }
