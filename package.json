@@ -68,6 +68,12 @@
     "type": "bool",
     "value": true
   },
+    "name": "restrictNotificationOptions",
+    "title": "Autoselect \"Digests Only\"",
+    "description": "Restict the notification options displayed to those that function correctly, and automatically select the \"Digests Only\" option (when available) while selecting patron notification options",
+    "type": "bool",
+    "value": true
+  },	
   {
     "name": "middleName",
     "title": "Generate Middle Initials",
