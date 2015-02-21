@@ -1,9 +1,27 @@
 var email1 = document.getElementById('email1'),
   digest1 = document.getElementById('digest1'),
   email2 = document.getElementById('email2'),
-  digest2 = document.getElementById('digest2');
-digest1.disabled = true;
-digest2.disabled = true;
+  digest2 = document.getElementById('digest2'),
+  messagingPrefs,
+  messagingPrefsTable,
+  messagingPrefsTbody,
+  messagingPrefsRows;
+
+/*** LIMIT NOTIFICATION OPTIONS BY THOSE THAT WORK ***/
+messagingPrefs = document.getElementById('memberentry_messaging_prefs');
+if (messagingPrefs !== null) {
+  messagingPrefsTable = messagingPrefs.children[6];
+  if (messagingPrefsTable !== null) {
+    messagingPrefsTbody = messagingPrefsTable.children[0];
+    if (messagingPrefsTbody !== null) {
+      messagingPrefsRows = messagingPrefsTbody.children;
+      messagingPrefsRows[6].remove();
+      messagingPrefsRows[5].remove();
+      messagingPrefsRows[3].remove();
+      messagingPrefsRows[1].remove();
+    }
+  }
+}
 
 function toggleDueDate(email1, digest1, email2, digest2) {
   var notice = document.getElementsByName('2-DAYS');

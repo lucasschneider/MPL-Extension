@@ -21,15 +21,15 @@
     "options": [
       {
         "value": "MID",
-	"label": "MID"
+        "label": "MID"
       },
       {
         "value": "MPL",
-	"label": "MPL"
+        "label": "MPL"
       },
       {
         "value": "SCLS",
-	"label": "SCLS"
+        "label": "SCLS"
       }
     ]
   },
@@ -68,12 +68,13 @@
     "type": "bool",
     "value": true
   },
+  {
     "name": "restrictNotificationOptions",
-    "title": "Autoselect \"Digests Only\"",
+    "title": "Restrict patron notification offerings",
     "description": "Restict the notification options displayed to those that function correctly, and automatically select the \"Digests Only\" option (when available) while selecting patron notification options",
     "type": "bool",
     "value": true
-  },	
+  },
   {
     "name": "middleName",
     "title": "Generate Middle Initials",
