@@ -202,7 +202,7 @@
         case "Verona city":
           selectUND(selectList);
           result.setAttribute('style', 'display:inline-block');
-          result.textContent = "[FAILED: automatic gnereation only occurs for libraries that sort by census tract or county subdivision.]";
+          result.textContent = "[FAILED: automatic genereation only occurs for libraries that sort by census tract or county subdivision.]";
           break;
 
          /*** MAIN LIST ***/
