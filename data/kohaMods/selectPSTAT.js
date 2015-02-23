@@ -98,8 +98,7 @@
           var matchAddr = data[0],
             zipElt = document.getElementById('zipcode'),
             zipEltB = document.getElementById('B_zipcode'),
-            sortIDSet = true,
-            sortID = "";
+            sortID;
 
           // Set zip code
           if (queryB) {
@@ -663,7 +662,7 @@
             // For "York town" (Green County) see DUPLICATE SUBDIVISION NAMES
 
             /*** UNUSED AND DEFAULT ***/
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
 
@@ -711,7 +710,7 @@
             case "Watertown city": sortID = "O-MWFLS-WD"; break;
             case "Waupun city": sortID = "O-MWFLS-WP"; break;
             case "Williamstown town": sortID = "O-MWFLS-WIL"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Green Lake":
@@ -724,7 +723,7 @@
             case "Manchester town": sortID = "O-WLS-MANT"; break;
             case "Markesan city": sortID = "O-WLS-MKC"; break;
             case "Princeton city": sortID = "O-WLS-PRC"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Iowa":
@@ -747,7 +746,7 @@
             case "Ridgeway village": sortID = "O-SWLS-RIDV"; break;
             case "Waldwick town": sortID = "O-SWLS-WLT"; break;
             case "Wyoming town": sortID = "O-SWLS-WYT"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Jefferson":
@@ -780,7 +779,7 @@
             case "Watertown city": sortID = "O-MWFLS-WT"; break;
             case "Watertown town": sortID = ""; break;
             case "Whitewater city": sortID = "O-MWFLS-WW"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Juneau":
@@ -793,13 +792,13 @@
             case "New Lisbon city": sortID = "O-WRLS-NLC"; break;
             case "Seven Mile Creek town": sortID = "O-WRLS-7MCT"; break;
             case "Wonewoc village": sortID = "O-WRLS-WWV"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Lafayette":
             switch (data[2]) {
             case "Blanchardville village": sortID = "O-SWLS-BLA"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Marquette":
@@ -815,7 +814,7 @@
             case "Oxford village": sortID = "O-WLS-OXV"; break;
             case "Packwaukee town": sortID = "O-WLS-PCKT"; break;
             case "Westfield village": sortID = "O-WLS-WSFV"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Richland":
@@ -828,7 +827,7 @@
             case "Richland Center city": sortID = "O-SWLS"; break;
             case "Richland town": sortID = "O-SWLS-RIT"; break;
             case "Willow town": sortID = "O-SWLS-WIT"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
           case "Rock":
@@ -840,12 +839,12 @@
             case "Janesville city": sortID = "O-ALS-JAN-C"; break;
             case "Milton city": sortID = "O-ALS-MIL-C"; break;
             case "Orfordville city": sortID = "O-ALS-ORF-C"; break;
-            default: sortIDSet = false; break;
+            default: break;
             }
             break;
-          default: sortIDSet = false; break;
+          default: break;
           } //end county switch
-          if (sortIDSet) {
+          if (sortID) {
             selectPSTAT(selectList, sortID, result, matchAddr);
           } else {
             selectUND(selectList);
