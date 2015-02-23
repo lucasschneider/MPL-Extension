@@ -70,8 +70,8 @@
   },
   {
     "name": "restrictNotificationOptions",
-    "title": "Restrict patron notification offerings",
-    "description": "Restict the notification options displayed to those that function correctly, and automatically select the \"Digests Only\" option (when available) while selecting patron notification options",
+    "title": "Due Date/Advanced Notice Toggle",
+    "description": "Forces library staff to select either \"Due Date\" or \"Advanced Notice\" notification options, but not both",
     "type": "bool",
     "value": true
   },

@@ -22,12 +22,12 @@ if(msgSelect != null) {
   addNotes.setAttribute('style','margin-left: 20px; display: inline-block;');
   addNotes.addEventListener('click', function () {
     if (this.checked) {
-      returnedMailGroup.setAttribute('style','display: initial;');
-      badEmailGroup.setAttribute('style','display: initial;');
+      returnedMailGroup.style.display = '';
+      badEmailGroup.style.display = '';
     }
     else {
-      returnedMailGroup.setAttribute('style','display: none;');
-      badEmailGroup.setAttribute('style','display: none;');
+      returnedMailGroup.style.display = 'none';
+      badEmailGroup.style.display = 'none';
     }
   });
 
@@ -38,7 +38,7 @@ if(msgSelect != null) {
 
   var returnedMailGroup = document.createElement('optgroup');
   returnedMailGroup.label = 'Returned Mail';
-  returnedMailGroup.style.display="";
+  returnedMailGroup.style.display='';
   msgSelect.appendChild(returnedMailGroup);
 
   var poRtd = document.createElement('option');
@@ -53,7 +53,7 @@ if(msgSelect != null) {
 
   var badEmailGroup = document.createElement('optgroup');
   badEmailGroup.label = 'Bad Email Address';
-  badEmailGroup.style.display="";
+  badEmailGroup.style.display='';
   msgSelect.appendChild(badEmailGroup);
 
   var badEmail = document.createElement('option');
