@@ -52,13 +52,13 @@
 
   function selectUND(selectList) {
     var addr = document.getElementById('address');
-    if (addr !== null && selectList.children[selectList.selectedIndex].value === '' && selectList !== null) {
+    if (addr && selectList && selectList.children[selectList.selectedIndex].value === '') {
       selectList.value = "X-UND";
     }
   }
 
   function selectPSTAT(selectList, value, result, matchAddr) {
-    if (selectList !== null && value !== null && result !== null && matchAddr !== null) {
+    if (selectList && value && result && matchAddr) {
       selectList.value = value;
       if (value !== "D-X-SUN") {
         result.setAttribute('style', 'display:inline-block;color:#00c000;');
@@ -69,7 +69,7 @@
 
   function queryPSTAT(addr, city, queryB) {
     var entryForm = document.forms.entryform,
-      selectList = (entryForm !== undefined && entryForm !== null) ? entryForm.elements.sort1 : null,
+      selectList = (entryForm) ? entryForm.elements.sort1 : null,
       notice = document.getElementById('tractNotice');
 
     if (addr.value !== "" && city.value !== "" && selectList !== null) {
@@ -87,8 +87,9 @@
         }
       }, 12000);
 
-      self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value)]);
+      self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr]);
       self.port.on("receivedGeocoderQuery", function (data) {
+        console.log(window.userEnteredAddress);
         if (data !== null) {
           // data[0] = matched address
           // data[1] = county
@@ -98,18 +99,8 @@
           var matchAddr = data[0],
             zipElt = document.getElementById('zipcode'),
             zipEltB = document.getElementById('B_zipcode'),
-            sortID;
-
-          // Set zip code
-          if (queryB) {
-            if (zipEltB !== null) {
-              zipEltB.value = data[4];
-            }
-          } else {
-            if (zipElt !== null) {
-              zipElt.value = data[4];
-            }
-          }
+            sortID,
+	    generatedZip = data[4];
 
           // Set sort value
           switch (data[1]) {
@@ -844,8 +835,28 @@
             break;
           default: break;
           } //end county switch
+	  /*** HANDLE MANUALLY ENTERED PSTAT EXCEPTIONS ***/
+	  console.log(window.userEnteredAddress);
+	  if (/8101 mayo d.*/i.test(window.userEnteredAddress)) {
+	    sortID = "D-4.06";
+	    matchAddr = "8101 MAYO DR";
+	  } else if (/8119 mayo d.*/i.test(window.userEnteredAddress)) {
+	    sortID = "D-4.06";
+	    matchAddr = "8119 MAYO DR";
+	  }
+	  /*** END OF EXCEPTIONS ***/
           if (sortID) {
             selectPSTAT(selectList, sortID, result, matchAddr);
+            // Set zip code
+            if (queryB) {
+              if (zipEltB !== null) {
+                zipEltB.value = generatedZip;
+              }
+            } else {
+              if (zipElt !== null) {
+                zipElt.value = generatedZip;
+              }
+            }
           } else {
             selectUND(selectList);
             result.setAttribute('style', 'display:inline-block');
@@ -863,7 +874,7 @@
   function queryPSTATPrep() {
     var addr = document.getElementById('address'),
       city = document.getElementById('city');
-    if (addr !== null && city !== null) {
+    if (addr && city) {
       queryPSTAT(addr, city, false);
     }
   }
@@ -875,11 +886,11 @@
     elt.value = elt.value.replace(/,/, '');
   }
 
-  if (addrElt !== null) {
-    addrElt.addEventListener('blur', queryPSTATPrep);
+  if (addrElt) {
+    addrElt.addEventListener('blur', function() { window.userEnteredAddress = this.value; queryPSTATPrep(); });
     addrElt.parentElement.appendChild(notice);
   }
-  if (cityElt !== null) {
+  if (cityElt) {
     cityElt.addEventListener('blur', function () {
       parseMadisonWI(this);
       pullCity(this.value);
@@ -891,7 +902,7 @@
     var qspElt = document.getElementById('querySecondaryPSTAT'),
       addrB = document.getElementById('B_address'),
       cityB = document.getElementById('B_city');
-    if (qspElt !== undefined && qspElt !== null && addrB !== null && cityB !== null && addrB.value !== '' && cityB.value !== '') {
+    if (qspElt && addrB && cityB && addrB.value !== '' && cityB.value !== '') {
       queryPSTAT(addrB, cityB, true);
     } else {
       alert('You may only generate the PSTAT value from the ALTERNATE ADDRESS section, NOT the alternate contact section underneath.');
@@ -901,7 +912,7 @@
 
   self.port.on("querySecondaryPSTATFail", function () {
     var qspFailElt = document.getElementById('querySecondaryPSTATFail');
-    if (qspFailElt !== undefined && qspFailElt !== null) {
+    if (qspFailElt) {
       alert("You must be currently editing a patron\'s record to generate the PSTAT value from their alternate address");
       qspFailElt.remove();
     }
@@ -911,11 +922,11 @@
   var city2 = document.getElementById('B_city'),
     city3 = document.getElementById('altcontactaddress3');
 
-  if (city2 !== null) {
+  if (city2) {
     city2.addEventListener('blur', function () {parseMadisonWI(this); });
   }
 
-  if (city3 !== null) {
+  if (city3) {
     city3.addEventListener('blur', function () {parseMadisonWI(this); });
   }
   }()); //end use strict
