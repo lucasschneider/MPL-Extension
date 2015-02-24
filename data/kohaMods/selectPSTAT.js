@@ -70,7 +70,9 @@
   function queryPSTAT(addr, city, queryB) {
     var entryForm = document.forms.entryform,
       selectList = (entryForm) ? entryForm.elements.sort1 : null,
-      notice = document.getElementById('tractNotice');
+      notice = document.getElementById('tractNotice'),
+      zipElt = document.getElementById('zipcode'),
+      zipEltB = document.getElementById('B_zipcode');
 
     if (addr.value !== "" && city.value !== "" && selectList !== null) {
       // Placement of results notifier
@@ -96,8 +98,6 @@
           // data[3] = census tract
           // data[4] = zip code
           var matchAddr = data[0],
-            zipElt = document.getElementById('zipcode'),
-            zipEltB = document.getElementById('B_zipcode'),
             sortID,
 	    generatedZip = data[4];
 
@@ -118,7 +118,34 @@
             case "Cottage Grove village": sortID = "D-CG-V"; break;
             case "Fitchburg city": sortID = "D-FIT-T"; break;
             case "Madison city":
-              sortID = "D-" + data[3];
+              /*** NOTE: MUST MATCH WITH CONDITIONALS AT BOTTOM OF PAGE ***/
+              if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+                sortID = "D-4.06";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53719";
+              } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+                sortID = "D-1";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53705";
+              } else if (/.*brookside d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+                sortID = "D-114.02";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53718";
+              } else if (/.*halley w.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+                sortID = "D-114.01";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53718";
+              } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+                sortID = "D-4.05";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53719";
+              } else if (/720(1|3) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+                sortID = "D-5.04";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53719";
+              } else{
+                sortID = "D-" + data[3];
+              }
               // Defined in collegeExp.js
               window.fillDormExp();
               break;
@@ -848,49 +875,51 @@
                 zipElt.value = generatedZip;
               }
             }
-          /*** ADDRESS PSTAT EXCEPTIONS ***/
-          } else if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
-            sortID = "D-4.06";
-            matchAddr = window.userEnteredAddress.toUpperCase();
-          } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
-            sortID = "D-1";
-            matchAddr = window.userEnteredAddress.toUpperCase();
-            generatedZip = "53705";
-          } else if (/.*brookside d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
-            sortID = "D-114.02";
-            matchAddr = window.userEnteredAddress.toUpperCase();
-            generatedZip = "53718";
-          } else if (/.*halley w.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
-            sortID = "D-114.01";
-            matchAddr = window.userEnteredAddress.toUpperCase();
-            generatedZip = "53718";
-          } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
-            sortID = "D-4.05";
-            matchAddr = window.userEnteredAddress.toUpperCase();
-            generatedZip = "53719";
-          } else if (/720(1|3) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
-            sortID = "D-5.04";
-            matchAddr = window.userEnteredAddress.toUpperCase();
-            generatedZip = "53719";
-          }
-          if (sortID) {
-            selectPSTAT(selectList, sortID, result, matchAddr);
-            // Set zip code
-            if (queryB) {
-              if (zipEltB !== null) {
-                zipEltB.value = generatedZip;
-              }
-            } else {
-              if (zipElt !== null) {
-                zipElt.value = generatedZip;
-              }
-            }
-          /*** END OF EXCEPTIONS ***/
           } else {
             selectUND(selectList);
             result.setAttribute('style', 'display:inline-block');
             result.textContent = "[FAILED: unable to determine county subdivision; please enter PSTAT manually.]";
           }
+        /*** ADDRESS PSTAT EXCEPTIONS ***/
+        /*** NOTE: MUST MATCH WITH CONDITIONALS AT BOTTOM OF PAGE ***/
+        } else if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+          sortID = "D-4.06";
+          matchAddr = window.userEnteredAddress.toUpperCase();
+          generatedZip = "53719";
+        } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+          sortID = "D-1";
+          matchAddr = window.userEnteredAddress.toUpperCase();
+          generatedZip = "53705";
+        } else if (/.*brookside d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+          sortID = "D-114.02";
+          matchAddr = window.userEnteredAddress.toUpperCase();
+          generatedZip = "53718";
+        } else if (/.*halley w.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+          sortID = "D-114.01";
+          matchAddr = window.userEnteredAddress.toUpperCase();
+          generatedZip = "53718";
+        } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+          sortID = "D-4.05";
+          matchAddr = window.userEnteredAddress.toUpperCase();
+          generatedZip = "53719";
+        } else if (/720(1|3) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+          sortID = "D-5.04";
+          matchAddr = window.userEnteredAddress.toUpperCase();
+          generatedZip = "53719";
+        }
+        if (sortID) {
+          selectPSTAT(selectList, sortID, result, matchAddr);
+          // Set zip code
+          if (queryB) {
+            if (zipEltB !== null) {
+              zipEltB.value = generatedZip;
+            }
+          } else {
+            if (zipElt !== null) {
+              zipElt.value = generatedZip;
+            }
+          }
+        /*** END OF EXCEPTIONS ***/
         } else { // data === null
           selectUND(selectList);
           result.setAttribute('style', 'display:inline-block');
