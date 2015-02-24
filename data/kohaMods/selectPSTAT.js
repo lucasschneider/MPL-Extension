@@ -287,7 +287,7 @@
             case "Dunn town": sortID = "D-DUNN-T"; break;
             // For "Eastern Shores Library System" see UNUSED
             case "Easton town": sortID = "A-EST-T"; break;
-            case "Eau Pleine town": sortID = ""; break;
+            case "Eau Pleine town": sortID = "P-EPL-T"; break;
             // For "Edgerton city" see RECIPROCAL COUNTIES
             // For "Elba town" see RECIPROCAL COUNTIES
             // For "Elroy city" see RECIPROCAL COUNTIES
@@ -765,10 +765,10 @@
             case "Sullivan town": sortID = "O-MWFLS-SLT"; break;
             case "Sullivan village": sortID = "O-MWFLS-SLV"; break;
             case "Sumner town": sortID = "O-MWFLS-ST"; break;
-            case "Waterloo city": sortID = ""; break;
-            case "Waterloo town": sortID = ""; break;
+            case "Waterloo city": sortID = "O-MWFLS-WC"; break;
+            case "Waterloo town": sortID = "O-MWFLS-WL"; break;
             case "Watertown city": sortID = "O-MWFLS-WT"; break;
-            case "Watertown town": sortID = ""; break;
+            case "Watertown town": sortID = "O-MWFLS-WATT"; break;
             case "Whitewater city": sortID = "O-MWFLS-WW"; break;
             default: break;
             }
