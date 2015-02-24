@@ -864,14 +864,14 @@
             sortID = "D-114.01";
             matchAddr = window.userEnteredAddress.toUpperCase();
             generatedZip = "53718";
-          } else if (//i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+          } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
             sortID = "D-4.05";
             matchAddr = window.userEnteredAddress.toUpperCase();
-            generatedZip = "53718";
-          } else if (//i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
-            sortID = "D-114.01";
+            generatedZip = "53719";
+          } else if (/720(1|3) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+            sortID = "D-5.04";
             matchAddr = window.userEnteredAddress.toUpperCase();
-            generatedZip = "53718";
+            generatedZip = "53719";
           }
           if (sortID) {
             selectPSTAT(selectList, sortID, result, matchAddr);
