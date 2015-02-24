@@ -118,7 +118,29 @@
             case "Cottage Grove town": sortID = "D-CG-T"; break;
             case "Cottage Grove village": sortID = "D-CG-V"; break;
             case "Fitchburg city": sortID = "D-FIT-T"; break;
-            case "Madison city": sortID = "D-" + data[3]; break;
+            case "Madison city":
+              console.log(window.userEnteredAddress);
+              if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress)) {
+                sortID = "D-4.06";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+              } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress)) {
+                sortID = "D-1";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53705";
+              } else if (/.*brookside d.*/i.test(window.userEnteredAddress)) {
+                sortID = "D-114.02";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53718";
+              } else if (/.*halley w.*/i.test(window.userEnteredAddress)) {
+                sortID = "D-114.01";
+                matchAddr = window.userEnteredAddress.toUpperCase();
+                generatedZip = "53718";
+              } else if () {
+              } else if () {
+              } else {
+                sortID = "D-" + data[3];
+              }
+              /*** END OF EXCEPTIONS ***/
               // Defined in collegeExp.js
               window.fillDormExp();
               break;
@@ -835,16 +857,7 @@
             break;
           default: break;
           } //end county switch
-	  /*** HANDLE MANUALLY ENTERED PSTAT EXCEPTIONS ***/
-	  console.log(window.userEnteredAddress);
-	  if (/8101 mayo d.*/i.test(window.userEnteredAddress)) {
-	    sortID = "D-4.06";
-	    matchAddr = "8101 MAYO DR";
-	  } else if (/8119 mayo d.*/i.test(window.userEnteredAddress)) {
-	    sortID = "D-4.06";
-	    matchAddr = "8119 MAYO DR";
-	  }
-	  /*** END OF EXCEPTIONS ***/
+
           if (sortID) {
             selectPSTAT(selectList, sortID, result, matchAddr);
             // Set zip code
