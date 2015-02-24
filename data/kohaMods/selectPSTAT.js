@@ -89,7 +89,6 @@
 
       self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr]);
       self.port.on("receivedGeocoderQuery", function (data) {
-        console.log(window.userEnteredAddress);
         if (data !== null) {
           // data[0] = matched address
           // data[1] = county
@@ -119,28 +118,7 @@
             case "Cottage Grove village": sortID = "D-CG-V"; break;
             case "Fitchburg city": sortID = "D-FIT-T"; break;
             case "Madison city":
-              console.log(window.userEnteredAddress);
-              if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress)) {
-                sortID = "D-4.06";
-                matchAddr = window.userEnteredAddress.toUpperCase();
-              } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress)) {
-                sortID = "D-1";
-                matchAddr = window.userEnteredAddress.toUpperCase();
-                generatedZip = "53705";
-              } else if (/.*brookside d.*/i.test(window.userEnteredAddress)) {
-                sortID = "D-114.02";
-                matchAddr = window.userEnteredAddress.toUpperCase();
-                generatedZip = "53718";
-              } else if (/.*halley w.*/i.test(window.userEnteredAddress)) {
-                sortID = "D-114.01";
-                matchAddr = window.userEnteredAddress.toUpperCase();
-                generatedZip = "53718";
-              } else if () {
-              } else if () {
-              } else {
-                sortID = "D-" + data[3];
-              }
-              /*** END OF EXCEPTIONS ***/
+              sortID = "D-" + data[3];
               // Defined in collegeExp.js
               window.fillDormExp();
               break;
@@ -870,6 +848,44 @@
                 zipElt.value = generatedZip;
               }
             }
+          /*** ADDRESS PSTAT EXCEPTIONS ***/
+          } else if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+            sortID = "D-4.06";
+            matchAddr = window.userEnteredAddress.toUpperCase();
+          } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+            sortID = "D-1";
+            matchAddr = window.userEnteredAddress.toUpperCase();
+            generatedZip = "53705";
+          } else if (/.*brookside d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+            sortID = "D-114.02";
+            matchAddr = window.userEnteredAddress.toUpperCase();
+            generatedZip = "53718";
+          } else if (/.*halley w.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+            sortID = "D-114.01";
+            matchAddr = window.userEnteredAddress.toUpperCase();
+            generatedZip = "53718";
+          } else if (//i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+            sortID = "D-4.05";
+            matchAddr = window.userEnteredAddress.toUpperCase();
+            generatedZip = "53718";
+          } else if (//i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+            sortID = "D-114.01";
+            matchAddr = window.userEnteredAddress.toUpperCase();
+            generatedZip = "53718";
+          }
+          if (sortID) {
+            selectPSTAT(selectList, sortID, result, matchAddr);
+            // Set zip code
+            if (queryB) {
+              if (zipEltB !== null) {
+                zipEltB.value = generatedZip;
+              }
+            } else {
+              if (zipElt !== null) {
+                zipElt.value = generatedZip;
+              }
+            }
+          /*** END OF EXCEPTIONS ***/
           } else {
             selectUND(selectList);
             result.setAttribute('style', 'display:inline-block');
@@ -906,7 +922,7 @@
   if (cityElt) {
     cityElt.addEventListener('blur', function () {
       parseMadisonWI(this);
-      pullCity(this.value);
+      window.userEnteredCity = pullCity(this.value);
       queryPSTATPrep();
     });
   }
@@ -916,6 +932,8 @@
       addrB = document.getElementById('B_address'),
       cityB = document.getElementById('B_city');
     if (qspElt && addrB && cityB && addrB.value !== '' && cityB.value !== '') {
+      window.userEnteredAddress = addrB.value;
+      window.userEnteredCity = pullCity(cityB.value);
       queryPSTAT(addrB, cityB, true);
     } else {
       alert('You may only generate the PSTAT value from the ALTERNATE ADDRESS section, NOT the alternate contact section underneath.');
