@@ -1,4 +1,4 @@
-(function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
+(function () {"use strict"; /*jslint browser:true regexp: true indent 2 devel: true plusplus: true*/
   /*global self*/
   var addrElt = document.getElementById('address'),
     cityElt = document.getElementById('city'),
@@ -437,13 +437,8 @@
             case "West Baraboo village": sortID = "S-WB-V"; break;
             case "West Point town": sortID = "C-WP-T"; break;
             case "Westfield town": sortID = "S-WESF-T"; break;
-            // For "Westford town" see RECIPROCAL COUNTIES
             case "Westport town": sortID = "D-WESP-T"; break;
-            // For "Whitewater city" see RECIPROCAL COUNTIES
             case "Whiting village": sortID = "P-WHI-V"; break;
-            // For "Williamstown town" see RECIPROCAL COUNTIES
-            // For Willow town" see RECIPROCAL COUNTIES
-            // For "Winding Rivers Library System" see UNUSED
             case "Windsor town": sortID = "D-WIN-T"; break;
             case "Winfield town": sortID = "S-WIN-T2"; break;
             case "Wisconsin Dells city":
@@ -623,7 +618,7 @@
           /*** OUTAGAMIE-WAUPACA LIBRARY SYSTEM ***/
           // Has with/without library option
           case "Outagamie": sortID = "O-OWLS"; break;
-          case "Waupaca" result.textContent = '[FAILED: Manually select sort option "Waupaca County" with or w/out library.]'; break;
+          case "Waupaca": result.textContent = '[FAILED: Manually select sort option "Waupaca County" with or w/out library.]'; break;
 
           /*** SOUTH WEST LIBRARY SYSTEM ***/
           case "Iowa": // Has with/without library option
@@ -707,7 +702,7 @@
             }
             break;
           // Has with/without library option
-          case "Waushara" result.textContent = '[FAILED: Manually select sort option "Waushara County" with or w/out library.]'; break;
+          case "Waushara": result.textContent = '[FAILED: Manually select sort option "Waushara County" with or w/out library.]'; break;
           case "Fond du Lac":
           case "Winnebago": sortID = "O-WLS"; break;
 
@@ -742,7 +737,7 @@
           case "Langlade":
           case "Lincoln":
           case "Oneida":
-          case "Taylor" sortID = "O-WVLS"; break;
+          case "Taylor": sortID = "O-WVLS"; break;
           
           /*** COUNTY SELECT DEFAULT ***/
           default: break;
@@ -768,7 +763,7 @@
             }
           }
         /*** ADDRESS PSTAT EXCEPTIONS ***/
-        /*** NOTE: MUST MATCH WITH CONDITIONALS AT BOTTOM OF PAGE ***/
+        /*** NOTE: MUST MATCH WITH CONDITIONALS AT TOP OF PAGE ***/
         } else if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
           sortID = "D-4.06";
           matchAddr = window.userEnteredAddress.toUpperCase();
@@ -810,7 +805,7 @@
         } else { // data === null
           selectUND(selectList);
           result.setAttribute('style', 'display:inline-block');
-          if (result.textContent === '')
+          if (result.textContent === '') {
             result.textContent = "[FAILED: unable to determine county; please enter PSTAT manually.]";
           }
         }
