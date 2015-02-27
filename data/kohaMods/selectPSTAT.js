@@ -99,7 +99,7 @@
           // data[4] = zip code
           var matchAddr = data[0],
             sortID,
-	    generatedZip = data[4];
+            generatedZip = data[4];
 
           // Set sort value
           switch (data[1]) {
@@ -167,8 +167,6 @@
                 sortID = "D-MID-C7";
               } else if (/.*(augusta d|bishops bay p|blackwolf r|brindisi c|bryanston d|bunker h|callaway c|5[12][0-9][02468] century a|churchill l|concord d|constitution d|(cnty|county) (hwy|highway) q|flyway c|frisco c|goldfinch c|grassland t|heron t|hilltop c|indigo w|iris c|kingsbarns h|larkspur c|54[0-9][02468] larkspur r|lexington (c|d)|marino c|milano c|mirandy rose c|monarch c|napoli l|nappe d|nathan hale c|park t|patrick henry w|prairie rose c|redtail p|rock crest r|39[1-9][0-9] rolling hill d|roma l|salerno c|sandhill d|savannah c|sawgrass t|sedgemeadow r|shorecrest d|signature d| st (andrews|annes) d|teal c|torino c|upland (c|t)|4[0-9]{3} valley ridge r|wenlock rose c).*/i.test(matchAddr)) {
                 sortID = "D-MID-C8";
-              } else {
-                sortIDSet = false;
               }
               break;
             case "Middleton town": sortID = "D-MID-T"; break;
@@ -177,7 +175,6 @@
             case "Sun Prairie city":
             case "Monona city":
             case "Verona city":
-              sortIDSet = false;
               break;
 
              /*** MAIN LIST ***/
@@ -187,8 +184,6 @@
                 sortID = "A-ADM-T";
               } else if (data[1] === 'Green') {
                 sortID = "G-ADA-T";
-              } else {
-                sortIDSet = false;
               }
               break;
             case "Alban town": sortID = "P-ALB-T"; break;
@@ -204,39 +199,26 @@
             case "Arlington village": sortID = "C-ARL-V"; break;
             case "Arpin town": sortID = "W-ARP-T"; break;
             case "Arpin village": sortID = "W-ARP-V"; break;
-            // For "Ashippun town" see RECIPROCAL COUNTIES
             case "Auburndale town": sortID = "W-AUB-T"; break;
             case "Auburndale village": sortID = "W-AUB-V"; break;
-            // For "Avoca village" see RECIPROCAL COUNTIES
-            // For "Aztalan town" see RECIPROCAL COUNTIES
             case "Baraboo city": sortID = "S-BAR-C1"; break;
             case "Baraboo town": sortID = "S-BAR-T"; break;
-            // For "Barneveld village" see RECIPROCAL COUNTIES
             case "Bear Creek town": sortID = "S-BC-T"; break;
-            // For "Beaver Dam city" see RECIPROCAL COUNTIES
-            // For "Beaver Dam town" see RECIPROCAL COUNTIES
             case "Belleville village":
               if (data[1] === 'Dane') {
                 sortID ="D-BEL-VD";
               } else if (data[1] === 'Green') {
                 sortID = "G-BEL-VG";
-              } else {
-                sortIDSet = false;
               }
               break;
             case "Belmont town": sortID = "P-BEL-T"; break;
-            // For "Beloit city" see RECIPROCAL COUNTIES
-            // For "Berlin city" see RECIPROCAL COUNTIES
             case "Berry town": sortID = "D-BERR-T"; break;
             case "Big Flats town": sortID = "D-BIG-T"; break;
             case "Biron village": sortID = "W-BIR-V"; break;
             case "Black Earth town": sortID = "D-BE-T"; break;
             case "Black Earth village": sortID = "B-BE-V"; break;
-            // For "Blanchardville village" see RECIPROCAL COUNTIES
-            // For "Blooming Grove town" see FREQUENTLY USED PSTATS
             case "Blue Mounds town": sortID = "D-BM-T"; break;
             case "Blue Mounds village": sortID = "D-BM-V"; break;
-            // For "Brigham town" see RECIPROCAL COUNTIES
             case "Bristol town": sortID = "D-BRI-T"; break;
             case "Brodhead city": sortID = "G-BROD-C"; break;
             case "Brooklyn town": sortID = "G-BRO-T"; break;
@@ -245,18 +227,12 @@
                 sortID = "D-BRO-VD";
               } else if (data[1] === 'Green') {
                 sortID = "G-BRO-GD";
-              } else {
-                sortIDSet = false;
               }
               break;
-            // For "Brownsville village" see RECIPROCAL COUNTIES
             case "Browntown village": sortID = "G-BROW-V"; break;
             case "Buena Vista town": sortID = "P-BUV-T"; break;
-            // For "Buffalo town" see RECIPROCAL COUNTIES
             case "Burke town": sortID = "D-BUR-T"; break;
-            // For "Burnett town" see RECIPROCAL COUNTIES
             case "Cadiz town": sortID = "G-CAD-T"; break;
-            // For "Calamus town" see RECIPROCAL COUNTIES
             case "Caledonia town": sortID = "C-CAL-T"; break;
             case "Cambria village": sortID = "C-CAM-V"; break;
             case "Cambridge village": sortID = "D-CAM-VD"; break;
@@ -264,30 +240,17 @@
             case "Carson town": sortID = "P-CAR-T"; break;
             case "Cary town": sortID = "W-CAR-T"; break;
             case "Cazenovia village": sortID = "S-CAZ-V"; break;
-            // For "Chester town" see RECIPROCAL COUNTIES
             case "Christiana town": sortID = "D-CHR-T"; break;
-            // For "Clark Co No Library" see UNUSED
-            // For "Clark Co With Library" see UNUSED
             case "Clarno town": sortID = "G-CLA-T"; break;
-            // For "Clinton village" see RECIPROCAL COUNTIES
-            // For "Clyde town" see RECIPROCAL COUNTIES
-            // For "Clyman town" see RECIPROCAL COUNTIES
-            // For "Clyman village" see RECIPROCAL COUNTIES
             case "Colburn town": sortID = "A-COL-T"; break;
-            // For "Cold Spring town" see RECIPROCAL COUNTIES
             case "Columbus city":
               if (data[1] === 'Columbia') {
                 sortID = "C-COL-C";
               } else if (data[1] === 'Dodge') {
                 sortID = "O-MWFLS-COLC";
-              } else {
-                sortIDSet = false;
               }
               break;
             case "Columbus town": sortID = "C-COL-T"; break;
-            // For "Concord town" see RECIPROCAL COUNTIES
-            // For "Cottage Grove town" see FREQUENTLY USED PSTATS
-            // For "Cottage Grove village" see FREQUENTLY USED PSTATS
             case "Courtland town": sortID = "C-COU-T"; break;
             case "Cranmoor town": sortID = "W-CRAN-T"; break;
             case "Cross Plains town": sortID = "D-CP-T"; break;
@@ -304,122 +267,43 @@
             case "Delton town": sortID = "S-DELT-T"; break;
             case "Dewey town": sortID = "P-DEW-T"; break;
             case "Dexter town": sortID = "W-DEX-T"; break;
-            // For "Dodge Co No Library" see UNUSED
-            // For "Dodge Co With Library" see UNUSED
-            // For "Dodgeville city" see RECIPROCAL COUNTIES
-            // For "Dodgeville town" see RECIPROCAL COUNTIES
-            // For "Douglas town" see RECIPROCAL COUNTIES
             case "Doylestown village": sortID = "C-DOY-V"; break;
             case "Dunkirk Town": sortID = "D-DUNK-T"; break;
             case "Dunn town": sortID = "D-DUNN-T"; break;
-            // For "Eastern Shores Library System" see UNUSED
             case "Easton town": sortID = "A-EST-T"; break;
             case "Eau Pleine town": sortID = "P-EPL-T"; break;
-            // For "Edgerton city" see RECIPROCAL COUNTIES
-            // For "Elba town" see RECIPROCAL COUNTIES
-            // For "Elroy city" see RECIPROCAL COUNTIES
-            // For "Emmet town" see RECIPROCAL COUNTIES
-            // For "Endeavor village" see RECIPROCAL COUNTIES
-            // For "Evansville city" see RECIPROCAL COUNTIES
             case "Excelsior town": sortID = "S-EXC-T"; break;
             case "Exeter town": sortID = "G-EXE-T"; break;
             case "Fairfield town": sortID = "S-FAI-T"; break;
             case "Fall River village": sortID = "C-FR-V"; break;
-            // For "Farmington town" see RECIPROCAL COUNTIES
-            // For "Fitchburg city" see FREQUENTLY USED PSTATS
-            // For "Fort Atkinson city" see RECIPROCAL COUNTIES
             case "Fort Winnebago town": sortID = "C-FW-T"; break;
             case "Fountain Prairie town": sortID = "C-FP-T"; break;
-            // For "Fox Lake city" see RECIPROCAL COUNTIES
-            // For "Fox Lake town" see RECIPROCAL COUNTIES
             case "Franklin town": sortID = "S-FRA-T"; break;
             case "Freedom town": sortID = "S-FRE-T"; break;
             case "Friendship village": sortID = "A-FRN-V"; break;
             case "Friesland village": sortID = "C-FRI-V"; break;
             case "Grand Rapids town": sortID = "W-GRAP-T"; break;
             case "Grant town": sortID = "P-GRT-T"; break;
-            // For "Green Lake Co No Library" see UNUSED
-            // For "Green Lake Co With Library" see UNUSED
-            // For "Green Lake city" see RECIPROCAL COUNTIES
             case "Greenfield town": sortID = "S-GRE-T"; break;
             case "Hampden town": sortID = "C-HAM-T"; break;
             case "Hansen Town": sortID = "W-HAN-T"; break;
-            // For "Hartford city" see RECIPROCAL COUNTIES
-            // For "Hebron town" see RECIPROCAL COUNTIES
-            // For "Helenville town" see RECIPROCAL COUNTIES
-            // For "Herman town" see RECIPROCAL COUNTIES
             case "Hewitt village": sortID = "W-HEW-V"; break;
-            // For "Highland town" see RECIPROCAL COUNTIES
             case "Hiles town": sortID = "W-HIL-T"; break;
             case "Hillpoint village": sortID = "S-HILL-V"; break;
-            // For "Hollandale village" see RECIPROCAL COUNTIES
             case "Honey Creek town": sortID = "S-HC-T"; break;
-            // For "Horicon city" see RECIPROCAL COUNTIES
-            // For "Hubbard town" see RECIPROCAL COUNTIES
             case "Hull town": sortID = "P-HUL-T"; break;
-            // For "Hustisford town" see RECIPROCAL COUNTIES
-            // For "Hustisford village" see RECIPROCAL COUNTIES
-            // For "ILL Out-of-State" see UNUSED
-            // For "ILL-Arrowhead Library System" see UNUSED
-            // For "ILL-Eastern Shores Library System" see UNUSED
-            // For "ILL-Eastern Shores Library System" see UNUSED
-            // For "ILL-Kenosha County Library System" see UNUSED
-            // For "ILL-Lakeshores Library System" see UNUSED
-            // For "ILL-Manitowoc-calumet Library System" see UNUSED
-            // For "ILL-Mid-Wisconsin Federated Library System" see UNUSED
-            // For "ILL-Milwaukee Co Federated Library System" see UNUSED
-            // For "ILL-Nicolet Federated Library System" see UNUSED
-            // For "ILL-Northern Waters Library System" see UNUSED
-            // For "ILL-Outagamie Waupaca Library System" see UNUSED
-            // For "ILL-Southwest Wisconsin Library System" see UNUSED
-            // For "ILL-Waukesha County Federated Library System" see UNUSED
-            // For "ILL-Winding Rivers Library System" see UNUSED
-            // For "ILL-Winnefox Library System" see UNUSED
-            // For "ILL-Wisconsin Valley Library System" see UNUSED
-            // For "Indianhead Federated Library System" see UNUSED
-            // For "Interlibrary Loan" see UNUSED
-            // For "Internal" see UNUSED
-            // For "Iowa Co No Library" see UNUSED
-            // For "Iowa Co With Library" see UNUSED
-            // for "Iron Ridge village" see RECIPROCAL COUNTIES
             case "Ironton town": sortID = "S-IRO-T"; break;
             case "Ironton village": sortID = "S-IRO-V"; break;
-            // For "Ithaca town" see RECIPROCAL COUNTIES
-            // For "Ixonia town" see RECIPROCAL COUNTIES
-            // For "Jackson Co No Library" see UNUSED
-            // For "Jackson Co With Library" see UNUSED
             case "Jackson town": sortID = "A-JAK-T"; break;
-            // For "Janesville city" see RECIPROCAL COUNTIES
-            // For "Jefferson Co No Library" see UNUSED
-            // For "Jefferson Co With Library" see UNUSED
-            // For "Jefferson City" see RECIPROCAL COUNTIES
             case "Jefferson town": sortID = "G-JEF-T"; break;
-            // For "Johnson Creek village" see RECIPROCAL COUNTIES
             case "Jordan town": sortID = "G-JOR-T"; break;
             case "Junction City village": sortID = "P-JNC-V"; break;
-            // For "Juneau Co No Library" see UNUSED
-            // For "Juneau Co With Library" see UNUSED
-            // For "Juneau city" see RECIPROCAL COUNTIES
-            // For "Kekoskee village" see RECIPROCAL COUNTIES
-            // For "Kenosha County Library System" see UNUSED
-            // For "Kildare town" see RECIPROCAL COUNTIES
-            // For "Kingston town" see RECIPROCAL COUNTIES
-            // For "Kingston village" see RECIPROCAL COUNTIES
-            // For "Koshkonong town" see RECIPROCAL COUNTIES
-            // For "Lac La Belle village" see RECIPROCAL COUNTIES
-            // For "Lafayette Co No Library" see UNUSED
-            // For "Lafayette Co With Library" see UNUSED
             case "Lake Delton village": sortID = "S-LD-V"; break;
-            // For "Lake Mills city" see RECIPROCAL COUNTIES
-            // For "Lake Mills town" see RECIPROCAL COUNTIES
-            // for "Lakeshores Library System" see UNUSED
             case "Lanark town": sortID = "P-LAN-T"; break;
             case "Lavalle town": sortID = "S-LV-T"; break;
             case "Lavalle village": sortID = "S-LV-V"; break;
-            // For "Lebanon town" see RECIPROCAL COUNTIES
             case "Leeds town": sortID = "C-LEE-T"; break;
             case "Leola town": sortID = "A-LEO-T"; break;
-            // For "Leroy town" see RECIPROCAL COUNTIES
             case "Lewiston town": sortID = "C-LEW-T"; break;
             case "Lime Ridge village": sortID = "S-LR-V"; break;
             case "Lincoln town":
@@ -427,103 +311,51 @@
                 sortID = "A-LIN-T";
               } else if (data[1] === 'Wood') {
                 sortID = "W-LIN-T";
-              } else {
-                sortIDSet = false;
               }
               break;
             case "Linwood town": sortID = "P-LIN-T"; break;
             case "Lodi city": sortID = "C-LOD-C"; break;
             case "Lodi town": sortID = "C-LOD-T"; break;
             case "Loganville village": sortID = "S-LOG-V"; break;
-            // For "Lomira town" see RECIPROCAL COUNTIES
-            // For "Lomira village" see RECIPROCAL COUNTIES
-            // For "Lone Rock village" see RECIPROCAL COUNTIES
-            // For "Lowell town" see RECIPROCAL COUNTIES
-            // For "Lowell village" see RECIPROCAL COUNTIES
             case "Lowville town": sortID = "C-LOW-T"; break;
-            // For "Lyndon town" see RECIPROCAL COUNTIES
-            // For "Mackford town" see RECIPROCAL COUNTIES
-            // For "Madison city" see FREQUENTLY USED PSTATS
-            // For "Madison town" see FREQUENTLY USED PSTATS
-            // For "Manchester town" see RECIPROCAL COUNTIES
-            // For "Manitowoc-Calumet Library System" see UNUSED
             case "Maple Bluff village": sortID = "D-MB-V"; break;
-            // For "Marathon Co With Library" see UNUSED
             case "Marcellon town": sortID = "C-MARC-T"; break;
-            // For "Markesan city see RECIPROCAL COUNTIES
-            // For "Marquette Co No Library" see UNUSED
-            // For "Marquette Co With Library" see UNUSED
             case "Marshall village": sortID = "D-MARS-V"; break;
             case "Marshfield city": sortID = "W-MAR-C"; break;
             case "Marshfield town": sortID = "W-MAR-T"; break;
-            // For "Mauston city" see RECIPROCAL COUNTIES
-            // For "Mayville city" see RECIPROCAL COUNTIES
             case "Mazomanie town": sortID = "D-MAZ-T"; break;
             case "Mazomanie village": sortID = "D-MAZ-V"; break;
             case "Mcfarland village": sortID = "D-MCF-V"; break;
             case "Medina town": sortID = "D-MED-T"; break;
             case "Merrimac town": sortID = "S-MER-T"; break;
             case "Merrimac village": sortID = "S-MER-V"; break;
-            // For "Mid-Wisconsin Federated Library System" see UNUSED
-            // For "Middleton city" see FREQUENTLY USED PSTATS
-            // For "Middleton town" see FREQUENTLY USED PSTATS
-            // For "Milford town" see RECIPROCAL COUNTIES
             case "Milladore town": sortID = "W-MILL-T"; break;
             case "Milladore village": sortID = "W-MILL-V"; break;
-            // For "Milton city: see RECIPROCAL COUNTIES
-            // For "Milwaukee County Federated Library System" see UNUSED
-            // For "Mineral Point city" see RECIPROCAL COUNTIES
-            // For "Mineral Point town" see RECIPROCAL COUNTIES
-            // For "Monona city" see UNDETERMINABLE COUNTY SUBDIVISIONS
             case "Monroe City": sortID = "G-MONR-C"; break;
-            // For "Monroe School District" see UNUSED
             case "Monroe town":
               if (data[1] === 'Adams') {
                 sortID = "A-MON-T";
               } else if (data[1] === 'Green') {
                 sortID = "G-MONR-T";
-              } else {
-                sortIDSet = false;
               }
               break;
-            // For "Montello city" see RECIPROCAL COUNTIES
-            // For "Montello town" see RECIPROCAL COUNTIES
             case "Monticello village": sortID = "G-MONT-V"; break;
             case "Montrose town": sortID = "D-MONT-T"; break;
-            // For "Moscow town" see RECIPROCAL COUNTIES
-            // For "Moundville town" see RECIPROCAL COUNTIES
             case "Mount Horeb village": sortID = "D-MH-V"; break;
             case "Mount Pleasant town": sortID = "G-MP-T"; break;
-            // For "Necedah village" see RECIPROCAL COUNTIES
             case "Nekoosa city": sortID = "W-NEK-C"; break;
             case "Nelsonville village": sortID = "P-NEL-V"; break;
-            // For "Neosho village" see RECIPROCAL COUNTIES
-            // For "Neshkoro village" see RECIPROCAL COUNTIES
             case "New Chester town": sortID = "A-NCH-T"; break;
             case "New Glarus town": sortID = "G-NG-T"; break;
             case "New Glarus village": sortID = "G-NG-V"; break;
             case "New Haven town": sortID = "A-NHV-T"; break;
             case "New Hope town": sortID = "P-NHP-T"; break;
-            // For "New Lisbon city" see RECIPROCAL COUNTIES
             case "Newport town": sortID = "C-NEW-T"; break;
-            // For "Nicolet Federated Library System" see RECIPROCAL COUNTIES
             case "North Freedom village": sortID = "S-NF-V"; break;
-            // For "Northern Waters Library System" see UNUSED
-            // For "Oak Grove town" see RECIPROCAL COUNTIES
-            // For "Oakland town" see RECIPROCAL COUNTIES
             case "Oregon town": sortID = "D-ORE-T"; break;
             case "Oregon village": sortID = "D-ORE-V"; break;
-            // For "Orfordville city" see RECIPROCAL COUNTIES
-            // For "Orion town" see RECIPROCAL COUNTIES
             case "Otsego town": sortID = "C-OTS-T"; break;
-            // For "Out-of-State" see UNUSED
-            // For "Outagamie Waupaca Library System" see UNUSED
-            // For "Oxford town" see RECIPROCAL COUNTIES
-            // For "Oxford Village" see RECIPROCAL COUNTIES
             case "Pacific town": sortID = "C-PAC-T"; break;
-            // For "Packwaukee town" see RECIPROCAL COUNTIES
-            // For "Palmyra town" see RECIPROCAL COUNTIES
-            // For "Palmyra village" see RECIPROCAL COUNTIES
             case "Pardeeville village": sortID = "C-PAR-V"; break;
             case "Park Ridge village": sortID = "P-PKR-V"; break;
             case "Perry town": sortID = "D-PER-T"; break;
@@ -536,46 +368,31 @@
             case "Port Edwards town": sortID = "W-PE-T"; break;
             case "Port Edwards village": sortID = "W-PE-V"; break;
             case "Portage city": sortID = "C-POR-C"; break;
-            // For "Portland town" see RECIPROCAL COUNTIES
             case "Poynette village": sortID = "C-POY-V"; break;
             case "Prairie Du Sac town": sortID = "S-PDS-T"; break;
             case "Prairie Du Sac village": sortID = "S-PDS-V"; break;
             case "Preston town": sortID = "A-PRS-T"; break;
             case "Primrose town": sortID = "D-PRI-T"; break;
-            // For "Princeton city" see RECIPROCAL COUNTIES
-            // For "Pulaksi town" see RECIPROCAL COUNTIES
             case "Quincy town": sortID = "A-QUI-T"; break;
             case "Randolph town": sortID = "C-RAN-T"; break;
             case "Randolph village": sortID = "C-RAN-VC"; break;
             case "Reedsburg city": sortID = "S-REE-C"; break;
             case "Reedsburg town": sortID = "S-REE-T"; break;
-            // For "Reeseville village" see RECIPROCAL COUNTIES
             case "Remington town": sortID = "W-REM-T"; break;
             case "Richfield town":
               if (data[1] === 'Adams') {
                 sortID = "A-RCH-T";
               } else if (data[1] === 'Wood') {
                 sortID = "W-RCH-T";
-              } else {
-                sortIDSet = false;
               }
               break;
-            // For "Richland Center city" see RECIPROCAL COUNTIES
-            // For "Richland Co No Library" see UNUSED
-            // For "Richland Co With Library" see UNUSED
-            // For "Richland town" see RECIPROCAL COUNTIES
-            // For "Ridgeway town" see RECIPROCAL COUNTIES
-            // For "Ridgeway village" see RECIPROCAL COUNTIES
             case "Rio village": sortID = "C-RIO-V"; break;
-            // For "Rock Co No Library" see UNUSED
-            // For "Rock Co With Library" see UNUSED
             case "Rock Springs village": sortID = "S-RS-V"; break;
             case "Rock town": sortID = "W-ROC-T"; break;
             case "Rockdale village": sortID = "D-ROC-V"; break;
             case "Rome town": sortID = "A-ROM-T"; break;
             case "Rosholt village": sortID = "P-ROS-V"; break;
             case "Roxbury town": sortID = "D-ROX-T"; break;
-            // For "Rubicon town" see RECIPROCAL COUNTIES
             case "Rudolph town": sortID = "W-RUD-T"; break;
             case "Rudolph village": sortID = "W-RUD-V"; break;
             case "Rutland town": sortID = "D-RUT-T"; break;
@@ -583,13 +400,10 @@
             case "Sauk City village": sortID = "S-SC-V"; break;
             case "Scott town": sortID = "C-SCO-T"; break;
             case "Seneca town": sortID = "W-SENE-T"; break;
-            // For "Seven Mile Creek town" see RECIPROCAL COUNTIES
             case "Sharon town": sortID = "P-SHA-T"; break;
             case "Sherry town": sortID = "W-SHR-T"; break;
-            // For "Shields town" see RECIPROCAL COUNTIES
             case "Shorewood Hills village": sortID = "D-SH-V"; break;
             case "Sigel town": sortID = "W-SIG-T"; break;
-            // For "Southwest Wisconsin Library System" see UNUSED
             case "Spring Green town": sortID = "S-SGE-T"; break;
             case "Spring Green village": sortID = "S-SGE-V"; break;
             case "Spring Grove town": sortID = "G-SGO-T"; break;
@@ -601,50 +415,25 @@
             case "Stockton town": sortID = "P-STO-T"; break;
             case "Stoughton city": sortID = "D-STO-C1"; break;
             case "Strongs Prairie town": sortID = "A-STP-T"; break;
-            // For "Sullivan town" see RECIPROCAL COUNTIES
-            // For "Sullivan village" RECIPROCAL COUNTIES
-            // For "Sumner town" see RECIPROCAL COUNTIES
             case "Sumpter town": sortID = "S-SUM-T"; break;
-            // For "Sun Prairie city" see UNDETERMINABLE COUNTY SUBDIVISIONS
             case "Sun Prairie town": sortID = "D-SP-T"; break;
             case "Sylvester town": sortID = "G-SYL-T"; break;
-            // For "Theresa town" see RECIPROCAL COUNTIES
-            // For "Theresa village" see RECIPROCAL COUNTIES
-            // For "Trenton town" see RECIPROCAL COUNTIES
             case "Troy town": sortID = "S-TRO-T"; break;
-            // For "Undetermined" see DEFAULT
             case "Vermont town": sortID = "D-VERM-T"; break;
-            // For "Vernon Co No Library" see UNUSED
-            // For "Vernon Co With Library" see UNUSED
             case "Verona town": sortID = "D-VERO-T"; break;
-            // For "Verona city" see UNDETERMINABLE COUNTY SUBDIVISIONS
             case "Vesper village": sortID = "W-VESP-V"; break;
             case "Vienna town": sortID = "D-VIE-T"; break;
-            // For "Waldwick town" see RECIPROCAL COUNTIES
             case "Washington town":
               if (data[1] === 'Green') {
                 sortID = "G-WAS-TG";
               } else if (data[1] === 'Sauk') {
                 sortID = "S-WAS-TS";
-              } else {
-                sortIDSet = false;
               }
               break;
-            // For "Waterloo city" see RECIPROCAL COUNTIES
-            // For "Waterloo city" see RECIPROCAL COUNTIES
-            // For "Waterloo town" see RECIPROCAL COUNTIES
-            // For "Watertown town" see RECIPROCAL COUNTIES
-            // For "Waukesha County Federated Library System" see UNUSED
             case "Waunakee village": sortID = "D-WAU-V"; break;
-            // For "Waupaca Co No Library" see UNUSED
-            // For "Waupaca Co With Library" see UNUSED
-            // For "Waupun City" see RECIPROCAL COUNTIES
-            // For "Waushara Co No Library" see UNUSED
-            // For "Waushara Co With Library" see UNUSED
             case "West Baraboo village": sortID = "S-WB-V"; break;
             case "West Point town": sortID = "C-WP-T"; break;
             case "Westfield town": sortID = "S-WESF-T"; break;
-            // For "Westfield village" see RECIPROCAL COUNTIES
             // For "Westford town" see RECIPROCAL COUNTIES
             case "Westport town": sortID = "D-WESP-T"; break;
             // For "Whitewater city" see RECIPROCAL COUNTIES
@@ -654,7 +443,6 @@
             // For "Winding Rivers Library System" see UNUSED
             case "Windsor town": sortID = "D-WIN-T"; break;
             case "Winfield town": sortID = "S-WIN-T2"; break;
-            // For "Winnefox Library System" see UNUSED
             case "Wisconsin Dells city":
               if (data[1] === 'Adams') {
                 sortID = "A-WID-C";
@@ -662,22 +450,20 @@
                 sortID = "C-WD-CC";
               } else if (data[1] === 'Sauk') {
                 sortID = "S-WD-CS";
-              } else {
-                sortIDSet = false;
               }
               break;
             case "Wisconsin Rapids city": sortID = "W-WSRP-C"; break;
-            // For "Wisconsin Valley Library System" see UNUSED
-            // For "Wonewoc village" see RECIPROCAL COUNTIES
             case "Wood town": sortID = "W-WOD-T"; break;
             case "Woodland town": sortID = "S-WOO-T"; break;
             case "Wyocena town": sortID = "C-WYO-T"; break;
             case "Wyocena village": sortID = "C-WYO-V"; break;
-            // For "Wyoming town" see RECIPROCAL COUNTIES
-            // For "X-Do Not Use" see UNUSED
-            // For "X-Do Not Use" see UNUSED
-            // For "York town" (Dane County) see DUPLICATE SUBDIVISION NAMES
-            // For "York town" (Green County) see DUPLICATE SUBDIVISION NAMES
+            case "York town":
+              if (data[1] === 'Dane') {
+                sortID = "D-YOR-TD";
+              } else if (data[1] === 'Green') {
+                sortID = "G-YOR-TG";
+              }
+              break;
 
             /*** UNUSED AND DEFAULT ***/
             default: break;
@@ -690,6 +476,7 @@
             case "Ashippun town": sortID = "O-MWFLS-ASH"; break;
             case "Beaver Dam city": sortID = "O-MWFLS-BVC"; break;
             case "Beaver Dam town": sortID = "O-MWFLS-BVT"; break;
+            case "Brownsville village": sortID = "O-MWFLS-BRV"; break;
             case "Burnett town": sortID = "O-MWFLS-BRT"; break;
             case "Calamus town": sortID = "O-MWFLS-CALT"; break;
             case "Chester town": sortID = "O-MWFLS-CHE"; break;
@@ -727,6 +514,7 @@
             case "Trenton town": sortID = "O-MWFLS-TRE"; break;
             case "Watertown city": sortID = "O-MWFLS-WD"; break;
             case "Waupun city": sortID = "O-MWFLS-WP"; break;
+            case "Westford town": sortID = "O-MWFLS-WSTT"; break;
             case "Williamstown town": sortID = "O-MWFLS-WIL"; break;
             default: break;
             }
@@ -755,6 +543,7 @@
             case "Clyde town": sortID = "O-SWLS-CLT"; break;
             case "Dodgeville City": sortID = "O-SWLS-DOC"; break;
             case "Dodgeville town": sortID = "O-SWLS-DOT"; break;
+            case "Hollandale village": sortID = "O-SWLS-HOV"; break;
             case "Highland town": sortID = "O-SWLS-HIT"; break;
             case "Mineral Point city": sortID = "O-SWLS-MPC"; break;
             case "Mineral Point town": sortID = "O-SWLS-MPT"; break;
@@ -844,12 +633,14 @@
             case "Orion town": sortID = "O-SWLS-ORT"; break;
             case "Richland Center city": sortID = "O-SWLS"; break;
             case "Richland town": sortID = "O-SWLS-RIT"; break;
+            case "Westford town": sortID = "O-SWLS-WET"; break;
             case "Willow town": sortID = "O-SWLS-WIT"; break;
             default: break;
             }
             break;
           case "Rock":
             switch (data[2]) {
+            case "Beloit city": sortID = "O-ALS-BEL-C"; break;
             case "Brodhead city": sortID = "O-ALS-BRD-C"; break;
             case "Clinton village": sortID = "O-ALS-CLI-V"; break;
             case "Edgerton city": sortID = "O-ALS-EDG-C"; break;
