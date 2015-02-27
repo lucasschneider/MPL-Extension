@@ -74,7 +74,7 @@
       zipElt = document.getElementById('zipcode'),
       zipEltB = document.getElementById('B_zipcode');
 
-    if (addr.value !== "" && city.value !== "" && selectList !== null) {
+    if (addr.value !== "" && city.value !== "" && selectList) {
       // Placement of results notifier
       addr.parentElement.appendChild(notice);
 
@@ -91,7 +91,7 @@
 
       self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr]);
       self.port.on("receivedGeocoderQuery", function (data) {
-        if (data !== null) {
+        if (data) {
           // data[0] = matched address
           // data[1] = county
           // data[2] = county subdivision
@@ -103,7 +103,7 @@
 
           // Set sort value
           switch (data[1]) {
-          /*** SCLS LIBRARIES ***/
+          /*** SOUTH CENTRAL LIBRARY SYSTEM ***/
           case "Adams":
           case "Columbia":
           case "Dane":
@@ -173,6 +173,9 @@
 
             /*** UNDETERMINABLE COUNTY SUBDIVISIONS ***/
             case "Sun Prairie city":
+              sortID = "D-X-SUN";
+              result.textContent = "[FAILED: cannot determine sort value for Sun Prairie; please enter PSTAT manually.]";
+              break;
             case "Monona city":
             case "Verona city":
               break;
@@ -464,14 +467,57 @@
                 sortID = "G-YOR-TG";
               }
               break;
-
-            /*** UNUSED AND DEFAULT ***/
             default: break;
             }
             break;
 
-          /*** RECIPROCAL COUNTIES ***/
-          case "Dodge":
+          /*** ARROWHEAD LIBRARY SYSTEM ***/
+          case "Rock": // Has with/without library option
+            switch (data[2]) {
+            case "Beloit city": sortID = "O-ALS-BEL-C"; break;
+            case "Brodhead city": sortID = "O-ALS-BRD-C"; break;
+            case "Clinton village": sortID = "O-ALS-CLI-V"; break;
+            case "Edgerton city": sortID = "O-ALS-EDG-C"; break;
+            case "Evansville city": sortID = "O-ALS-EVA-C"; break;
+            case "Janesville city": sortID = "O-ALS-JAN-C"; break;
+            case "Milton city": sortID = "O-ALS-MIL-C"; break;
+            case "Orfordville city": sortID = "O-ALS-ORF-C"; break;
+            default: result.textContent = '[FAILED: Manually select sort option "Rock County" with or w/out library.]'; break;
+            }
+            break;
+
+          /*** EASTERN SHORES LIBRARY SYSTEM ***/
+          case "Ozaukee": 
+          case "Sheboygan": sortID = "O-ESLS"; break;
+
+          /*** INDIANHEAD FEDERATED LIBRARY SYSTEM ***/
+          case "Barron":
+          case "Chippewa":
+          case "Dunn":
+          case "Eau Claire":
+          case "Pepin":
+          case "Pierce":
+          case "Polk":
+          case "Prince":
+          case "Rusk":
+          case "St Croix": sortID = "O-IFLS"; break;
+
+          /*** KENOSHA COUNTY LIBRARY SYSTEM ***/
+          case "Kenosha": sortID = "O-KCLS"; break;
+
+          /*** LAKESHORES LIBRARY SYSTEM ***/
+          case "Racine":
+          case "Walworth": sortID = "O-LLS"; break;
+
+          /*** MANITOWOC-CALUMET LIBRARY SYSTEM ***/
+          case "Calumet":
+          case "Manitowoc": sortID = "O-MCLS"; break;
+
+          /*** MILWAUKEE COUNTY FEDERATED LIBRARY SYSTEM ***/
+          case "Milwaukee": result.textContent = '[FAILED: Do NOT issue a library card to Milwaukee County patrons.]'; break;
+
+          /*** MID-WISCONSIN FEDERATED LIBRARY SYSTEM ***/
+          case "Dodge": // Has with/without library option
             switch (data[2]) {
             case "Ashippun town": sortID = "O-MWFLS-ASH"; break;
             case "Beaver Dam city": sortID = "O-MWFLS-BVC"; break;
@@ -516,47 +562,10 @@
             case "Waupun city": sortID = "O-MWFLS-WP"; break;
             case "Westford town": sortID = "O-MWFLS-WSTT"; break;
             case "Williamstown town": sortID = "O-MWFLS-WIL"; break;
-            default: break;
+            default: result.textContent = '[FAILED: Manually select sort option "Dodge County" with or w/out library.]'; break;
             }
             break;
-          case "Green Lake":
-            switch (data[2]) {
-            case "Berlin city": sortID = "O-WLS-BLC"; break;
-            case "Green Lake city": sortID = "O-WLS-GLC"; break;
-            case "Kingston town": sortID = "O-WLS-KNGT"; break;
-            case "Kingston village": sortID = "O-WLS-KNGV"; break;
-            case "Mackford town": sortID = "O-WLS-MCKT"; break;
-            case "Manchester town": sortID = "O-WLS-MANT"; break;
-            case "Markesan city": sortID = "O-WLS-MKC"; break;
-            case "Princeton city": sortID = "O-WLS-PRC"; break;
-            default: break;
-            }
-            break;
-          case "Iowa":
-            switch (data[2]) {
-            case "Arena town": sortID = "O-SWLS-ART"; break;
-            case "Arena village": sortID = "O-SWLS-ARV"; break;
-            case "Avoca village": sortID = "O-SWLS-AVV"; break;
-            case "Barneveld village": sortID = "O-SWLS-BAV"; break;
-            case "Blanchardville village": sortID = "O-SWLS-BLA"; break;
-            case "Brigham town": sortID = "O-SWLS-BRT"; break;
-            case "Clyde town": sortID = "O-SWLS-CLT"; break;
-            case "Dodgeville City": sortID = "O-SWLS-DOC"; break;
-            case "Dodgeville town": sortID = "O-SWLS-DOT"; break;
-            case "Hollandale village": sortID = "O-SWLS-HOV"; break;
-            case "Highland town": sortID = "O-SWLS-HIT"; break;
-            case "Mineral Point city": sortID = "O-SWLS-MPC"; break;
-            case "Mineral Point town": sortID = "O-SWLS-MPT"; break;
-            case "Moscow town": sortID = "O-SWLS-MOT"; break;
-            case "Pulaksi town": sortID = "O-SWLS-PUT"; break;
-            case "Ridgeway town": sortID = "O-SWLS-RID"; break;
-            case "Ridgeway village": sortID = "O-SWLS-RIDV"; break;
-            case "Waldwick town": sortID = "O-SWLS-WLT"; break;
-            case "Wyoming town": sortID = "O-SWLS-WYT"; break;
-            default: break;
-            }
-            break;
-          case "Jefferson":
+          case "Jefferson": // Has with/without library option
             switch (data[2]) {
             case "Aztalan town": sortID = "O-MWFLS-AZT"; break;
             case "Cambridge village": sortID = "O-MWFLS-CV"; break;
@@ -586,29 +595,102 @@
             case "Watertown city": sortID = "O-MWFLS-WT"; break;
             case "Watertown town": sortID = "O-MWFLS-WATT"; break;
             case "Whitewater city": sortID = "O-MWFLS-WW"; break;
-            default: break;
+            default: result.textContent = '[FAILED: Manually select sort option "Jefferson County" with or w/out library.]'; break;
             }
             break;
-          case "Juneau":
+          case "Washington": sortID = "O-MWFLS"; break;
+
+          /*** NICOLET FEDERATED LIBRARY SYSTEM ***/
+          case "Brown":
+          case "Door":
+          case "Florence":
+          case "Kewaunee":
+          case "Marinette":
+          case "Menominee":
+          case "Oconto":
+          case "Shawano": sortID = "O-NFLS"; break;
+
+          /*** NORTHERN WATERS LIBRARY SYSTEM ***/
+          case "Ashland":
+          case "Bayfield":
+          case "Burnett":
+          case "Douglas":
+          case "Iron":
+          case "Sawyer":
+          case "Vilas":
+          case "Washburn": sortID = "O-NWLS"; break;
+
+          /*** OUTAGAMIE-WAUPACA LIBRARY SYSTEM ***/
+          // Has with/without library option
+          case "Outagamie": sortID = "O-OWLS"; break;
+          case "Waupaca" result.textContent = '[FAILED: Manually select sort option "Waupaca County" with or w/out library.]'; break;
+
+          /*** SOUTH WEST LIBRARY SYSTEM ***/
+          case "Iowa": // Has with/without library option
             switch (data[2]) {
-            case "Elroy city": sortID = "O-WRLS-ELC"; break;
-            case "Kildare town": sortID = "O-WRLS-KILDT"; break;
-            case "Lyndon town": sortID = "O-WRLS-LYNT"; break;
-            case "Mauston city": sortID = "O-WRLS-MAUC"; break;
-            case "Necedah Village": sortID = "O-WRLS-NECV"; break;
-            case "New Lisbon city": sortID = "O-WRLS-NLC"; break;
-            case "Seven Mile Creek town": sortID = "O-WRLS-7MCT"; break;
-            case "Wonewoc village": sortID = "O-WRLS-WWV"; break;
-            default: break;
+            case "Arena town": sortID = "O-SWLS-ART"; break;
+            case "Arena village": sortID = "O-SWLS-ARV"; break;
+            case "Avoca village": sortID = "O-SWLS-AVV"; break;
+            case "Barneveld village": sortID = "O-SWLS-BAV"; break;
+            case "Blanchardville village": sortID = "O-SWLS-BLA"; break;
+            case "Brigham town": sortID = "O-SWLS-BRT"; break;
+            case "Clyde town": sortID = "O-SWLS-CLT"; break;
+            case "Dodgeville City": sortID = "O-SWLS-DOC"; break;
+            case "Dodgeville town": sortID = "O-SWLS-DOT"; break;
+            case "Hollandale village": sortID = "O-SWLS-HOV"; break;
+            case "Highland town": sortID = "O-SWLS-HIT"; break;
+            case "Mineral Point city": sortID = "O-SWLS-MPC"; break;
+            case "Mineral Point town": sortID = "O-SWLS-MPT"; break;
+            case "Moscow town": sortID = "O-SWLS-MOT"; break;
+            case "Pulaksi town": sortID = "O-SWLS-PUT"; break;
+            case "Ridgeway town": sortID = "O-SWLS-RID"; break;
+            case "Ridgeway village": sortID = "O-SWLS-RIDV"; break;
+            case "Waldwick town": sortID = "O-SWLS-WLT"; break;
+            case "Wyoming town": sortID = "O-SWLS-WYT"; break;
+            default: result.textContent = '[FAILED: Manually select sort option "Iowa County" with or w/out library.]'; break;
             }
             break;
-          case "Lafayette":
+          case "Lafayette": // Has with/without library option
             switch (data[2]) {
             case "Blanchardville village": sortID = "O-SWLS-BLA"; break;
-            default: break;
+            default: result.textContent = '[FAILED: Manually select sort option "Lafayette County" with or w/out library.]'; break;
             }
             break;
-          case "Marquette":
+          case "Richland": // Has with/without library option
+            switch (data[2]) {
+            case "Buena Vista town": sortID = "O-WLS-BUFT"; break;
+            case "Cazenovia village": sortID = "O-SWLS-CAV"; break;
+            case "Ithaca town": sortID = "O-SWLS-ITT"; break;
+            case "Lone Rock village": sortID = "O-SWLS-LRV"; break;
+            case "Orion town": sortID = "O-SWLS-ORT"; break;
+            case "Richland Center city": sortID = "O-SWLS"; break;
+            case "Richland town": sortID = "O-SWLS-RIT"; break;
+            case "Westford town": sortID = "O-SWLS-WET"; break;
+            case "Willow town": sortID = "O-SWLS-WIT"; break;
+            default: result.textContent = '[FAILED: Manually select sort option "Richland County" with or w/out library.]'; break;
+            }
+            break;
+          case "Crawford":
+          case "Grant": sortID = "O-SWLS"; break;
+
+          /*** WAUKESHA COUNTY FEDERATED LIBRARY SYSTEM ***/
+          case "Waukesha": sortID = "O-WCFLS"; break;
+
+          /*** WINNEFOX LIBRARY SYSTEM ***/
+          case "Green Lake": // Has with/without library option
+            switch (data[2]) {
+            case "Berlin city": sortID = "O-WLS-BLC"; break;
+            case "Green Lake city": sortID = "O-WLS-GLC"; break;
+            case "Kingston town": sortID = "O-WLS-KNGT"; break;
+            case "Kingston village": sortID = "O-WLS-KNGV"; break;
+            case "Mackford town": sortID = "O-WLS-MCKT"; break;
+            case "Manchester town": sortID = "O-WLS-MANT"; break;
+            case "Markesan city": sortID = "O-WLS-MKC"; break;
+            case "Princeton city": sortID = "O-WLS-PRC"; break;
+            default: result.textContent = '[FAILED: Manually select sort option "Green Lake County" with or w/out library.]'; break;
+            }
+            break;
+          case "Marquette": // Has with/without library option
             switch (data[2]) {
             case "Buffalo town": sortID = "O-WLS-BUFT"; break;
             case "Douglas town": sortID = "O-WLS-DUGT"; break;
@@ -621,36 +703,48 @@
             case "Oxford village": sortID = "O-WLS-OXV"; break;
             case "Packwaukee town": sortID = "O-WLS-PCKT"; break;
             case "Westfield village": sortID = "O-WLS-WSFV"; break;
-            default: break;
+            default: result.textContent = '[FAILED: Manually select sort option "Marquette County" with or w/out library.]'; break;
             }
             break;
-          case "Richland":
+          // Has with/without library option
+          case "Waushara" result.textContent = '[FAILED: Manually select sort option "Waushara County" with or w/out library.]'; break;
+          case "Fond du Lac":
+          case "Winnebago": sortID = "O-WLS"; break;
+
+          /*** WINDING RIVERS LIBRARY SYSTEM ***/
+          case "Juneau": // Has with/without library option
             switch (data[2]) {
-            case "Buena Vista town": sortID = "O-WLS-BUFT"; break;
-            case "Cazenovia village": sortID = "O-SWLS-CAV"; break;
-            case "Ithaca town": sortID = "O-SWLS-ITT"; break;
-            case "Lone Rock village": sortID = "O-SWLS-LRV"; break;
-            case "Orion town": sortID = "O-SWLS-ORT"; break;
-            case "Richland Center city": sortID = "O-SWLS"; break;
-            case "Richland town": sortID = "O-SWLS-RIT"; break;
-            case "Westford town": sortID = "O-SWLS-WET"; break;
-            case "Willow town": sortID = "O-SWLS-WIT"; break;
-            default: break;
+            case "Elroy city": sortID = "O-WRLS-ELC"; break;
+            case "Kildare town": sortID = "O-WRLS-KILDT"; break;
+            case "Lyndon town": sortID = "O-WRLS-LYNT"; break;
+            case "Mauston city": sortID = "O-WRLS-MAUC"; break;
+            case "Necedah Village": sortID = "O-WRLS-NECV"; break;
+            case "New Lisbon city": sortID = "O-WRLS-NLC"; break;
+            case "Seven Mile Creek town": sortID = "O-WRLS-7MCT"; break;
+            case "Wonewoc village": sortID = "O-WRLS-WWV"; break;
+            default: result.textContent = '[FAILED: Manually select sort option "Juneau County" with or w/out library.]'; break;
             }
             break;
-          case "Rock":
-            switch (data[2]) {
-            case "Beloit city": sortID = "O-ALS-BEL-C"; break;
-            case "Brodhead city": sortID = "O-ALS-BRD-C"; break;
-            case "Clinton village": sortID = "O-ALS-CLI-V"; break;
-            case "Edgerton city": sortID = "O-ALS-EDG-C"; break;
-            case "Evansville city": sortID = "O-ALS-EVA-C"; break;
-            case "Janesville city": sortID = "O-ALS-JAN-C"; break;
-            case "Milton city": sortID = "O-ALS-MIL-C"; break;
-            case "Orfordville city": sortID = "O-ALS-ORF-C"; break;
-            default: break;
-            }
-            break;
+          // Has with/without library option
+          case "Jackson": result.textContent = '[FAILED: Manually select sort option "Jackson County" with or w/out library.]'; break;
+          // Has with/without library option
+          case "Vernon": result.textContent = '[FAILED: Manually select sort option "Vernon County" with or w/out library.]'; break;
+          case "Buffalo":
+          case "La Crosse":
+          case "Monroe":
+          case "Trempealeau": sortID = "O-WRLS"; break;
+
+          /*** WISCONSIN VALLEY LIBRARY SYSTEM ***/
+          case "Marathon": sortID = "O-WVLS-MNLI"; break;
+          // Has with/without library option
+          case "Clark": result.textContent = '[FAILED: Manually select sort option "Clark County" with or w/out library.]'; break;
+          case "Forest":
+          case "Langlade":
+          case "Lincoln":
+          case "Oneida":
+          case "Taylor" sortID = "O-WVLS"; break;
+          
+          /*** COUNTY SELECT DEFAULT ***/
           default: break;
           } //end county switch
 
@@ -669,7 +763,9 @@
           } else {
             selectUND(selectList);
             result.setAttribute('style', 'display:inline-block');
-            result.textContent = "[FAILED: unable to determine county subdivision; please enter PSTAT manually.]";
+            if (result.textContent === '') {
+              result.textContent = "[FAILED: unable to determine county subdivision; please enter PSTAT manually.]";
+            }
           }
         /*** ADDRESS PSTAT EXCEPTIONS ***/
         /*** NOTE: MUST MATCH WITH CONDITIONALS AT BOTTOM OF PAGE ***/
@@ -714,7 +810,9 @@
         } else { // data === null
           selectUND(selectList);
           result.setAttribute('style', 'display:inline-block');
-          result.textContent = "[FAILED: unable to determine county; please enter PSTAT manually.]";
+          if (result.textContent === '')
+            result.textContent = "[FAILED: unable to determine county; please enter PSTAT manually.]";
+          }
         }
       });
     }
