@@ -38,7 +38,7 @@ if(msgSelect != null) {
 
   var returnedMailGroup = document.createElement('optgroup');
   returnedMailGroup.label = 'Returned Mail';
-  returnedMailGroup.style.display='';
+  returnedMailGroup.style.display='none';
   msgSelect.appendChild(returnedMailGroup);
 
   var poRtd = document.createElement('option');
@@ -53,7 +53,7 @@ if(msgSelect != null) {
 
   var badEmailGroup = document.createElement('optgroup');
   badEmailGroup.label = 'Bad Email Address';
-  badEmailGroup.style.display='';
+  badEmailGroup.style.display='none';
   msgSelect.appendChild(badEmailGroup);
 
   var badEmail = document.createElement('option');
