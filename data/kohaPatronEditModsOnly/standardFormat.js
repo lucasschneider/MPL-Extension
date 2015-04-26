@@ -40,5 +40,7 @@ function parseMadisonWI () {
 }
 
 /*** ALWAYS CHECK HOLD NOTIFICATION ***/
-var hold = document.getElementById('email4');
-if (hold !== null && hold.checked == false) hold.checked = true;
+/*** This should be rewritten to only check the hold notification
+ * option for new juvenile accounts */
+//var hold = document.getElementById('email4');
+//if (hold !== null && hold.checked == false) hold.checked = true;
