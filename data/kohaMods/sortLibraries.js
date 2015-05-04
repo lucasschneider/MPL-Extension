@@ -1,5 +1,7 @@
 /*** SORT ON LOGIN SCREEN ***/
-var branchList=document.getElementById('branch');
+var branchList=document.getElementById('branch'),
+  allBranch = false,
+  allBranchPos;
 if (branchList !== null) {
   arrOptions=new Array();
   var selectedText = branchList.options[branchList.selectedIndex].text;
@@ -38,6 +40,10 @@ if (branchList2 !== null) {
     branchList2.options[i].value = arrOptions[i][1];
     if (branchList2.options[i].text === selectedText) branchList2.options[i].selected = true;
   }
+  if (branchList2.children[1].value === "") {
+    branchList2.insertBefore(branchList2.children[1], branchList2.children[0]);
+  }
+
 }
 
 /*** SORT FOR HOLD PICKUP LOCATION ***/

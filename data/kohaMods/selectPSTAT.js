@@ -3,10 +3,33 @@
   var addrElt = document.getElementById('address'),
     cityElt = document.getElementById('city'),
     notice = document.createElement('div'),
-    result = document.createElement('span');
+    result = document.createElement('span'),
+    userEnteredAddress,
+    userEnteredCity;
   notice.id = 'tractNotice';
   notice.setAttribute('style', 'margin-top:.2em;margin-left:118px;font-style:italic;color:#c00;');
   result.setAttribute('id', 'tractResult');
+
+  if (addrElt && cityElt) {
+    addrElt.addEventListener('blur', function() {
+      userEnteredAddress = this.value;
+      if (cityElt.value !== "") {
+        userEnteredCity = cityElt.value;
+      }
+      queryPSTATPrep();
+    });
+
+    cityElt.addEventListener('blur', function () {
+      parseMadisonWI(this);
+      userEnteredCity = pullCity(cityElt.value);
+      if (addrElt.value !== "") {
+        userEnteredAddress = addrElt.value;
+      }
+      queryPSTATPrep();
+    });
+
+    addrElt.parentElement.appendChild(notice);
+  }
 
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
@@ -90,7 +113,7 @@
       }, 12000);
 
       self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr]);
-      self.port.on("receivedGeocoderQuery", function (data) {
+      self.port.once("receivedGeocoderQuery", function (data) {
         if (data) {
           // data[0] = matched address
           // data[1] = county
@@ -119,29 +142,29 @@
             case "Fitchburg city": sortID = "D-FIT-T"; break;
             case "Madison city":
               /*** NOTE: MUST MATCH WITH CONDITIONALS AT BOTTOM OF PAGE ***/
-              if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+              if (/81(01|19) mayo d.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
                 sortID = "D-4.06";
-                matchAddr = window.userEnteredAddress.toUpperCase();
+                matchAddr = userEnteredAddress.toUpperCase();
                 generatedZip = "53719";
-              } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+              } else if (/7(02|2(5|7)|49|50) university r.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
                 sortID = "D-1";
-                matchAddr = window.userEnteredAddress.toUpperCase();
+                matchAddr = userEnteredAddress.toUpperCase();
                 generatedZip = "53705";
-              } else if (/.*brookside d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+              } else if (/.*brookside d.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
                 sortID = "D-114.02";
-                matchAddr = window.userEnteredAddress.toUpperCase();
+                matchAddr = userEnteredAddress.toUpperCase();
                 generatedZip = "53718";
-              } else if (/.*halley w.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+              } else if (/.*halley w.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
                 sortID = "D-114.01";
-                matchAddr = window.userEnteredAddress.toUpperCase();
+                matchAddr = userEnteredAddress.toUpperCase();
                 generatedZip = "53718";
-              } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+              } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
                 sortID = "D-4.05";
-                matchAddr = window.userEnteredAddress.toUpperCase();
+                matchAddr = userEnteredAddress.toUpperCase();
                 generatedZip = "53719";
-              } else if (/720(1|3) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+              } else if (/720(1|3) mid ?town r.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
                 sortID = "D-5.04";
-                matchAddr = window.userEnteredAddress.toUpperCase();
+                matchAddr = userEnteredAddress.toUpperCase();
                 generatedZip = "53719";
               } else{
                 sortID = "D-" + data[3];
@@ -764,29 +787,29 @@
           }
         /*** ADDRESS PSTAT EXCEPTIONS ***/
         /*** NOTE: MUST MATCH WITH CONDITIONALS AT TOP OF PAGE ***/
-        } else if (/81(01|19) mayo d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+        } else if (/81(01|19) mayo d.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
           sortID = "D-4.06";
-          matchAddr = window.userEnteredAddress.toUpperCase();
+          matchAddr = userEnteredAddress.toUpperCase();
           generatedZip = "53719";
-        } else if (/7(02|2(5|7)|49|50) university r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+        } else if (/7(02|2(5|7)|49|50) university r.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
           sortID = "D-1";
-          matchAddr = window.userEnteredAddress.toUpperCase();
+          matchAddr = userEnteredAddress.toUpperCase();
           generatedZip = "53705";
-        } else if (/.*brookside d.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+        } else if (/.*brookside d.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
           sortID = "D-114.02";
-          matchAddr = window.userEnteredAddress.toUpperCase();
+          matchAddr = userEnteredAddress.toUpperCase();
           generatedZip = "53718";
-        } else if (/.*halley w.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+        } else if (/.*halley w.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
           sortID = "D-114.01";
-          matchAddr = window.userEnteredAddress.toUpperCase();
+          matchAddr = userEnteredAddress.toUpperCase();
           generatedZip = "53718";
-        } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+        } else if (/7(53(0|8)|6(02|10|26|34|42)) mid ?town r.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
           sortID = "D-4.05";
-          matchAddr = window.userEnteredAddress.toUpperCase();
+          matchAddr = userEnteredAddress.toUpperCase();
           generatedZip = "53719";
-        } else if (/720(1|3) mid ?town r.*/i.test(window.userEnteredAddress) && /madison/i.test(window.userEnteredCity)) {
+        } else if (/720(1|3) mid ?town r.*/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
           sortID = "D-5.04";
-          matchAddr = window.userEnteredAddress.toUpperCase();
+          matchAddr = userEnteredAddress.toUpperCase();
           generatedZip = "53719";
         }
         if (sortID) {
@@ -828,25 +851,13 @@
     elt.value = elt.value.replace(/,/, '');
   }
 
-  if (addrElt) {
-    addrElt.addEventListener('blur', function() { window.userEnteredAddress = this.value; queryPSTATPrep(); });
-    addrElt.parentElement.appendChild(notice);
-  }
-  if (cityElt) {
-    cityElt.addEventListener('blur', function () {
-      parseMadisonWI(this);
-      window.userEnteredCity = pullCity(this.value);
-      queryPSTATPrep();
-    });
-  }
-
   self.port.on("querySecondaryPSTAT", function () {
     var qspElt = document.getElementById('querySecondaryPSTAT'),
       addrB = document.getElementById('B_address'),
       cityB = document.getElementById('B_city');
     if (qspElt && addrB && cityB && addrB.value !== '' && cityB.value !== '') {
-      window.userEnteredAddress = addrB.value;
-      window.userEnteredCity = pullCity(cityB.value);
+      userEnteredAddress = addrB.value;
+      userEnteredCity = pullCity(cityB.value);
       queryPSTAT(addrB, cityB, true);
     } else {
       alert('You may only generate the PSTAT value from the ALTERNATE ADDRESS section, NOT the alternate contact section underneath.');
