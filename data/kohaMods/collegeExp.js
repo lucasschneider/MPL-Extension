@@ -25,7 +25,7 @@
         new Address("650 elm", "Bradley Hall"),
         new Address("1635 kronshage", "Leopold Hall"),
         new Address("1650 kronshage", "Kronshage Hall"),
-        new Address("420 n(orth)? park", "Chadborne Residential College"),
+        new Address("420 n(orth)? park", "Chadbourne Residential College"),
         new Address("35 n(orth)? park", "Smith Hall"),
         new Address("1200 observatory", "Elizabeth Waters Hall"),
         new Address("1510 tripp", "Tripp Hall"),
@@ -46,7 +46,7 @@
       date,
       year;
 
-    if (zip !== null && addr !== null && expiry !== null && expiry.value === '') {
+    if (zip !== null && addr !== null && expiry !== null) {
       addressVal = addr2 !== null ? addr.value + " " + addr2.value : addr.value;
       if (zipRegEx.test(zip.value)) {
         for (i = 0; i < dormAddr.length; i++) {
@@ -70,6 +70,16 @@
               break;
             }
             expiry.value = "05/15/" + year;
+
+            var noteTest = new RegExp("Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm. Patron must show proof of new address to renew account.", "i");
+            if (bn !== null && !noteTest.test(bn.value)) {
+	      if (bn.value !== "") {
+	        bn.value += "\n\n";
+              }
+	      bn.value += "Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm. Patron must show proof of new address to renew account.";
+              alert("Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm. Patron must show proof of new address to renew account.")
+	    }
+	    break;
           }
         }
       }
