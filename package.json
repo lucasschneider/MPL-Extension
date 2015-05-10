@@ -81,5 +81,12 @@
     "description": "Automatically generates a patron's middle initial from the first name field",
     "type": "bool",
     "value": true
+  },
+  {
+    "name": "sundayDropbox",
+    "title": "Set \"dropbox mode\"" on Sundays",
+    "description": "Automatically sets \"Dropbox Mode\" for check-ins on Sundays",
+    "type": "bool",
+    "value": true
   }]
 }
