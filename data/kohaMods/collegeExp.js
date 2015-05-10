@@ -71,8 +71,8 @@
             }
             expiry.value = "05/15/" + year;
 
-            var noteTest = new RegExp("Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm. Patron must verbally update address before account renewal (proof of address not necessary).", "i");
-            if (bn !== null && !noteTest.test(bn.value)) {
+            var noteTest = new RegExp("Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm");
+            if (bn !== null && !noteTest.test(addrRegExFirst.source + bn.value + addrRegExLast.source)) {
 	      if (bn.value !== "") {
 	        bn.value += "\n\n";
               }
@@ -85,8 +85,6 @@
       }
     }
   }
-
-  window.fillDormExp = fillDormExp;
 
   var addr = document.getElementById('address'),
     city = document.getElementById('city'),

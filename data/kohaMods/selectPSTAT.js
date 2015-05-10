@@ -169,8 +169,6 @@
               } else{
                 sortID = "D-" + data[3];
               }
-              // Defined in collegeExp.js
-              window.fillDormExp();
               break;
             case "Madison town": sortID = "D-MAD-T"; break;
             case "Middleton city":
