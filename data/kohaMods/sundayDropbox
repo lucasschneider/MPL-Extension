@@ -1,0 +1,9 @@
+(function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
+  /*global self*/
+  function sundayDropbox() {
+  }
+  var dropbox = document.getElementById('dropboxcheck');
+  if (dropbox !== null) {
+    dropbox.addEventListener('click','sundayDropbox');
+  }
+}()); //end use strict
