@@ -3,7 +3,7 @@
   function sundayDropbox() {
     if (!this.checked) {
       self.port.emit("disableSundayDropbox");
-      alert('Automatic selection of dropbox mode disabled. To automatically select "Dropbox Mode" on Sundays enter about:addons into the address bar and edit the preferences for the MPL Koha Patch.');
+      alert('Automatic selection of dropbox mode disabled. To automatically select "Dropbox Mode" on Sundays enter about:addons into the address bar and edit the preferences for the MPL Koha Patch. This feature will be turned back on when Firefox restarts.');
     }
   }
   var dropbox = document.getElementById('dropboxcheck');

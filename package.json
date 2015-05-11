@@ -84,7 +84,7 @@
   {
     "name": "sundayDropbox",
     "title": "Set \"Dropbox Mode\" on Sundays",
-    "description": "Automatically sets \"Dropbox Mode\" for check-ins on Sundays",
+    "description": "Automatically sets \"Dropbox Mode\" for check-ins on Sundays. If turned off, this feature will be automatically turned on once Firefox restarts.",
     "type": "bool",
     "value": true
   }]
