@@ -9,8 +9,7 @@
 
   "icon": "data/MPL/icon-32.png",
   "icon64": "data/MPL/icon-64.png",
-
-  "private-browsing": true,
+  "permissions": {"private-browsing": true},
 
   "preferences": [{
     "name": "skin",
@@ -84,7 +83,7 @@
   },
   {
     "name": "sundayDropbox",
-    "title": "Set \"dropbox mode\"" on Sundays",
+    "title": "Set \"Dropbox Mode\" on Sundays",
     "description": "Automatically sets \"Dropbox Mode\" for check-ins on Sundays",
     "type": "bool",
     "value": true
