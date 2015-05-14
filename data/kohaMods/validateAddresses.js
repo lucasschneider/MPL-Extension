@@ -60,6 +60,7 @@
       cityRegEx = /madison([,]? wi.*)?|monona([,]? wi.*)?/i,
       unacceptable = [
         new Address("1819 aberg", "State Job Placement Center"),
+        new Address("1955 atwood", "Briarpatch"),
         new Address("4581 w(est)? beltline", "PO Boxes/Mail Services"),
         new Address("147 s(outh)? butler", "Veteran's house"),
         new Address("115 w(est)? doty", "Dane County Jail"),
