@@ -90,7 +90,7 @@
     }
   }
 
-  function queryPSTAT(addr, city, queryB) {
+  function queryPSTAT(addr, city, queryB, secondPass) {
     var entryForm = document.forms.entryform,
       selectList = (entryForm) ? entryForm.elements.sort1 : null,
       notice = document.getElementById('tractNotice'),
@@ -112,7 +112,7 @@
         }
       }, 12000);
 
-      self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr]);
+      self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr, secondPass]);
       self.port.once("receivedGeocoderQuery", function (data) {
         if (data) {
           // data[0] = matched address
@@ -776,6 +776,8 @@
                 zipElt.value = generatedZip;
               }
             }
+          } else if (!secondPass) {
+            queryPSTAT(addr, city, queryB, true);
           } else {
             selectUND(selectList);
             result.setAttribute('style', 'display:inline-block');
@@ -823,6 +825,8 @@
             }
           }
         /*** END OF EXCEPTIONS ***/
+        } else if (!secondPass) {
+          queryPSTAT(addr, city, queryB, true);
         } else { // data === null
           selectUND(selectList);
           result.setAttribute('style', 'display:inline-block');
@@ -838,7 +842,7 @@
     var addr = document.getElementById('address'),
       city = document.getElementById('city');
     if (addr && city) {
-      queryPSTAT(addr, city, false);
+      queryPSTAT(addr, city, false, false);
     }
   }
 
@@ -856,7 +860,7 @@
     if (qspElt && addrB && cityB && addrB.value !== '' && cityB.value !== '') {
       userEnteredAddress = addrB.value;
       userEnteredCity = pullCity(cityB.value);
-      queryPSTAT(addrB, cityB, true);
+      queryPSTAT(addrB, cityB, true, false);
     } else {
       alert('You may only generate the PSTAT value from the ALTERNATE ADDRESS section, NOT the alternate contact section underneath.');
     }
