@@ -76,7 +76,7 @@ var unusedFields = ['streetnumber',
 
 enableOptsLabel.setAttribute('for','enableOpts');
 enableOptsLabel.setAttribute('style','display: inline-block; font-weight: bold;');
-enableOptsLabel.textContent = 'Enable rarely used and discouraged input fields:';
+enableOptsLabel.textContent = 'Enable rarely used input fields:';
 
 enableOpts.id = "enableOpts";
 enableOpts.type = 'checkbox';
