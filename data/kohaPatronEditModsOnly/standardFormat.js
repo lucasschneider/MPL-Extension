@@ -45,6 +45,7 @@ var unusedFields = ['streetnumber',
   'select_city',
   'country',
   'mobile',
+  'emailpro', // Secondary email address
   'fax',
   'B_country',
   'B_address2',
@@ -71,8 +72,7 @@ var unusedFields = ['streetnumber',
   sibling = parentElt.children[0];
   enableOptsLabel = document.createElement('label'),
   enableOpts = document.createElement('input'),
-  enableOptsContainer = document.createElement('div'),
-  tmp = null;
+  enableOptsContainer = document.createElement('div');
 
 enableOptsLabel.setAttribute('for','enableOpts');
 enableOptsLabel.setAttribute('style','display: inline-block; font-weight: bold;');
@@ -87,14 +87,16 @@ enableOpts.addEventListener('click', function () {
     for (i = 0; i < unusedFields.length; i++) {
       elt = document.getElementById(unusedFields[i]);
       if (elt !== null) {
-        tmp = elt.disabled = false;
+        elt.disabled = false;
+        elt.style.backgroundColor = '';
       }
     }
   } else {
     for (i = 0; i < unusedFields.length; i++) {
       elt = document.getElementById(unusedFields[i]);
       if (elt !== null) {
-        tmp = elt.disabled = true;
+        elt.disabled = true;
+        elt.style.backgroundColor = '#888888';
       }
     }
   }
