@@ -96,7 +96,7 @@ enableOpts.addEventListener('click', function () {
       elt = document.getElementById(unusedFields[i]);
       if (elt !== null) {
         elt.disabled = true;
-        elt.style.backgroundColor = '#888888';
+        elt.style.backgroundColor = '#cecece';
       }
     }
   }
