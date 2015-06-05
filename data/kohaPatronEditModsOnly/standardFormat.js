@@ -109,3 +109,17 @@ parentElt.insertBefore(enableOptsContainer, sibling);
 
 // Trigger event : disable fields
 enableOpts.click();
+
+/*** Control-S to save patron record ***/
+document.addEventListener("keydown", function(e) {
+  if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+    e.preventDefault();
+    var saveButton = document.getElementsByClassName('action')[0]; // Wrapping elt.
+    if (saveButton) {
+      saveButton = saveButton.children[0];
+      if (saveButton) {
+        saveButton.click();
+      }
+    }
+  }
+}, false);

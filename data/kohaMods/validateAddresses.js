@@ -4,7 +4,7 @@
 
   /* Define address object */
   var Address = function (addrRegEx, place) {
-    // addrRegEx formated to be inserted at a regex literal
+    // addrRegEx formatted to be inserted at a regex literal
     this.addrRegEx = addrRegEx;
     // The place/organization of the restricted address
     this.place = place;

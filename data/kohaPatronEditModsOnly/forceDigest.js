@@ -1,7 +1,7 @@
 /*
  * email: HTML checkbox input element which sends
  *   patron email notification
- * digest: nottification's checkbox input option to
+ * digest: notification's checkbox input option to
  *   send digests only
  */
 function forceDigest(email, digest) {
