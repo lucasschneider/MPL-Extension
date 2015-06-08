@@ -1,5 +1,4 @@
-var opacNote = document.getElementById('opacnote'),
-  circNote = document.getElementById('borrowernotes'),
+var circNote = document.getElementById('borrowernotes'),
   categoryCode = document.getElementsByClassName('categorycode'),
   startingBalance,
   date,
@@ -9,9 +8,9 @@ var opacNote = document.getElementById('opacnote'),
   year,
   expiryDate = '',
   currDate = '';
-if (opacNote !== null && circNote !== null) {
+if (circNote) {
   startingBalance = prompt('What is the patron\'s starting balance for this payment plan?');
-  if (startingBalance !== null && startingBalance !== '') {
+  if (startingBalance && startingBalance !== '') {
     date = new Date();
     month = date.getUTCMonth();
     if (month+1 < 10) {
@@ -34,16 +33,13 @@ if (opacNote !== null && circNote !== null) {
     currDate += day + '/' + date.getUTCFullYear();
     year = incrementYear ? date.getUTCFullYear() + 1 : date.getUTCFullYear();
     expiryDate += month + '/' + day + '/' + year;
-    if (opacNote.value !== null && opacNote.value !== '') {
-      opacNote.value += "\n\n";
-    }
     if (circNote.value !== null && circNote.value !== '') {
       circNote.value += "\n\n";
     }
     circNote.value += 'AT MADISON PUBLIC LIBRARY ONLY, patron is allowed to checkout if they pay $1.00 per item. FULL payment is required outside of MPL. NO Outerloan or Rental checkouts allowed while on the plan. Holds are allowed only as copy specific on MPL items. Plan is void if new fees are added. Patron’s account is limited use while they are on the plan. Starting balance was $' + startingBalance + '. Charges must be paid by ' + expiryDate + '. Plan started on '+ currDate + ' ';
-    if (categoryCode !== null && categoryCode[0].value === 'AD') {
+    if (categoryCode && categoryCode[0].value === 'AD') {
       categoryCode[0].value = 'LU';
-    } else if (categoryCode !== null && categoryCode[0].value == 'JU') {
+    } else if (categoryCode && categoryCode[0].value == 'JU') {
       categoryCode[0].value = 'LUJ';
     }
   } else {

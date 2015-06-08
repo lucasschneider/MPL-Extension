@@ -1,22 +1,29 @@
 var addNote = document.getElementById('addNote'),
+  addLostNote = document.getElementById('addLostNote'),
   addr2PSTAT = document.getElementById('addr2PSTAT'),
   QLToggle = document.getElementById('QLToggle'),
   TToggle = document.getElementById('TToggle'),
   quickLinks = document.getElementById('quickLinks'),
   tools = document.getElementById('tools');
-if (addNote !== null) {
+if (addNote) {
   addNote.addEventListener('click', function () {
     self.port.emit('addPaymentPlanNote');
   });
 }
 
-if (addr2PSTAT !== null) {
+if (addLostNote) {
+  addLostNote.addEventListener('click', function () {
+    self.port.emit('addLostCardNote');
+  });
+}
+
+if (addr2PSTAT) {
   addr2PSTAT.addEventListener('click', function () {
     self.port.emit('addr2PSTAT');
   });
 }
 
-if (QLToggle !== null && TToggle !== null && quickLinks !== null && tools !== null) {
+if (QLToggle && TToggle && quickLinks && tools) {
   QLToggle.addEventListener('click', function () {
     QLToggle.setAttribute('class', 'tabToggle selected');
     TToggle.setAttribute('class', 'tabToggle');
