@@ -17,20 +17,41 @@ if (inputs !== null) {
   }
 }
 
+/*** "APT " -> "#" ***/
+var address = document.getElementById('address'),
+  bAddress = document.getElementById('B_address'),
+  altAddress = document.getElementById('altcontactaddress1');
+
+if (address) {
+  address.addEventListener('blur', aptToNum);
+}
+
+if (bAddress) {
+  bAddress.addEventListener('blur', aptToNum);
+}
+
+if (altAddress) {
+  altAddress.addEventListener('blur', aptToNum);
+}
+
+function aptToNum() {
+  this.value = this.value.replace("APT ", "#");
+}
+
 /*** CORRECT CITY FORMAT ***/
 var city = document.getElementById('city'),
   city2 = document.getElementById('B_city'),
   city3 = document.getElementById('altcontactaddress3');
 
-if (city !== null) {
+if (city) {
   city.addEventListener('blur', parseMadisonWI);
 }
 
-if (city2 !== null) {
+if (city2) {
   city2.addEventListener('blur', parseMadisonWI);
 }
 
-if (city3 !== null) {
+if (city3) {
   city3.addEventListener('blur', parseMadisonWI);
 }
 
@@ -109,3 +130,27 @@ parentElt.insertBefore(enableOptsContainer, sibling);
 
 // Trigger event : disable fields
 enableOpts.click();
+
+/*** Control-` to save patron record ***/
+document.addEventListener("keydown", function(e) {
+  if (e.keyCode == 32 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+    e.preventDefault();
+    var saveButton = document.getElementsByClassName('action'); // Wrapping elt.
+    if (saveButton) {
+      saveButton = saveButton[0].children[0];
+      if (saveButton) {
+        saveButton.click();
+      }
+    }
+  }
+}, false);
+
+document.addEventListener("keydown", function(e) {
+  if (e.keyCode == 27) {
+    e.preventDefault();
+    var cancelButton = document.getElementsByClassName('cancel');
+    if (cancelButton) {
+      cancelButton[0].click();
+    }
+  }
+}, false);
