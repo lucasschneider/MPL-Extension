@@ -57,7 +57,7 @@
       addr2 = document.getElementById('address2'),
       city = document.getElementById('city'),
       bn = document.getElementById('borrowernotes'),
-      cityRegEx = /madison([,]? wi.*)?|monona([,]? wi.*)?/i,
+      cityRegEx = /mad(ison([,]? wi.*)?)?|monona([,]? wi.*)?/i,
       unacceptable = [
         new Address("1819 aberg", "State Job Placement Center"),
         new Address("1955 atwood", "Briarpatch"),
