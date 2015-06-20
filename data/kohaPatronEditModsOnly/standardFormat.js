@@ -131,7 +131,7 @@ parentElt.insertBefore(enableOptsContainer, sibling);
 // Trigger event : disable fields
 enableOpts.click();
 
-/*** Control-` to save patron record ***/
+/*** Control-space to save patron record ***/
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == 32 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
     e.preventDefault();
@@ -145,6 +145,7 @@ document.addEventListener("keydown", function(e) {
   }
 }, false);
 
+/*** Escape to exit editing patron record ***/
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == 27) {
     e.preventDefault();

@@ -5,7 +5,7 @@
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library",
   "author": "Lucas Schneider",
   "license": "MPL 2.0",
-  "version": "7",
+  "version": "7.1",
 
   "icon": "data/MPL/icon-32.png",
   "icon64": "data/MPL/icon-64.png",
@@ -85,6 +85,13 @@
     "name": "sundayDropbox",
     "title": "Set \"Dropbox Mode\" on Sundays",
     "description": "Automatically sets \"Dropbox Mode\" for check-ins on Sundays. If turned off, this feature will be automatically turned on once Firefox restarts.",
+    "type": "bool",
+    "value": true
+  },
+  {
+    "name": "cssMods",
+    "title": "Include Custom Style Sheet",
+    "description": "This feature adds to the stylesheets based on the design of the community-supported Koha distribution",
     "type": "bool",
     "value": true
   }]
