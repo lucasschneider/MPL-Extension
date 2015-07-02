@@ -113,7 +113,7 @@
       }, 12000);
 
       self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr, secondPass]);
-      self.port.once("receivedGeocoderQuery", function (data) {
+      self.port.on("receivedGeocoderQuery", function (data) {
         if (data) {
           // data[0] = matched address
           // data[1] = county
