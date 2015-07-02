@@ -76,6 +76,7 @@
         new Address("1202 northport", "Dane County Social Services"),
         new Address("1206 northport", "Dane County Social Services"),
         new Address("6666 odana", "PO Boxes/Mail Services"),
+        new Address("128 e(ast)? olin", "Family Service Madison"),
         new Address("1228 s(outh)? park", "Dane County Housing Authority"),
         new Address("1240 s(outh)? park", "Housing Service"),
         new Address("1360 regent", "PO Boxes/Mail Services"),
