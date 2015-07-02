@@ -12,6 +12,7 @@
     saveButton = document.getElementsByName('save')[0],
     updateButton = document.createElement('input');
 
+  updateButton.id = "updateAndSave";
   updateButton.type = "button";
   updateButton.value = "Save & update patron type";
   updateButton.style = "cursor:pointer; margin-right: 20px;";
@@ -26,7 +27,7 @@
 
   if (birthdayField && birthdayField.value && patronCategory && (patronCategory.value === 'LUJ' || patronCategory.value === 'JU')) {
     birthday = new Date(birthdayField.value);
-    if (saveButtonWrapper && calculateAge(birthday) >= 16) {
+    if (saveButtonWrapper && calculateAge(birthday) >= 18) {
       saveButtonWrapper.insertBefore(updateButton, saveButtonWrapper.children[0]);
     }
   }

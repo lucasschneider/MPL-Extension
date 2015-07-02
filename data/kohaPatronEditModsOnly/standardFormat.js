@@ -140,8 +140,11 @@
   document.addEventListener("keydown", function (e) {
     if (e.keyCode === 32 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
       e.preventDefault();
-      var saveButton = document.getElementsByClassName('action'); // Wrapping elt.
-      if (saveButton.length > 0) {
+      var updateAndSave = document.getElementById('updateAndSave'),
+        saveButton = document.getElementsByClassName('action'); // Wrapping elt.
+      if (updateAndSave) {
+        updateAndSave.click();
+      } else if (saveButton.length > 0) {
         saveButton = saveButton[0].children[0];
         if (saveButton) {
           saveButton.click();
