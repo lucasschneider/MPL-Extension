@@ -94,13 +94,5 @@
     "description": "This feature will update JU -> AD and LUJ -> LU when saving a patron record if the patron is 16 years or older",
     "type": "bool",
     "value": true
-  },
-  {
-    "name": "cssMods",
-    "title": "Include Custom Style Sheet",
-    "description": "This feature adds to the stylesheets based on the design of the community-supported Koha distribution",
-    "type": "bool",
-    "value": false,
-    "hidden": true
   }]
 }
