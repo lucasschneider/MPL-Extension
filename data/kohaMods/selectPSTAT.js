@@ -13,19 +13,19 @@
   if (addrElt && cityElt) {
     addrElt.addEventListener('blur', function() {
       userEnteredAddress = this.value;
-      if (cityElt.value !== "") {
+      if (addrElt.value && cityElt.value) {
         userEnteredCity = cityElt.value;
+        queryPSTATPrep();
       }
-      queryPSTATPrep();
     });
 
     cityElt.addEventListener('blur', function () {
       parseMadisonWI(this);
       userEnteredCity = pullCity(cityElt.value);
-      if (addrElt.value !== "") {
+      if (addrElt.value && cityElt.value) {
         userEnteredAddress = addrElt.value;
+        queryPSTATPrep();
       }
-      queryPSTATPrep();
     });
 
     addrElt.parentElement.appendChild(notice);
@@ -113,7 +113,7 @@
       }, 12000);
 
       self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr, secondPass]);
-      self.port.on("receivedGeocoderQuery", function (data) {
+      self.port.once("receivedGeocoderQuery", function (data) {
         if (data) {
           // data[0] = matched address
           // data[1] = county
