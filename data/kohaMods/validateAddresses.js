@@ -110,7 +110,7 @@
         new Address("312 wisconsin", "Bethel Lutheran Church"),
         new Address("1301 williamson", "Port St Vincent")
       ],
-      addrRegExFirst = /[ ]*/,
+      addrRegExFirst = /^[ ]*/,
       addrRegExLast = /.*/,
       fullAddrRegEx = new RegExp(),
       foundBadAddr = false,
