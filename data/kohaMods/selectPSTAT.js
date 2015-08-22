@@ -82,8 +82,12 @@
 
   function selectPSTAT(selectList, value, result, matchAddr) {
     if (selectList && value && result && matchAddr) {
-      selectList.value = value;
-      if (value !== "D-X-SUN") {
+      if (value == "D-X-SUN") {
+        if (selectList.value == '') {
+          selectList.value = value;
+        }
+      } else {
+        selectList.value = value;
         result.setAttribute('style', 'display:inline-block;color:#00c000;');
         result.textContent = ' [MATCH: ' + matchAddr + ']';
       }
