@@ -1,10 +1,18 @@
 (function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
   /*global self*/
   function parseName() {
-    var initials = document.getElementById('initials'),
+    var surname = document.getElementById('surname'),
+      initials = document.getElementById('initials'),
       names,
       len;
-    this.value = this.value.replace(/[\.,]/gi, '');
+    // Strip commas and periods from string
+    this.value = this.value.replace(/[\.,]/g, '');
+    // Move suffix "JR" or "SR" to end of last name
+    if (/ (S|J)R$/i.test(this.value)) {
+      var suffix = this.value.substr(this.value.length-3, this.value.length);
+      this.value = this.value.substr(0, this.value.length-3);
+      surname.value += "," + suffix.toUpperCase();
+    }
     if (!/^[ 	]+/.test(this.value) && initials) {
       names = this.value.split(' ');
       len = names.length;
