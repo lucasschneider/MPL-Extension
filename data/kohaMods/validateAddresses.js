@@ -161,12 +161,12 @@
         }
         fullAddrRegEx = new RegExp(addrRegExFirst.source + restricted[i].addrRegEx + addrRegExLast.source, "i");
         if (fullAddrRegEx.test(addrVal)) {
-          alert("--- NOTE ---\nA library card issued to " + unacceptable[i].addr + " (" + restricted[i].place + ") must be LIMITED USE.\n\nIn order to have the limited use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
+          alert("--- NOTE ---\nA library card issued to " + restricted[i].addr + " (" + restricted[i].place + ") must be LIMITED USE.\n\nIn order to have the limited use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
           if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
             if (bn.value !== '') {
               bn.value += "\n\n";
             }
-            bn.value += "Patron's account is Limited Use due to temporary residence at " + restricted[i].place + ", (" + unacceptable[i].addr + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
+            bn.value += "Patron's account is Limited Use due to temporary residence at " + restricted[i].place + ", (" + restricted[i].addr + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
           }
 	        foundBadAddr = true;
         }
