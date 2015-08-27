@@ -120,9 +120,8 @@
       field;
     if (addr !== null && city !== null && cityRegEx.test(city.value) && bn !== null) {
       addrVal = addr2 !== null && (addr2.value !== null && addr2.value !== "") ? addr.value + " " + addr2.value : addr.value;
-
-        foundBadAddr = true;
       if (/1490 martin/i.test(addrVal)) {
+        foundBadAddr = true;
         alert("--- NOTE ---\n1490 MARTIN ST is the Hospitality House, a daytime resource center for homeless and low-income people in Dane County. A LIMITED USE account may be set up, however, all library cards issued to that address MUST be mailed, whether or not the patron provides proof of that address.\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf");
         if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
           if (bn.value !== '') {
@@ -152,7 +151,7 @@
           if (field !== null && field.children[0].value !== 'Override Block') {
             blockSubmit();
           }
-	  foundBadAddr = true;
+	        foundBadAddr = true;
         }
       }
       // Test for restricted addresses
@@ -169,7 +168,7 @@
             }
             bn.value += "Patron's account is Limited Use due to temporary residence at " + restricted[i].place + ", (" + unacceptable[i].addr + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " ";
           }
-	  foundBadAddr = true;
+	        foundBadAddr = true;
         }
       }
       if (!foundBadAddr) {
