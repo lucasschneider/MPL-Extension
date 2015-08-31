@@ -14,7 +14,7 @@
   function fillDormExp() {
     var addr = document.getElementById('address'),
       addr2 = document.getElementById('address2'),
-      zip = document.getElementById('zipcode'),
+      city = document.getElementById('city'),
       expiry = document.getElementById('dateexpiry'),
       bn = document.getElementById('borrowernotes'),
       dormAddr = [
@@ -41,15 +41,14 @@
       addrRegExFirst = /[ ]*/,
       addrRegExLast = /.*/,
       fullAddrRegEx = new RegExp(),
-      zipRegEx = /53706(\-[0-9]{4})?|53715(\-[0-9]{4})?/,
       addressVal,
       date,
       year;
 
     if (zip !== null && addr !== null && expiry !== null) {
       addressVal = addr2 !== null ? addr.value + " " + addr2.value : addr.value;
-      if (zipRegEx.test(zip.value)) {
-        for (i = 0; i < dormAddr.length; i++) {
+      if (/[ ]*mad(ison)?(,? wi)?/i.test(city.value)) {
+        for (var i = 0; i < dormAddr.length; i++) {
           fullAddrRegEx = new RegExp(addrRegExFirst.source + dormAddr[i].addrRegEx + addrRegExLast.source, "i");
           if (fullAddrRegEx.test(addressVal)) {
             date = new Date();
@@ -73,13 +72,13 @@
 
             var noteTest = new RegExp("Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm");
             if (bn !== null && !noteTest.test(addrRegExFirst.source + bn.value + addrRegExLast.source)) {
-	      if (bn.value !== "") {
-	        bn.value += "\n\n";
+	            if (bn.value !== "") {
+	              bn.value += "\n\n";
               }
-	      bn.value += "Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm. Patron must verbally update address before account renewal (proof of address not necessary).";
+	            bn.value += "Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm. Patron must verbally update address before account renewal (proof of address not necessary).";
               alert("Special expiration date of 05/15/" + year + " set due to residence at " + dormAddr[i].place + ", a university dorm. Patron must verbally update address before account renewal (proof of address not necessary).")
-	    }
-	    break;
+	          }
+	          break;
           }
         }
       }
@@ -94,8 +93,5 @@
   }
   if (city !== null) {
     city.addEventListener('blur', fillDormExp);
-  }
-  if (zip !== null) {
-    zip.addEventListener('blur', fillDormExp);
   }
   }()); //end use strict
