@@ -16,7 +16,7 @@ if (circNote) {
     if (month+1 < 10) {
       currDate += '0' + (month+1) + '/';
     } else {
-      currDate += (month+1) + '.';
+      currDate += (month+1) + '/';
     }
     month += 7;
     if (month > 12) {
