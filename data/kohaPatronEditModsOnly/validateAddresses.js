@@ -72,7 +72,7 @@
         new Address("408 w(est)? gorham", "408 W Gorham St", "Social Club"),
         new Address("310 s(outh)? ingersoll st", "310 S Ingersoll St", "Luke House"),
         new Address("210 martin luther king j(unio)?r", "210 Matrin Luther King Jr Blvd", "Dane County Jail"),
-        new Address("215 martin luther king j(unio)?r", "215 Matrin Luther King Jr Blvd", "Madison Municipal Building")
+        new Address("215 martin luther king j(unio)?r", "215 Matrin Luther King Jr Blvd", "Madison Municipal Building"),
         new Address("3902 milwaukee", "3902 Milwaukee St", "Main Post Office"),
         new Address("4514 monona dr", "4514 Monona Dr", "PO Boxes/Mail Services"),
         new Address("1202 northport", "1202 Northport Dr", "Dane County Social Services"),
