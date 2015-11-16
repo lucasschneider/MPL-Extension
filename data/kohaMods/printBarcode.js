@@ -2,7 +2,23 @@
   /*global self*/
 
   function printBarcode() {
-     self.port.emit("printBarcode",document.getElementsByClassName('patroninfo')[0].children[0].innerHTML.replace(/\D/g,''));
+    var start = false,
+      barcode = "",
+      name = document.getElementsByClassName('patroninfo')[0].children[0].innerHTML,
+      i;
+    if (name != null) {
+      for (i = name.length - 1; i > -1; i--) {
+        if (name[i] === ")") {
+          start = true;
+        } else if (name[i] === "("){
+          start = false;
+          break;
+        } else if (start === true) {
+          barcode = name[i] + barcode
+        }
+      }
+      self.port.emit("printBarcode",barcode);
+    }
   }
 
   var toolbar = document.getElementsByClassName('toolbar')[0],
