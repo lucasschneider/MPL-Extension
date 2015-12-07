@@ -60,58 +60,58 @@
       bn = document.getElementById('borrowernotes'),
       cityRegEx = /mad(ison([,]? wi.*)?)?|monona([,]? wi.*)?/i,
       unacceptable = [
-        new Address("1819 aberg", "1819 Aberg Ave", "State Job Placement Center"),
-        new Address("1955 atwood", "1955 Atwood Ave", "Briarpatch"),
-        new Address("4581 w(est)? beltline", "4581 W Beltline Hwy", "PO Boxes/Mail Services"),
-        new Address("147 s(outh)? butler", "147 S Butler St", "Veteran's house"),
-        new Address("115 w(est)? doty", "115 W Doty St", "Dane County Jail"),
-        new Address("4230 e(ast)? towne", "4230 E Towne Blvd", "PO Boxes/Mail Services"),
-        new Address("6441 enterprise", "6441 Enterprise Ln", "PO Boxes/Mail Services"),
-        new Address("2935 fish hatchery", "2935 Fish Hatchery Rd", "PO Boxes/Mail Services"),
-        new Address("802 e(ast)? gorham", "802 E Gorham St", "Yahara House"),
-        new Address("408 w(est)? gorham", "408 W Gorham St", "Social Club"),
-        new Address("310 s(outh)? ingersoll st", "310 S Ingersoll St", "Luke House"),
-        new Address("210 martin luther king j(unio)?r", "210 Matrin Luther King Jr Blvd", "Dane County Jail"),
-        new Address("215 martin luther king j(unio)?r", "215 Matrin Luther King Jr Blvd", "Madison Municipal Building"),
-        new Address("3902 milwaukee", "3902 Milwaukee St", "Main Post Office"),
-        new Address("4514 monona dr", "4514 Monona Dr", "PO Boxes/Mail Services"),
-        new Address("1202 northport", "1202 Northport Dr", "Dane County Social Services"),
-        new Address("1206 northport", "1206 Northport Dr", "Dane County Social Services"),
-        new Address("6666 odana", "6666 Odana Rd", "PO Boxes/Mail Services"),
-        new Address("128 e(ast)? olin", "128 E Olin Ave", "Family Service Madison"),
-        new Address("1228 s(outh)? park", "1228 S Park St", "Dane County Housing Authority"),
-        new Address("1240 s(outh)? park", "1240 S Park St", "Housing Service"),
-        new Address("1360 regent", "1360 Regent St", "PO Boxes/Mail Services"),
-        new Address("2120 rimrock", "2120 Rimrock Rd", "Dane County Jail"),
-        new Address("3150 st paul", "3150 St Paul Ave", "DoC Housing - 2 Week Stay"),
-        new Address("103 s(outh)? (second|2nd)", "103 S Second", "Mail Service"),
-        new Address("1213 n(orth)? sherman", "1213 N Sherman Ave", "PO Boxes/Mail Services"),
-        new Address("731 state", "731 State St", "Pres House"),
-        new Address("2701 university", "2701 University Ave", "PO Boxes/Mail Services"),
-        new Address("322 e(ast)? washington", "322 E Washington Ave", "St John's Lutheran Church"),
-        new Address("512 e(ast)? washington", "512 E Washington Ave", "Probation/Parole"),
-        new Address("1245 e(ast)? washinton", "1245 E Washington Ave", "Advocacy Offices"),
-        new Address("116 w(est)? washington", "116 W Washington Ave", "Grace Episcopal Church"),
-        new Address("625 w(est)? washington", "625 W Washington Ave", "Meriter Health Center"),
-        new Address("668 w(est)? washington", "668 W Washington Ave", "Mail Service")
+        new Address("1819 aberg ave(nue)?", "1819 Aberg Ave", "State Job Placement Center"),
+        new Address("1955 atwood ave(nue)?", "1955 Atwood Ave", "Briarpatch"),
+        new Address("4581 w(est)? beltline h(igh)?wa?y", "4581 W Beltline Hwy", "PO Boxes/Mail Services"),
+        new Address("147 s(outh)? butler st(reet)?", "147 S Butler St", "Veteran's house"),
+        new Address("115 w(est)? doty st(reet)?", "115 W Doty St", "Dane County Jail"),
+        new Address("4230 e(ast)? towne (boulevard|blvd)", "4230 E Towne Blvd", "PO Boxes/Mail Services"),
+        new Address("6441 enterprise l(an)?e", "6441 Enterprise Ln", "PO Boxes/Mail Services"),
+        new Address("2935 fish hatchery r(oa)?d", "2935 Fish Hatchery Rd", "PO Boxes/Mail Services"),
+        new Address("802 e(ast)? gorham st(reet)?", "802 E Gorham St", "Yahara House"),
+        new Address("408 w(est)? gorham st(reet)?", "408 W Gorham St", "Social Club"),
+        new Address("310 s(outh)? ingersoll st(reet)?", "310 S Ingersoll St", "Luke House"),
+        new Address("210 martin luther king j(unio)?r (boulevard|blvd)", "210 Matrin Luther King Jr Blvd", "Dane County Jail"),
+        new Address("215 martin luther king j(unio)?r (boulevard|blvd)", "215 Matrin Luther King Jr Blvd", "Madison Municipal Building"),
+        new Address("3902 milwaukee st(reet)?", "3902 Milwaukee St", "Main Post Office"),
+        new Address("4514 monona dr(ive)?", "4514 Monona Dr", "PO Boxes/Mail Services"),
+        new Address("1202 northport dr(ive)?", "1202 Northport Dr", "Dane County Social Services"),
+        new Address("1206 northport dr(ive)?", "1206 Northport Dr", "Dane County Social Services"),
+        new Address("6666 odana dr(ive)?", "6666 Odana Rd", "PO Boxes/Mail Services"),
+        new Address("128 e(ast)? olin ave(nue)?", "128 E Olin Ave", "Family Service Madison"),
+        new Address("1228 s(outh)? park st(reet)?", "1228 S Park St", "Dane County Housing Authority"),
+        new Address("1240 s(outh)? park st(reet)?", "1240 S Park St", "Housing Service"),
+        new Address("1360 regent st(reet)?", "1360 Regent St", "PO Boxes/Mail Services"),
+        new Address("2120 rimrock r(oa)?d", "2120 Rimrock Rd", "Dane County Jail"),
+        new Address("3150 st paul ave(nue)?", "3150 St Paul Ave", "DoC Housing - 2 Week Stay"),
+        new Address("103 s(outh)? (second|2nd) st(reet)?", "103 S Second St", "Mail Service"),
+        new Address("1213 n(orth)? sherman ave(nue)?", "1213 N Sherman Ave", "PO Boxes/Mail Services"),
+        new Address("731 state st(reet)?", "731 State St", "Pres House"),
+        new Address("2701 university ave(nue)?", "2701 University Ave", "PO Boxes/Mail Services"),
+        new Address("322 e(ast)? washington ave(nue)?", "322 E Washington Ave", "St John's Lutheran Church"),
+        new Address("512 e(ast)? washington ave(nue)?", "512 E Washington Ave", "Probation/Parole"),
+        new Address("1245 e(ast)? washinton ave(nue)?", "1245 E Washington Ave", "Advocacy Offices"),
+        new Address("116 w(est)? washington ave(nue)?", "116 W Washington Ave", "Grace Episcopal Church"),
+        new Address("625 w(est)? washington ave(nue)?", "625 W Washington Ave", "Meriter Health Center"),
+        new Address("668 w(est)? washington ave(nue)?", "668 W Washington Ave", "Mail Service")
       ],
       restricted = [
-        new Address("221 s(outh)? baldwin", "221 S Baldwin St", "Port St Vincent"),
-        new Address("141 s(outh)? butler", "141 S Butler St", "Hostelling International - Madison"),
-        new Address("2009 e(ast)? dayton", "2009 E Dayton St", "ARC Dayton"),
-        new Address("4117 dwight", "4117 Dwight Dr", "Dwight Halfway House"),
-        new Address("300 femrite", "300 Femrite Dr", "Telurian"),
-        new Address("4 n(orth)? hancock", "4 N Hancock St", "Off Square Club"),
-        new Address("3501 kipling", "3501 Kipling Dr", "Schwert Halfway House"),
-        new Address("4202 monona", "4202 Monona Dr", "ARC Maternal Infant Program"),
-        new Address("4006 nakoosa", "4006 Nakoosa Trl", "Porchlight/Safe Haven"),
-        new Address("422 n(orth)?", "422 North St", "Arise Family Services"),
-        new Address("5706 odana", "5706 Odana Rd", "Foster Halfway House"),
-        new Address("810 w(est)? olin", "810 W Olin Ave", "Rebos Chris Farley House"),
-        new Address("202 n(orth)? patt?erson", "202 N Paterson St", "ARC Patterson"),
-        new Address("2720 rimrock", "2720 Rimrock Rd", "Youth Services of Southern Wisconsin"),
-        new Address("312 wisconsin", "312 Wisconsin Ave", "Bethel Lutheran Church"),
-        new Address("1301 williamson", "1301 Williamson St", "Port St Vincent")
+        new Address("221 s(outh)? baldwin st(reet)?", "221 S Baldwin St", "Port St Vincent"),
+        new Address("141 s(outh)? butler st(reet)?", "141 S Butler St", "Hostelling International - Madison"),
+        new Address("2009 e(ast)? dayton st(reet)?", "2009 E Dayton St", "ARC Dayton"),
+        new Address("4117 dwight dr(ive)?", "4117 Dwight Dr", "Dwight Halfway House"),
+        new Address("300 femrite dr(ive)?", "300 Femrite Dr", "Telurian"),
+        new Address("4 n(orth)? hancock st(reet)?", "4 N Hancock St", "Off Square Club"),
+        new Address("3501 kipling dr(ive)?", "3501 Kipling Dr", "Schwert Halfway House"),
+        new Address("4202 monona dr(ive)?", "4202 Monona Dr", "ARC Maternal Infant Program"),
+        new Address("4006 nakoosa tr(ai)?l", "4006 Nakoosa Trl", "Porchlight/Safe Haven"),
+        new Address("422 n(orth)? st(reet)?", "422 North St", "Arise Family Services"),
+        new Address("5706 odana r(oa)?d", "5706 Odana Rd", "Foster Halfway House"),
+        new Address("810 w(est)? olin ave(nue)?", "810 W Olin Ave", "Rebos Chris Farley House"),
+        new Address("202 n(orth)? patt?erson st(reet)?", "202 N Paterson St", "ARC Patterson"),
+        new Address("2720 rimrock r(oa)?d", "2720 Rimrock Rd", "Youth Services of Southern Wisconsin"),
+        new Address("312 wisconsin ave(nue)?", "312 Wisconsin Ave", "Bethel Lutheran Church"),
+        new Address("1301 williamson st(reet)?", "1301 Williamson St", "Port St Vincent")
       ],
       addrRegExFirst = /^[ ]*/,
       addrRegExLast = /.*/,
@@ -123,7 +123,7 @@
       initial;
     if (addr !== null && city !== null && cityRegEx.test(city.value) && bn !== null) {
       addrVal = addr2 !== null && (addr2.value !== null && addr2.value !== "") ? addr.value + " " + addr2.value : addr.value;
-      if (/1490 martin/i.test(addrVal)) {
+      if (/1490 martin st(reet)?/i.test(addrVal)) {
         foundBadAddr = true;
         initial = prompt("--- NOTE ---\n1490 MARTIN ST is the Hospitality House, a daytime resource center for homeless and low-income people in Dane County. A LIMITED USE account may be set up, however, all library cards issued to that address MUST be mailed, whether or not the patron provides proof of that address.\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
         if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
@@ -132,7 +132,7 @@
           }
           bn.value += "Patron's account is Limited Use due to address (Hospitality House, " + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
         }
-      } else if (/630 e(ast)? washington/i.test(addrVal)) {
+      } else if (/630 e(ast)? washington ave(nue)?/i.test(addrVal)) {
         foundBadAddr = true;
         initial = prompt("--- NOTE ---\n630 E WASHINGTON AVE is the Salvation Army. People staying at the Salvation Army cannot receive personal mail there so library cards CANNOT BE MAILED. Patrons must have proof that they are staying at the Salvation Army to get a library card (usually through a letter from the director).\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
         if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
@@ -168,6 +168,9 @@
           if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
             if (bn.value !== '') {
               bn.value += "\n\n";
+            }
+            if (!initial) {
+              initial = "";
             }
             bn.value += "Patron's account is Limited Use due to temporary residence at " + restricted[i].place + ", (" + restricted[i].addr + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
           }
