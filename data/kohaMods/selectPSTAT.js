@@ -130,7 +130,7 @@
           msg = document.createElement('span');
           msg.id = "nearestMPL";
           msg.style = "display: inline-block;color:#00c000;margin-left:118px;";
-          msg.innerHTML = "< Success! >";
+          msg.innerHTML = "&lt; Success! &gt;";
           branchList.parentElement.appendChild(msg);
         }
       });
@@ -148,7 +148,7 @@
           msg = document.createElement('span');
           msg.id = "nearestMPL";
           msg.style = "display: inline-block;color:#c00;margin-left:118px;";
-          msg.innerHTML = "< Failed to retrieve map data >";
+          msg.innerHTML = "&lt; Failed to retrieve map data &gt;";
           branchList.parentElement.appendChild(msg);
         }
       });
@@ -168,16 +168,29 @@
             // Add button to allow staff to select the geographically closest MPL location
             matchAddr4DistQuery = data[0].replace(/ /g,"+"),
             branchList = document.getElementById('branchcode'),
-            nearestMPL = document.createElement('span');
+            nearestMPL = document.createElement('span'),
+            nearestMPLold = document.getElementById('nearestMPL'),
+            lnBreak1 = document.createElement('br'),
+            lnBreak2 = document.createElement('br');
+          
+          lnBreak1.id = "nearestMPLbreak1";
+          lnBreak2.id = "nearestMPLbreak2";
+          
+          if (nearestMPLold) {
+            nearestMPLold.remove();
+          }
           nearestMPL.id = "nearestMPL";
-          nearestMPL.innerHTML = "< Set home library to geographically closest MPL location >";
+          nearestMPL.innerHTML = "&lt; Set home library to geographically closest MPL location &gt;";
           nearestMPL.style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;";
           nearestMPL.onmouseover = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#669acc;text-decoration:underline;margin-left:118px;"}
           nearestMPL.onmouseout = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;"}
           nearestMPL.onclick = function() {self.port.emit('findNearestLib', matchAddr4DistQuery);};
           
           if (!secondPass) {
-            branchList.parentElement.appendChild(document.createElement('br'));
+            if (!(document.getElementById('nearestMPLbreak1')) && !(document.getElementById('nearestMPLbreak2'))) {
+              branchList.parentElement.appendChild(lnBreak1);
+              branchList.parentElement.appendChild(lnBreak2);
+            }
             branchList.parentElement.appendChild(nearestMPL);
           }
           
