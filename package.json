@@ -56,7 +56,7 @@
   {
     "name": "selectPSTAT",
     "title": "Lookup PSTAT",
-    "description": "Automatically lookup PSTAT value for all libraries in the SCLS that sort by county subdivision or census tract number",
+    "description": "Automatically lookup PSTAT value for all libraries in the SCLS that sort by county subdivision or census tract number. If the PSTAT is able to be determined, a button will appear allowing staff to automatically select the geographically closest MPL location for the patron's home library",
     "type": "bool",
     "value": true
   },

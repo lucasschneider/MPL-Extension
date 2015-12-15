@@ -115,6 +115,43 @@
           result.textContent = '[NOTE: Server slow to respond—please enter zipcode and sort field manually]';
         }
       }, 12000);
+      
+      self.port.on('receivedNearestLib', function(libCode) {
+        var branchList = document.getElementById('branchcode'),
+          msg = document.getElementById("nearestMPL");
+
+        if (branchList) {
+          branchList.value = libCode;
+
+          if (msg) {
+            msg.remove();
+          }
+          
+          msg = document.createElement('span');
+          msg.id = "nearestMPL";
+          msg.style = "display: inline-block;color:#00c000;margin-left:118px;";
+          msg.innerHTML = "< Success! >";
+          branchList.parentElement.appendChild(msg);
+        }
+      });
+
+      self.port.on('failedNearestLib', function() {
+        var branchList = document.getElementById('branchcode'),
+          msg = document.getElementById("nearestMPL");
+
+        if (branchList) {
+
+          if (msg) {
+            msg.remove();
+          }
+          
+          msg = document.createElement('span');
+          msg.id = "nearestMPL";
+          msg.style = "display: inline-block;color:#c00;margin-left:118px;";
+          msg.innerHTML = "< Failed to retrieve map data >";
+          branchList.parentElement.appendChild(msg);
+        }
+      });
 
       self.port.emit("queryGeocoder", [cleanAddr(addr), pullCity(city.value), addr, secondPass]);
       self.port.once("receivedGeocoderQuery", function (data) {
@@ -124,10 +161,26 @@
           // data[2] = county subdivision
           // data[3] = census tract
           // data[4] = zip code
-          var matchAddr = data[0],
-            sortID,
-            generatedZip = data[4];
+          var matchAddr = data[0].split(',')[0].toUpperCase(),
+            sortID = "X-UND",
+            generatedZip = data[4],
 
+            // Add button to allow staff to select the geographically closest MPL location
+            matchAddr4DistQuery = data[0].replace(/ /g,"+"),
+            branchList = document.getElementById('branchcode'),
+            nearestMPL = document.createElement('span');
+          nearestMPL.id = "nearestMPL";
+          nearestMPL.innerHTML = "< Set home library to geographically closest MPL location >";
+          nearestMPL.style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;";
+          nearestMPL.onmouseover = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#669acc;text-decoration:underline;margin-left:118px;"}
+          nearestMPL.onmouseout = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;"}
+          nearestMPL.onclick = function() {self.port.emit('findNearestLib', matchAddr4DistQuery);};
+          
+          if (!secondPass) {
+            branchList.parentElement.appendChild(document.createElement('br'));
+            branchList.parentElement.appendChild(nearestMPL);
+          }
+          
           // Set sort value
           switch (data[1]) {
           /*** SOUTH CENTRAL LIBRARY SYSTEM ***/
