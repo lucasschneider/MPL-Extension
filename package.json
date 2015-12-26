@@ -1,11 +1,18 @@
 {
-  "name": "mpl-koha-patch",
   "title": "MPL Koha Patch",
-  "id": "3338f72b-be88-4c0b-98ec-d24eeef851b4",
-  "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library",
+  "name": "mpl-koha-patch",
+  "id": "3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack",
+  "version": "16.0.0",
+  "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library in Wisconsin's South Central Library System",
+  "main": "index.js",
   "author": "Lucas Schneider",
-  "license": "MPL 2.0",
-  "version": "16",
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ],
 
   "icon": "data/MPL/icon-32.png",
   "icon64": "data/MPL/icon-64.png",
