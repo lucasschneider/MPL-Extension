@@ -13,6 +13,88 @@ var { ActionButton } = require("sdk/ui/button/action"),
   day = d.getUTCDay();
 self = require("sdk/self");
 tabs = require("sdk/tabs");
+var libraryAddresses = [
+  // MPL  [0-8]
+  ["HPB", "733+N+High+Point+Rd,+Madison,+WI+53717"],
+  ["MAD","201+W+Mifflin+St,+Madison,+WI%53703"],
+  ["HAW","2707+E+Washington+Ave,+Madison,+WI+53704"],
+  ["LAK","2845+N+Sherman+Ave,+Madison,+WI+53704"],
+  ["MEA","5726+Raymond+Rd,+Madison,+WI+53711"],
+  ["MSB","1705+Monroe+St,+Madison,+WI+53711"],
+  ["PIN","204+Cottage+Grove+Rd,+Madison,+WI+53716"],
+  ["SEQ","4340+Tokay+Blvd,+Madison,+WI+53711"],
+  ["SMB","2222+S+Park+St,+Madison,+WI+53713"],
+	
+	// OTHER DANE COUNTY [9-26]
+  ["BLV","130+S+Vine+St,+Belleville,+WI+53508"],
+  ["BER","1210+Mills+St,+Black+Earth,+WI+53515"],
+  ["CBR","101+Spring+Water+Alley,+Cambridge,+WI+53523"],
+  ["CSP","2107+Julius+St,+Cross+Plains,+WI+53528"],
+	/*DCL NOT INCLUDED*/
+  ["DEE","12+W+Nelson+St,+Deerfield,+WI+53531"],
+  ["DFT","203+Library+St,+DeFoest,+WI+53532"],
+  ["FCH","5530+Lacy+Rd,+Fitchburg,+WI+53711"],
+  ["MAR","605+Waterloo+Road,+Marshall,+WI+53559"],
+  ["MAZ","102+Brodhead+St,+Mazomanie,+WI+53560"],
+  ["MCF","5920+Milwaukee+St,+McFarland,+WI+53558"],
+  ["MID","7425+Hubbard+Ave,+Middleton,+WI+53562"],
+  ["MOO","1000+Nichols+Rd,+Monona,+WI+53716"],
+  ["MTH","105+Perimeter+Rd,+Mount+Horeb,+WI+53572"],
+  ["ORE","256+Brook+St,+Oregon,+WI+53575"],
+  ["STO","304+S+4th+St,+Stoughton,+WI+53589"],
+  ["SUN","1350+Linnerud+Dr,+Sun+Prairie,+WI+53590"],
+  ["VER","500+Silent+St,+Verona,+WI+53593"],
+  ["WAU","710+South+St,+Waunakee,+WI+53597"],
+
+	// ADAMS COUNTY [27-28]
+  ["ACL","569+N+Cedar+St,+Adams,+WI+53910"],
+  ["ROM","1157+Rome+Center+Dr,+Nekoosa,+WI+54457"],
+
+  // COLUMBIA COUNTY [29-38]
+  ["CIA","109+W+Edgewater+St,+Cambria,+WI+53923"],
+  ["COL","223+W+James+St,+Columbus,+WI+53925"],
+  ["LDI","130+Lodi+St,+Lodi,+WI+53555"],
+  ["PAR","119+N+Main+St,+Pardeeville,+WI+53954"],
+  ["POR","119+N+Main+St,+Pardeeville,+WI+53954"],
+  ["POY","118+N+Main+St,+Poynette,+WI+53955"],
+  ["RAN","228+N+High+St+Randolph,+WI+53956"],
+  ["RIO","324+W+Lyons+St,+Rio,+WI+53960"],
+  ["WID","620+Elm+St,+Wisconsin+Dells,+WI+53965"],
+  ["WYO","165+E+Dodge+St,+Wyocena,+WI+53969"],
+  
+  // GREEN COUNTY [39-43]
+  ["ALB","200+N+Water+St,+Albany,+WI+53502"],
+  ["BRD","1207+25th+St,+Brodhead,+WI+53520"],
+  ["MRO","925+16th+Ave,+Monroe,+WI+53566"],
+  ["MNT","512+E+Lake+Ave,+Monticello,+WI+53570"],
+  ["NGL","319+Second+St,+New+Glarus,+WI+53574"],
+  
+  // PORTAGE COUNTY [44-48]
+  ["ALM","122+Main+St,+Almond,+WI+54909"],
+  ["AMH","278+N+Main+St,+Amherst,+WI+54406"],
+  ["PLO","2151+Roosevelt+Dr,+Plover,+WI+54467"],
+  ["ROS","137+N+Main+St,+Rosholt,+WI+54473"],
+  ["STP","1001+Main+St,+Stevens+Point,+WI+54481"],
+  
+  // SAUK COUNTY [49-57]
+  ["BAR","230+Fourth+Ave,+Baraboo,+WI+53913"],
+  ["LAV","101+W+Main+St,+La+Valle,+WI+53941"],
+  ["NOF","105+N+Maple+St,+North+Freedom,+WI+53951"],
+  ["PLA","910+Main+St,+Plain,+WI+53577"],
+  ["PDS","540+Water+St,+Prairie+du+Sac,+WI+53578"],
+  ["REE","370+Vine+St,+Reedsburg,+WI+53959"],
+  ["RKS","101+First+St,+Rock+Springs,+WI+53961"],
+  ["SKC","515+Water+St,+Sauk+City,+WI+53583"],
+  ["SGR","230+E+Monroe+St,+Spring+Green,+WI+53588"],
+  
+  // WOOD  [58-63]
+  ["ARP","8091+County+E,+Arpin,+WI+54410"],
+  ["MCM","490+E+Grand+Ave,+Wisconsin+Rapids,+WI+54494"],
+  ["MFD","211+E+Second+St,+Marshfield,+WI+54449"],
+  ["NEK","100+Park+St,+Nekoosa,+WI+54457"],
+  ["PIT","5291+Third+Ave,+Pittsville,+WI+54466"],
+  ["VES","6550+Virginia+St,+Vesper,+WI+54489"]
+]
 
 /*** MPL Quick Links Button ***/
 if (prefs.skin === "MPL") {
@@ -201,15 +283,75 @@ function portListener(worker) {
     });
   });
   
-  worker.port.on("findNearestLib", function(patronAddr) {
+  worker.port.on("findNearestLib", function(data) {
+    var patronAddr = data[0],
+      region = data[1],
+      mapURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + patronAddr + "&destinations=";
+      switch(region) {
+        case "MPL":
+          for (var idx = 0; idx < 8; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[8];
+          break;
+        case "DANE":
+          for (var idx = 0; idx < 26; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[26];
+          break;
+        case "ADAMS":
+            mapURL += libraryAddresses[27] + "|" + libraryAddresses[28];
+          break;
+        case "COLUMBIA":
+          for (var idx = 29; idx < 38; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[38];
+          break;
+        case "GREEN":
+          for (var idx = 39; idx < 43; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[43];
+          break;
+        case "PORTAGE":
+          for (var idx = 44; idx < 48; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[48];
+          break;
+        case "SAUK":
+          for (var idx = 49; idx < 57; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[57];
+          break;
+        case "WOOD":
+          for (var idx = 58; idx < 63; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[63];
+          break;
+        case "SCLS":
+          for (var idx = 0; idx < 63; idx++) {
+            mapURL += libraryAddresses[idx] + "|";
+          }
+          mapURL += libraryAddresses[63];
+          break;
+        default:
+          break;
+      }
+      mapURL += "&key=AIzaSyDQ26hmk6pOolpmzFCWeBl9K6ACVa4xF_k";
     var getCntySub = Request({
-      url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + patronAddr + "&destinations=733+N+High+Point+Rd,+Madison,+WI+53717|201+W+Mifflin+St,+Madison,+WI%2053703|2707+E+Washington+Ave,+Madison,+WI+53704|2845+N+Sherman+Ave,+Madison,+WI+53704|5726+Raymond+Rd,+Madison,+WI+53711|1705+Monroe+St,+Madison,+WI+53711|204+Cottage+Grove+Rd,+Madison,+WI+53716|4340+Tokay+Blvd,+Madison,+WI+53711|2222+S+Park+St,+Madison,+WI+53713&key=AIzaSyDQ26hmk6pOolpmzFCWeBl9K6ACVa4xF_k",
+      url: mapURL,
       overrideMimeType: "application/json; charset=UTF-8",
       onComplete: function (response) {
         var elements = response.json.rows[0].elements,
           closestLib = "";
         if (elements) {
           var HPBdist = elements[0].distance.value,
+		        // MPL LIBRARIES
             MADdist = elements[1].distance.value,
             HAWdist = elements[2].distance.value,
             LAKdist = elements[3].distance.value,
