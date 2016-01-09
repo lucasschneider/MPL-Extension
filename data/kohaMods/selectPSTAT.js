@@ -179,18 +179,19 @@
           if (nearestMPLold) {
             nearestMPLold.remove();
           }
-          nearestMPL.id = "nearestMPL";
-          nearestMPL.innerHTML = "&lt; Set home library to geographically closest MPL location &gt;";
-          nearestMPL.style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;";
-          nearestMPL.onmouseover = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#669acc;text-decoration:underline;margin-left:118px;"}
-          nearestMPL.onmouseout = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;"}
-          nearestMPL.onclick = function() {self.port.emit('findNearestLib', matchAddr4DistQuery);};
           
           if (!secondPass) {
             if (!(document.getElementById('nearestMPLbreak1')) && !(document.getElementById('nearestMPLbreak2'))) {
               branchList.parentElement.appendChild(lnBreak1);
               branchList.parentElement.appendChild(lnBreak2);
             }
+            nearestMPL.id = "nearestMPL";
+            nearestMPL.innerHTML = "&lt; Set home library to geographically closest MPL location &gt;";
+            nearestMPL.style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;";
+            nearestMPL.onmouseover = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#669acc;text-decoration:underline;margin-left:118px;"}
+            nearestMPL.onmouseout = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;"}
+            nearestMPL.onclick = function() {self.port.emit('findNearestLib', matchAddr4DistQuery);};
+            
             branchList.parentElement.appendChild(nearestMPL);
           }
           
