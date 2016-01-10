@@ -118,10 +118,15 @@
       
       self.port.on('receivedNearestLib', function(libCode) {
         var branchList = document.getElementById('branchcode'),
-          msg = document.getElementById("nearestMPL");
+          msg = document.getElementById("nearestMPL"),
+          list = document.getElementById("mapRegionList");
 
         if (branchList) {
           branchList.value = libCode;
+
+          if (list) {
+            list.remove();
+          }
 
           if (msg) {
             msg.remove();
@@ -137,9 +142,14 @@
 
       self.port.on('failedNearestLib', function() {
         var branchList = document.getElementById('branchcode'),
-          msg = document.getElementById("nearestMPL");
+          msg = document.getElementById("nearestMPL"),
+          list = document.getElementById("mapRegionList");
 
         if (branchList) {
+
+          if (list) {
+            list.remove();
+          }
 
           if (msg) {
             msg.remove();
@@ -170,6 +180,7 @@
             branchList = document.getElementById('branchcode'),
             nearestMPL = document.createElement('span'),
             nearestMPLold = document.getElementById('nearestMPL'),
+            mapRegionListOld = document.getElementById('mapRegionList'),
             lnBreak1 = document.createElement('br'),
             lnBreak2 = document.createElement('br');
           
@@ -179,6 +190,10 @@
           if (nearestMPLold) {
             nearestMPLold.remove();
           }
+
+          if (mapRegionListOld) {
+            mapRegionListOld.remove();
+          }
           
           if (!secondPass) {
             if (!(document.getElementById('nearestMPLbreak1')) && !(document.getElementById('nearestMPLbreak2'))) {
@@ -186,13 +201,73 @@
               branchList.parentElement.appendChild(lnBreak2);
             }
             nearestMPL.id = "nearestMPL";
-            nearestMPL.innerHTML = "&lt; Set home library to geographically closest MPL location &gt;";
+            nearestMPL.innerHTML = "Set home library to geographically closest location within...";
             nearestMPL.style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;";
             nearestMPL.onmouseover = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#669acc;text-decoration:underline;margin-left:118px;"}
             nearestMPL.onmouseout = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;"}
-            nearestMPL.onclick = function() {self.port.emit('findNearestLib', matchAddr4DistQuery);};
-            
+
+            var mapRegionList = document.createElement('select');
+            mapRegionList.id = "mapRegionList";
+            mapRegionList.style = "margin-left: 25px;";
+
+            var madison = document.createElement('option');
+            madison.textContent = "Madison";
+            madison.value = "MPL";
+            madison.selected = true;
+            mapRegionList.appendChild(madison);
+
+            var counties = document.createElement('optgroup');
+            counties.label = "Counties"
+
+            var adams = document.createElement('option');
+            adams.textContent = "Adams County";
+            adams.value = "ADAMS"
+            counties.appendChild(adams);
+
+            var columbia = document.createElement('option');
+            columbia.textContent = "Columbia County";
+            columbia.value = "COLUMBIA"
+            counties.appendChild(columbia);
+
+            var dane = document.createElement('option');
+            dane.textContent = "Dane County";
+            dane.value = "DANE"
+            counties.appendChild(dane);
+
+            var green = document.createElement('option');
+            green.textContent = "Green County";
+            green.value = "GREEN"
+            counties.appendChild(green);
+
+            var portage = document.createElement('option');
+            portage.textContent = "Portage County";
+            portage.value = "PORTAGE"
+            counties.appendChild(portage);
+
+            var sauk = document.createElement('option');
+            sauk.textContent = "Sauk County";
+            sauk.value = "SAUK"
+            counties.appendChild(sauk);
+
+            var wood = document.createElement('option');
+            wood.textContent = "Wood County";
+            wood.value = "WOOD"
+            counties.appendChild(wood);
+
+            mapRegionList.appendChild(counties);
+
+            var scls = document.createElement('option');
+            scls.textContent = "SCLS";
+            scls.value = "SCLS";
+            mapRegionList.appendChild(scls);
+
+            nearestMPL.onclick = function() {
+              var selected = document.getElementById('mapRegionList').selectedOptions[0].value;
+              self.port.emit('findNearestLib', [matchAddr4DistQuery, selected]);
+            };
+
             branchList.parentElement.appendChild(nearestMPL);
+            branchList.parentElement.appendChild(mapRegionList);
           }
           
           // Set sort value
