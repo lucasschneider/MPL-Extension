@@ -120,7 +120,6 @@
         var branchList = document.getElementById('branchcode'),
           msg = document.getElementById("nearestMPL"),
           list = document.getElementById("mapRegionList");
-
         if (branchList) {
           branchList.value = libCode;
 
@@ -257,7 +256,7 @@
             mapRegionList.appendChild(counties);
 
             var scls = document.createElement('option');
-            scls.textContent = "SCLS";
+            scls.textContent = "SCLS (Excludes MSB)";
             scls.value = "SCLS";
             mapRegionList.appendChild(scls);
 

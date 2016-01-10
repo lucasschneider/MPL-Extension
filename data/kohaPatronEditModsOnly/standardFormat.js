@@ -94,47 +94,51 @@
     'patron_attr_10',
     'patron_attr_11'],
     parentElt = document.getElementById('entryform'),
-    sibling = parentElt.children[0],
+    sibling,
     enableOptsLabel = document.createElement('label'),
     enableOpts = document.createElement('input'),
     enableOptsContainer = document.createElement('div'),
     elt;
+    
+  if (parentElt !== null) {
+    sibling = parentElt.children[0];
 
-  enableOptsLabel.setAttribute('for', 'enableOpts');
-  enableOptsLabel.setAttribute('style', 'display: inline-block; font-weight: bold;');
-  enableOptsLabel.textContent = 'Enable rarely used input fields:';
+    enableOptsLabel.setAttribute('for', 'enableOpts');
+    enableOptsLabel.setAttribute('style', 'display: inline-block; font-weight: bold;');
+    enableOptsLabel.textContent = 'Enable rarely used input fields:';
 
-  enableOpts.id = "enableOpts";
-  enableOpts.type = 'checkbox';
-  enableOpts.checked = 'true';
-  enableOpts.setAttribute('style', 'margin-left: 20px; display: inline-block;');
-  enableOpts.addEventListener('click', function () {
-    if (this.checked) {
-      for (i = 0; i < unusedFields.length; i++) {
-        elt = document.getElementById(unusedFields[i]);
-        if (elt !== null) {
-          elt.disabled = false;
-          elt.style.backgroundColor = '';
+    enableOpts.id = "enableOpts";
+    enableOpts.type = 'checkbox';
+    enableOpts.checked = 'true';
+    enableOpts.setAttribute('style', 'margin-left: 20px; display: inline-block;');
+    enableOpts.addEventListener('click', function () {
+      if (this.checked) {
+        for (i = 0; i < unusedFields.length; i++) {
+          elt = document.getElementById(unusedFields[i]);
+          if (elt !== null) {
+            elt.disabled = false;
+            elt.style.backgroundColor = '';
+          }
+        }
+      } else {
+        for (i = 0; i < unusedFields.length; i++) {
+          elt = document.getElementById(unusedFields[i]);
+          if (elt !== null) {
+            elt.disabled = true;
+            elt.style.backgroundColor = '#cecece';
+          }
         }
       }
-    } else {
-      for (i = 0; i < unusedFields.length; i++) {
-        elt = document.getElementById(unusedFields[i]);
-        if (elt !== null) {
-          elt.disabled = true;
-          elt.style.backgroundColor = '#cecece';
-        }
-      }
-    }
-  });
+    });
 
-  enableOptsContainer.appendChild(enableOptsLabel);
-  enableOptsContainer.appendChild(enableOpts);
-  enableOptsContainer.style = "margin-left: 40px;";
-  parentElt.insertBefore(enableOptsContainer, sibling);
+    enableOptsContainer.appendChild(enableOptsLabel);
+    enableOptsContainer.appendChild(enableOpts);
+    enableOptsContainer.style = "margin-left: 40px;";
+    parentElt.insertBefore(enableOptsContainer, sibling);
 
-  // Trigger event : disable fields
-  enableOpts.click();
+    // Trigger event : disable fields
+    enableOpts.click();
+  }
 
   /*** Control-space to save patron record ***/
   document.addEventListener("keydown", function (e) {

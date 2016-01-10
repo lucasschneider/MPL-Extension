@@ -18,6 +18,11 @@ function advanceNotice(email) {
   else if (notice !== null) notice.children[0].selected = true;
 }
 
+var email1 = document.getElementById('email1'),
+  email2 = document.getElementById('email2'),
+  digest1 = document.getElementById('digest1'),
+  digest2 = document.getElementById('digest2');
+
 if (email1 !== null && digest1 !== null && email2 !== null && digest2 !== null) {
   email1.addEventListener('click', function() {forceDigest(email1,digest1);});
   email2.addEventListener('click', function() {forceDigest(email2,digest2); advanceNotice(email2);});
