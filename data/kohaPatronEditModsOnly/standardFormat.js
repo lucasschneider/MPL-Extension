@@ -25,7 +25,7 @@
     altAddress = document.getElementById('altcontactaddress1');
 
   function aptToNum() {
-    this.value = this.value.replace(/( apt\.? #?| unit #?)/i, " #").replace(/\./g, '');
+    this.value = this.value.replace(/( apt\.? #? ?| unit #? ?)/i, " #").replace(/\./g, '');
   }
 
   if (address) {
