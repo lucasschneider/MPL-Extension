@@ -273,8 +273,9 @@ function portListener(worker) {
   });
 
   worker.port.on("printBarcode", function (barcode) {
+    barcodeURL = (prefs.receiptFont == "MOO") ? "./printBarcodeMOO.html" : "./printBarcode.html";
     tabs.open({
-      url: "./printBarcode.html",
+      url: barcodeURL,
       inBackground: true,
       onReady: function(tab) {
         tab.attach({
