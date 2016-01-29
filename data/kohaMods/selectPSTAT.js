@@ -359,18 +359,18 @@
               }
               break;
             case "Sun Prairie city":
-              if (/.*(allen a|arrowhead c|baneberry d|barbara s|birchwood t|(1(2[1-9]|[3-9][0-9])|2([0-7][0-9]|8[0-7])) n(orth)? bird s).*/i.test(matchAddr)) {
-                sortID = "D-SP-C1";
-              } else if (/.*().*/i.test(matchAddr)) {
-                sortID = "D-SP-C2";
-              } else if (/.*().*/i.test(matchAddr)) {
-                sortID = "D-SP-C3";
-              } else if (/.*().*/i.test(matchAddr)) {
-                sortID = "D-SP-C4";
-              } else {
+              //if (/.*(allen a|arrowhead c|baneberry d|barbara s|birchwood t|(1(2[1-9]|[3-9][0-9])|2([0-7][0-9]|8[0-7])) n(orth)? bird s).*/i.test(matchAddr)) {
+              //  sortID = "D-SP-C1";
+              //} else if (/.*().*/i.test(matchAddr)) {
+              //  sortID = "D-SP-C2";
+              //} else if (/.*().*/i.test(matchAddr)) {
+              //  sortID = "D-SP-C3";
+              //} else if (/.*().*/i.test(matchAddr)) {
+              //  sortID = "D-SP-C4";
+              //} else {
                 sortID = "D-X-SUN";
                 result.textContent = "[FAILED: cannot determine sort value for Sun Prairie; please enter PSTAT manually.]";
-              }
+              //}
               break;
             /*** UNDETERMINABLE COUNTY SUBDIVISIONS ***/
             case "Verona city":
