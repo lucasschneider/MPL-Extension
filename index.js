@@ -279,7 +279,7 @@ function portListener(worker) {
       inBackground: true,
       onReady: function(tab) {
         tab.attach({
-          contentScript: "document.getElementById('barcode').innerHTML = " + barcode + ";window.print();"
+          contentScript: "document.getElementById('barcode').textContent = " + barcode + ";window.print();"
         });
         require("sdk/timers").setTimeout(function(){ tab.close(); }, 500);
       }

@@ -134,7 +134,7 @@
           msg = document.createElement('span');
           msg.id = "nearestMPL";
           msg.style = "display: inline-block;color:#00c000;margin-left:118px;";
-          msg.innerHTML = "&lt; Success! &gt;";
+          msg.textContent = "&lt; Success! &gt;";
           branchList.parentElement.appendChild(msg);
         }
       });
@@ -157,7 +157,7 @@
           msg = document.createElement('span');
           msg.id = "nearestMPL";
           msg.style = "display: inline-block;color:#c00;margin-left:118px;";
-          msg.innerHTML = "&lt; Failed to retrieve map data &gt;";
+          msg.textContent = "&lt; Failed to retrieve map data &gt;";
           branchList.parentElement.appendChild(msg);
         }
       });
@@ -200,7 +200,7 @@
               branchList.parentElement.appendChild(lnBreak2);
             }
             nearestMPL.id = "nearestMPL";
-            nearestMPL.innerHTML = "Set home library to geographically closest location within...";
+            nearestMPL.textContent = "Set home library to geographically closest location within...";
             nearestMPL.style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;";
             nearestMPL.onmouseover = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#669acc;text-decoration:underline;margin-left:118px;"}
             nearestMPL.onmouseout = function() {document.getElementById('nearestMPL').style = "display: inline-block;cursor:pointer;color:#00c;text-decoration:underline;margin-left:118px;"}
