@@ -2,7 +2,7 @@
   "title": "MPL Koha Patch",
   "name": "mpl-koha-patch",
   "id": "3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack",
-  "version": "16.3.3",
+  "version": "16.4.0",
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library in Wisconsin's South Central Library System",
   "main": "index.js",
   "author": "Lucas Schneider",
