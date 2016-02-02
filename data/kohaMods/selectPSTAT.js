@@ -34,8 +34,7 @@
   function cleanAddr(addr) {
     var i, addrParts, addrTrim;
     if (addr !== null) {
-      addrParts = addr.value.toLowerCase().split(" ");
-      addrParts.replace(/ CN?TY /g, 'CO');
+      addrParts = addr.value.toLowerCase().replace(/ cn?ty /i, ' co ').split(" ");
     }
     addrTrim = '';
     for (i = 0; i < addrParts.length; i++) {
@@ -135,7 +134,7 @@
           msg = document.createElement('span');
           msg.id = "nearestMPL";
           msg.style = "display: inline-block;color:#00c000;margin-left:118px;";
-          msg.textContent = "&lt; Success! &gt;";
+          msg.textContent = "< Success! >";
           branchList.parentElement.appendChild(msg);
         }
       });
