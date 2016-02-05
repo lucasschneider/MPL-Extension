@@ -8,9 +8,9 @@
     this.returnDate = "";
 
     if (htmlTR.children.length > 7) {
-      this.date = htmlTR.children[0].textContent.replace(/\s/g, "");
-      this.dateDue = htmlTR.children[6].textContent.replace(/\s/g, "");
-      this.returnDate = htmlTR.children[7].textContent.replace(/\s/g, "");
+      this.date = htmlTR.children[0].textContent.replace(/\s/g, "") !== "" ? new Date(htmlTR.children[0].textContent.replace(/\s/g, "")) : new Date();
+      this.dateDue = htmlTR.children[6].textContent.replace(/\s/g, "") !== "" ? new Date(htmlTR.children[6].textContent.replace(/\s/g, "")) : new Date();
+      this.returnDate = htmlTR.children[7].textContent.replace(/\s/g, "") !== "" ? new Date(htmlTR.children[7].textContent.replace(/\s/g, "")) : new Date();
     }
   }
 
@@ -19,38 +19,38 @@
       // Due date, ASC
       case "dueASC":
         itemHistoryEntries.sort(function(a, b) {
-          return new Date(a.dateDue) - new Date(b.dateDue);
+          return a.dateDue - b.dateDue;
         });
         break;
       // Due date, DESC
       case "dueDESC":
         itemHistoryEntries.sort(function(a, b) {
-          return new Date(b.dateDue) - new Date(a.dateDue);
+          return b.dateDue - a.dateDue;
         });
         break;
       // Return date, ASC
       case "returnASC":
         itemHistoryEntries.sort(function(a, b) {
-          return new Date(a.returnDate) - new Date(b.returnDate);
+          return a.returnDate - b.returnDate;
         });
         break;
       // Return date, DESC
       case "returnDESC":
         itemHistoryEntries.sort(function(a, b) {
-          return new Date(b.returnDate) - new Date(a.returnDate);
+          return b.returnDate - a.returnDate;
         });
         break;
       // Checkout date, ASC
       case "checkoutASC":
         itemHistoryEntries.sort(function(a, b) {
-          return new Date(a.date) - new Date(b.date);
+          return a.date - b.date;
         });
         break;
       // Checkout date, DESC
       case "checkoutDESC":
       default:
         itemHistoryEntries.sort(function(a, b) {
-          return new Date(b.date) - new Date(a.date);
+          return b.date - a.date;
         });
     }
     
