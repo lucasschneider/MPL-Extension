@@ -731,3 +731,9 @@ pageMod.PageMod({
   attachTo: ["top","frame"],
   contentScriptFile: kohaPatronEditMods
 });
+
+pageMod.PageMod({
+  include: /^https?\:\/\/scls-staff\.kohalibrary\.com\/cgi-bin\/koha\/catalogue\/issuehistory.pl.*/,
+  attachTo: ["top","frame"],
+  contentScriptFile: self.data.url("kohaMods/sortItemCheckoutHistory.js")
+});
