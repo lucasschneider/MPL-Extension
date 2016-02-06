@@ -680,7 +680,8 @@ function onPrefChange(prefName) {
   }
   var kohaMods = [
     self.data.url("kohaMods/sortLibraries.js"),
-    self.data.url("kohaMods/fixSessionCkoDiv.js")
+    self.data.url("kohaMods/fixSessionCkoDiv.js"),
+    self.data.url("kohaMods/printBarcode.js")
   ];
   if (prefs.patronMsg) kohaMods.push(self.data.url("kohaMods/patronMessages.js"));
   if (prefs.autoUserId) kohaMods.push(self.data.url("kohaMods/autofillUserId.js"));
@@ -729,12 +730,6 @@ pageMod.PageMod({
   include: /^https?\:\/\/scls-staff\.kohalibrary\.com\/cgi-bin\/koha\/members\/memberentry\.pl.*/,
   attachTo: ["top","frame"],
   contentScriptFile: kohaPatronEditMods
-});
-
-pageMod.PageMod({
-  include: /^https?\:\/\/scls-staff\.kohalibrary\.com\/cgi-bin\/koha\/(members|circ).*/,
-  attachTo: ["top","frame"],
-  contentScriptFile: self.data.url("kohaMods/printBarcode.js")
 });
 
 pageMod.PageMod({

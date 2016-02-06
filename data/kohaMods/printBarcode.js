@@ -25,7 +25,7 @@
   li,
   button;
   
-  if (toolbar) {
+  if (toolbar && /^https?\:\/\/scls-staff\.kohalibrary\.com\/cgi-bin\/koha\/(members|circ).*/.test(location.href)) {
     li = document.createElement('li');
     button = document.createElement('button');
     button.onclick = printBarcode;
