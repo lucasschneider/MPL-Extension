@@ -195,7 +195,6 @@ function portListener(worker) {
   currWorker = worker;
   // On geocoder query
   worker.port.on('queryGeocoder', function(addr) { // addr[0] = URIencodedAddress; addr[1] = city; addr[2] = addr elt; addr[3] = secondPass bool
-console.log("queryGeocoder");
     if (addr[3]) {
       var getCntySub = Request({
         url: "http://geocoding.geo.census.gov/geocoder/geographies/address?street="+addr[0]+"&city="+addr[1]+"&state=wi&benchmark=Public_AR_Census2010&vintage=Census2010_Census2010&layers=Counties,Census Tracts,County+Subdivisions,2010+Census+ZIP+Code+Tabulation+Areas&format=json",
