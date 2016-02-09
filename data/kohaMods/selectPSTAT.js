@@ -82,7 +82,7 @@
 
   function selectPSTAT(selectList, value, result, matchAddr) {
     if (selectList && value && result && matchAddr) {
-      if (value == "D-X-SUN") {
+      if (value == "D-X-SUN" || value == "X-UND") {
         if (selectList.value == '') {
           selectList.value = value;
         }
