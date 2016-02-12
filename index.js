@@ -268,10 +268,6 @@ function portListener(worker) {
     }
   });
 
-  worker.port.on("disableSundayDropbox", function () {
-    prefs.sundayDropbox = false;
-  });
-
   worker.port.on("printBarcode", function (barcode) {
     barcodeURL = (prefs.receiptFont == "MOO") ? "./printBarcodeMOO.html" : "./printBarcode.html";
     tabs.open({
@@ -686,34 +682,20 @@ function onPrefChange(prefName) {
   if (prefs.autoUserId) kohaMods.push(self.data.url("kohaMods/autofillUserId.js"));
   if (prefs.selectPSTAT) kohaMods.push(self.data.url("kohaMods/selectPSTAT.js"));
   if (prefs.middleName) kohaMods.push(self.data.url("kohaMods/middleName.js"));
-
-  if (prefs.sundayDropbox) {
-    if (day === 0) kohaMods.push(self.data.url("kohaMods/sundayDropbox.js"));
-
-    mod = pageMod.PageMod({
-      include: /^https?\:\/\/scls-staff\.kohalibrary\.com.*/,
-      attachTo: ["top", "frame"],
-      contentScriptFile: kohaMods,
-      onAttach: portListener
-    });
-  } else {
-    mod = pageMod.PageMod({
-      include: /^https?\:\/\/scls-staff\.kohalibrary\.com.*/,
-      attachTo: ["top", "frame"],
-      contentScriptFile: kohaMods,
-      onAttach: portListener
-    });
- }
+  if (prefs.disableDropbox) {
+    kohaMods.push(self.data.url("kohaMods/disableDropbox.js"));
+  } else if (day === 0) {
+    kohaMods.push(self.data.url("kohaMods/sundayDropbox.js"));
+  }
+  mod = pageMod.PageMod({
+    include: /^https?\:\/\/scls-staff\.kohalibrary\.com.*/,
+    attachTo: ["top", "frame"],
+    contentScriptFile: kohaMods,
+    onAttach: portListener
+  });
 }
 onPrefChange("");
-require("sdk/simple-prefs").on("sundayDropbox", onPrefChange);
-
-// Reset sundayDropbox to true
-windows.on('close', function() {
-  if (windows.length === 0) {
-    prefs.sundayDropbox = true;
-  }
-});
+require("sdk/simple-prefs").on("disableDropbox", onPrefChange);
 
 /*** KOHA PATRON EDIT MODS ***/
 var kohaPatronEditMods = [

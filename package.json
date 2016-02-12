@@ -2,7 +2,7 @@
   "title": "MPL Koha Patch",
   "name": "mpl-koha-patch",
   "id": "3338f72b-be88-4c0b-98ec-d24eeef851b4@jetpack",
-  "version": "16.6.0",
+  "version": "16.6.1",
   "description": "LibLime Koha ILS modifications targeted to the staff of Madison Public Library in Wisconsin's South Central Library System",
   "main": "index.js",
   "author": "Lucas Schneider",
@@ -89,16 +89,9 @@
     "value": true
   },
   {
-    "name": "sundayDropbox",
-    "title": "Set \"Dropbox Mode\" on Sundays",
-    "description": "Automatically sets \"Dropbox Mode\" for check-ins on Sundays. If turned off, this feature will be automatically turned on once Firefox restarts.",
-    "type": "bool",
-    "value": true
-  },
-  {
     "name": "updateAccountType",
     "title": "Update Account Type",
-    "description": "This feature will update JU -> AD and LUJ -> LU when saving a patron record if the patron is 16 years or older",
+    "description": "This feature will update JU -> AD and LUJ -> LU when saving a patron record if the patron is 18 years or older",
     "type": "bool",
     "value": true
   },{
@@ -117,5 +110,12 @@
         "label": "MOO (28px)"
       }
     ]
+  },
+  {
+    "name": "disableDropbox",
+    "title": "Disable Dropbox Mode",
+    "description": "Prevents staff from checking dropbox mode by disabling the checkbox.",
+    "type": "bool",
+    "value": false
   }]
 }
