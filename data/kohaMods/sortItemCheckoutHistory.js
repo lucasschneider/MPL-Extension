@@ -155,7 +155,82 @@
     wrapper = document.createElement('div');
     wrapper.id = "sortWrapper";
     wrapper.style = "padding-left:50px;";
-    wrapper.innerHTML = '<h3>Sort by...</h3><table id="sortSelectTable"><thead><tr><td colspan="2">Checkout Date</td><td colspan="2">Due Date</td><td colspan="2">Return Date</td></tr></thead><tbody><tr id="sortOptions"><td id="checkoutASC">ASC</td><td id="checkoutDESC" class="selectedSort">DESC</td><td id="dueASC">ASC</td><td id="dueDESC">DESC</td><td id="returnASC">ASC</td><td id="returnDESC">DESC</td></tr></tbody></table><input id="groupItems" type="checkbox" /> Group by barcode';
+    
+    var h3 = document.createElement("h3"),
+      table = document.createElement("table"),
+      thead = document.createElement("thead"),
+      tbody = document.createElement("tbody"),
+      tr1 = document.createElement("tr"),
+      tr2 = document.createElement("tr"),
+      td1 = document.createElement("td"),
+      td2 = document.createElement("td"),
+      td3 = document.createElement("td"),
+      td4 = document.createElement("td"),
+      td5 = document.createElement("td"),
+      td6 = document.createElement("td"),
+      td7 = document.createElement("td"),
+      td8 = document.createElement("td"),
+      td9 = document.createElement("td"),
+      div = document.createElement("div"),
+      input = document.createElement("input"),
+      span = document.createElement("span");
+    
+    h3.textContent = "Sort by...";
+    wrapper.appendChild(h3);
+    
+    table.id = "sortSelectTable";
+    td1.colSpan = "2";
+    td1.textContent = "Checkout Date";
+    tr1.appendChild(td1);
+    td2.colSpan = "2";
+    td2.textContent = "Due Date";
+    tr1.appendChild(td2);
+    td3.colSpan = "2";
+    td3.textContent = "Return Date";
+    tr1.appendChild(td3);
+    thead.appendChild(tr1);
+    table.appendChild(thead);
+    
+    wrapper.appendChild(h3);
+    tr1.appendChild(td1);
+    tr1.appendChild(td2);
+    tr1.appendChild(td3);
+    thead.appendChild(tr1)
+    
+    tr2.id = "sortOptions";
+    td4.id = "checkoutASC";
+    td4.textContent = "ASC";
+    td5.id = "checkoutDESC";
+    td5.className = "selectedSort";
+    td5.textContent = "DESC";
+    td6.id = "dueASC";
+    td6.textContent = "ASC";
+    td7.id = "dueDESC";
+    td7.textContent = "DESC";
+    td8.id = "returnASC";
+    td8.textContent = "ASC";
+    td9.id = "returnDESC";
+    td9.textContent = "DESC";
+    
+    tr2.appendChild(td4);
+    tr2.appendChild(td5);
+    tr2.appendChild(td6);
+    tr2.appendChild(td7);
+    tr2.appendChild(td8);
+    tr2.appendChild(td9);
+    tbody.appendChild(tr2);
+    table.appendChild(tbody);
+    wrapper.appendChild(table);
+    
+    div.style = "margin-top: 10px;";
+    input.id = "groupItems";
+    input.type = "checkbox";
+    input.style = "cursor: pointer;";
+    span.textContent = " Group by barcode";
+    
+    div.appendChild(input);
+    div.appendChild(span);
+    wrapper.appendChild(div);
 
     h1Parent = h1Elts[h1Elts.length-1].parentElement;
     h1Sibling = h1Parent.children[1];

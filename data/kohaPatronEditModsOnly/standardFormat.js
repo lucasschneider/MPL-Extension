@@ -93,12 +93,29 @@
     'patron_attr_9',
     'patron_attr_10',
     'patron_attr_11'],
+    unused4WebUse = ['phone',
+    'phonepro',
+    'email',
+    'B_address',
+    'B_city',
+    'B_zipcode',
+    'B_phone',
+    'B_email',
+    'altcontactsurname',
+    'altcontactfirstname',
+    'altcontactaddress1',
+    'altcontactaddress3',
+    'altcontactzipcode',
+    'altcontactphone'
+    ],
     parentElt = document.getElementById('entryform'),
     sibling,
     enableOptsLabel = document.createElement('label'),
     enableOpts = document.createElement('input'),
     enableOptsContainer = document.createElement('div'),
-    elt;
+    elt,
+    categorycode = document.getElementsByClassName('categorycode');
+  if (categorycode) categorycode = categorycode[0];
     
   if (parentElt !== null) {
     sibling = parentElt.children[0];
@@ -112,6 +129,8 @@
     enableOpts.checked = 'true';
     enableOpts.setAttribute('style', 'margin-left: 20px; display: inline-block;');
     enableOpts.addEventListener('click', function () {
+      var categorycode = document.getElementsByClassName('categorycode');
+      if (categorycode) categorycode = categorycode[0];
       if (this.checked) {
         for (i = 0; i < unusedFields.length; i++) {
           elt = document.getElementById(unusedFields[i]);
@@ -120,12 +139,30 @@
             elt.style.backgroundColor = '';
           }
         }
+        if (categorycode && categorycode.value === "WEB" && /(mad|hpb|seq|smb|msb|pin|haw|lak|mea)/i.test(document.getElementsByClassName('loggedinusername')[0].textContent.trim())) {
+          for (i = 0; i < unused4WebUse.length; i++) {
+            elt = document.getElementById(unused4WebUse[i]);
+            if (elt !== null) {
+              elt.disabled = false;
+              elt.style.backgroundColor = '';
+            }
+          }
+        }
       } else {
         for (i = 0; i < unusedFields.length; i++) {
           elt = document.getElementById(unusedFields[i]);
           if (elt !== null) {
             elt.disabled = true;
             elt.style.backgroundColor = '#cecece';
+          }
+        }
+        if (categorycode && categorycode.value === "WEB" && /(mad|hpb|seq|smb|msb|pin|haw|lak|mea)/i.test(document.getElementsByClassName('loggedinusername')[0].textContent.trim())) {
+          for (i = 0; i < unused4WebUse.length; i++) {
+            elt = document.getElementById(unused4WebUse[i]);
+            if (elt !== null) {
+              elt.disabled = true;
+              elt.style.backgroundColor = '#cecece';
+            }
           }
         }
       }
@@ -138,6 +175,15 @@
 
     // Trigger event : disable fields
     enableOpts.click();
+  }
+  
+  /*** Auto-complete web-use only fields ***/
+  if (categorycode && categorycode.value === "WEB" && /(mad|hpb|seq|smb|msb|pin|haw|lak|mea)/i.test(document.getElementsByClassName('loggedinusername')[0].textContent.trim())) {
+    document.getElementById('borrowernotes').value = "FOR INTERNET USE ONLY; NO CKO ALLOWED. jfk";
+    address.value = "NA";
+    city.value = "MADISON WI";
+    document.getElementById('zipcode').value = "00088";
+    document.getElementsByName('sort1')[0].value = "D-17.04";
   }
 
   /*** Control-space to save patron record ***/
