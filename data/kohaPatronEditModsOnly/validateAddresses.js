@@ -58,6 +58,8 @@
       addr2 = document.getElementById('address2'),
       city = document.getElementById('city'),
       bn = document.getElementById('borrowernotes'),
+      cc = document.getElementsByClassName('categorycode'),
+      field = document.getElementsByClassName('action'),
       cityRegEx = /mad(ison([,]? wi.*)?)?|monona([,]? wi.*)?/i,
       unacceptable = [
         new Address("1819 aberg a", "1819 Aberg Ave", "State Job Placement Center"),
@@ -120,26 +122,56 @@
       addrVal,
       i,
       field,
-      initial;
-    if (addr !== null && city !== null && cityRegEx.test(city.value) && bn !== null) {
+      initial,
+      wasLU = false;
+    if (cc) cc = cc[0];
+    if (addr && city && cityRegEx.test(city.value) && bn) {
       addrVal = addr2 !== null && (addr2.value !== null && addr2.value !== "") ? addr.value + " " + addr2.value : addr.value;
       if (/1490 martin s/i.test(addrVal)) {
         foundBadAddr = true;
-        initial = prompt("--- NOTE ---\n1490 MARTIN ST is the Hospitality House, a daytime resource center for homeless and low-income people in Dane County. A LIMITED USE account may be set up, however, all library cards issued to that address MUST be mailed, whether or not the patron provides proof of that address.\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
-        if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
+        if (cc) {
+          if (cc.value === "AD") {
+            cc.value = "LU";
+          } else if (cc.value === "JU") {
+            cc.value = "LUJ";
+          } else if (cc.value === "LU" || cc.value === "LUJ") {
+            wasLU = true;
+          }
+        }
+        if (field && field[0].children[0].value === 'Override Block') {
+          restoreSave();
+        }
+        if (!/Patron's account is Limited Use due to address \(Hospitality House, 1490 Martin St/i.test(bn.value)) {
+          initial = prompt("--- NOTE ---\n1490 MARTIN ST is the Hospitality House, a daytime resource center for homeless and low-income people in Dane County. A LIMITED USE account may be set up, however, all library cards issued to that address MUST be mailed, whether or not the patron provides proof of that address.\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
+          if (!initial) initial = "";
           if (bn.value !== '') {
             bn.value += "\n\n";
           }
-          bn.value += "Patron's account is Limited Use due to address (Hospitality House, " + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
+          bn.value += "Patron's account is Limited Use due to address (Hospitality House, 1490 Martin St). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
+          if (wasLU) alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
         }
       } else if (/630 e(ast)? washington a/i.test(addrVal)) {
         foundBadAddr = true;
-        initial = prompt("--- NOTE ---\n630 E WASHINGTON AVE is the Salvation Army. People staying at the Salvation Army cannot receive personal mail there so library cards CANNOT BE MAILED. Patrons must have proof that they are staying at the Salvation Army to get a library card (usually through a letter from the director).\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
-        if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
+        if (cc) {
+          if (cc.value === "AD") {
+            cc.value = "LU";
+          } else if (cc.value === "JU") {
+            cc.value = "LUJ";
+          } else if (cc.value === "LU" || cc.value === "LUJ") {
+            wasLU = true
+          }
+        }
+        if (field && field[0].children[0].value === 'Override Block') {
+          restoreSave();
+        }
+        if (!/Patron's account is Limited Use due to address \(Salvation Army, 630 E Washington Ave/i.test(bn.value)) {
+          initial = prompt("--- NOTE ---\n630 E WASHINGTON AVE is the Salvation Army. People staying at the Salvation Army cannot receive personal mail there so library cards CANNOT BE MAILED. Patrons must have proof that they are staying at the Salvation Army to get a library card (usually through a letter from the director).\n\nIn order to have the Limited Use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
+          if (!initial) initial = "";
           if (bn.value !== '') {
             bn.value += "\n\n";
           }
-          bn.value += "Patron's account is Limited Use due to address (Salvation Army, " + addrVal + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
+          bn.value += "Patron's account is Limited Use due to address (Salvation Army, 630 E Washington Ave). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
+          if (wasLU) alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
         }
       }
       // Test for unacceptable addresses
@@ -163,9 +195,24 @@
           break;
         }
         fullAddrRegEx = new RegExp(addrRegExFirst.source + restricted[i].addrRegEx + addrRegExLast.source, "i");
+        var noteTest = new RegExp(restricted[i].place + ".{3}" + restricted[i].addr + addrRegExLast.source, "i");
         if (fullAddrRegEx.test(addrVal)) {
-          initial = prompt("--- NOTE ---\nA library card issued to " + restricted[i].addr + " (" + restricted[i].place + ") must be LIMITED USE.\n\nIn order to have the limited use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
-          if (!/.*Patron must show proof of valid residential address in order to remove restrictions.*/.test(bn.value)) {
+	        foundBadAddr = true;
+          if (cc) {
+            if (cc.value === "AD") {
+              cc.value = "LU";
+            } else if (cc.value === "JU") {
+              cc.value = "LUJ";
+            } else if (cc.value === "LU" || cc.value === "LUJ") {
+              wasLU = true;
+            }
+          }
+          if (field && field[0].children[0].value === 'Override Block') {
+            restoreSave();
+          }
+          if (!noteTest.test(bn.value)) {
+            initial = prompt("--- NOTE ---\nA library card issued to " + restricted[i].addr + " (" + restricted[i].place + ") must be LIMITED USE.\n\nIn order to have the limited use restrictions removed from their account, a patron must first provide proof that they are living at a valid residential address.\n\nFor more info refer to the list of unacceptable addresses on the staff wiki:\nhttp://mplnet.pbworks.com/w/file/fetch/79700849/UNACCEPTABLE%20ADDRESSES.pdf\n\nIf this is a new address, enter your initials and library code to confirm: (e.g. LS/MAD)");
+            if (!initial) initial = "";
             if (bn.value !== '') {
               bn.value += "\n\n";
             }
@@ -173,14 +220,20 @@
               initial = "";
             }
             bn.value += "Patron's account is Limited Use due to temporary residence at " + restricted[i].place + ", (" + restricted[i].addr + "). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
+            if (wasLU) alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
           }
-	        foundBadAddr = true;
         }
       }
       if (!foundBadAddr) {
-        field = document.getElementsByClassName('action')[0];
-        if (field !== null && field.children[0].value === 'Override Block') {
+        if (field && field[0].children[0].value === 'Override Block') {
           restoreSave();
+        }
+        if (cc.value === "LU") {
+          cc.value = "AD";
+          alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
+        } else if (cc.value === "LUJ") {
+          cc.value = "JU";
+          alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
         }
       }
     }
