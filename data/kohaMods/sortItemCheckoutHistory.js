@@ -1,5 +1,7 @@
 (function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
   /*global self*/
+  
+  var restTable = false;
 
   function ItemHistoryEntry(htmlTR) {
     this.html = htmlTR;
@@ -18,7 +20,7 @@
     }
   }
 
-  function sortTable(itemHistoryEntries, sortCode) {
+  function sortTable(itemHistoryEntries, sortCode, limitBarcode) {
     lastSortCode = sortCode;
     var groupItems = document.getElementById('groupItems');
 
@@ -112,7 +114,18 @@
     var tbody = document.createElement('tbody');
 
     for (var trObj of itemHistoryEntries) {
-      tbody.appendChild(trObj.html);
+      if (limitBarcode && limitBarcode.length === 14) {
+        if (trObj.barcode !== limitBarcode) {
+          trObj.html.style = "display: none;";
+        } else {
+          trObj.html.style = "display: table-row;";
+        }
+        tbody.appendChild(trObj.html);
+      } else {
+        trObj.html.style = "display: table-row;";
+        tbody.appendChild(trObj.html);
+      }
+      
     }
 
     var historyTable = document.getElementById('checkouthistt'),
@@ -143,7 +156,7 @@
       for (var tr of itemRowArray) {
         itemHistoryEntries.push(new ItemHistoryEntry(tr));
       }
-      sortTable(itemHistoryEntries,"checkoutDESC");
+      sortTable(itemHistoryEntries,"checkoutDESC",null);
     }
 
     var sheet = window.document.styleSheets[1];
@@ -171,9 +184,12 @@
       td7 = document.createElement("td"),
       td8 = document.createElement("td"),
       td9 = document.createElement("td"),
-      div = document.createElement("div"),
-      input = document.createElement("input"),
-      span = document.createElement("span");
+      div1 = document.createElement("div"),
+      div2 = document.createElement("div"),
+      input1 = document.createElement("input"),
+      input2 = document.createElement("input"),
+      span1 = document.createElement("span"),
+      span2 = document.createElement("span");
     
     h3.textContent = "Sort by...";
     wrapper.appendChild(h3);
@@ -222,15 +238,35 @@
     table.appendChild(tbody);
     wrapper.appendChild(table);
     
-    div.style = "margin-top: 10px;";
-    input.id = "groupItems";
-    input.type = "checkbox";
-    input.style = "cursor: pointer;";
-    span.textContent = " Group by barcode";
+    div1.style = "margin-top: 10px;";
+    input1.id = "groupItems";
+    input1.type = "checkbox";
+    input1.style = "cursor: pointer;";
+    span1.textContent = " Group by barcode";
     
-    div.appendChild(input);
-    div.appendChild(span);
-    wrapper.appendChild(div);
+    div1.appendChild(input1);
+    div1.appendChild(span1);
+    wrapper.appendChild(div1);
+    
+    div2.style = "margin-top: 10px;";
+    input2.id = "limitBarcode";
+    input2.type = "text";
+    input2.maxLength = "14";
+    input2.addEventListener('input', function (e) {
+      var lb = document.getElementById('limitBarcode');
+      if (lb && lb.value.length === 14) {
+        resetTable = ture;
+        sortTable(itemHistoryEntries, lastSortCode, lb.value);
+      } else if (resetTable) {
+        resetTable = false;
+        sortTable(itemHistoryEntries, lastSortCode, null);
+      }
+    });
+    span2.textContent = " Limit by barcode";
+    
+    div2.appendChild(input2);
+    div2.appendChild(span2);
+    wrapper.appendChild(div2);
 
     h1Parent = h1Elts[h1Elts.length-1].parentElement;
     h1Sibling = h1Parent.children[1];
@@ -241,16 +277,26 @@
 
     for (var td of document.getElementById('sortOptions').children) {
       td.addEventListener('click', function () {
+        var lb = document.getElementById('limitBarcode');
         if (this.className !== "selectedSort") {
           for (var td of document.getElementById('sortOptions').children) {
             td.className = "";
           }
           this.className = "selectedSort";
-          sortTable(itemHistoryEntries, this.id);
+          if (lb && lb.value.length === 14) {
+            sortTable(itemHistoryEntries, this.id, lb.value);
+          } else {
+            sortTable(itemHistoryEntries, this.id, null);
+          }
         }
       });
       groupItems.addEventListener('click', function () {
-        sortTable(itemHistoryEntries, lastSortCode);
+        var lb = document.getElementById('limitbarcode');
+        if (lb && lb.value.length === 14) {
+          sortTable(itemHistoryEntries, lastSortCode, lb.value);
+        } else {
+          sortTable(itemHistoryEntries, lastSortCode, null);
+        }
       });
     }
   }
