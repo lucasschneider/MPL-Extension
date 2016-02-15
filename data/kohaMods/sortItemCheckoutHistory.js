@@ -1,7 +1,16 @@
 (function () {"use strict"; /*jslint browser:true regexp: true indent: 2 devel: true plusplus: true*/
   /*global self*/
   
-  var restTable = false;
+  var historyTable = document.getElementById('checkouthistt'),
+    h1Elts = document.getElementsByTagName('h1'),
+    groupItems,
+    h1Parent,
+    h1Sibling,
+    itemRowArray,
+    itemHistoryEntries = [],
+    wrapper,
+    lastSortCode,
+    resetTable = false;
 
   function ItemHistoryEntry(htmlTR) {
     this.html = htmlTR;
@@ -115,10 +124,10 @@
 
     for (var trObj of itemHistoryEntries) {
       if (limitBarcode && limitBarcode.length === 14) {
-        if (trObj.barcode !== limitBarcode) {
-          trObj.html.style = "display: none;";
-        } else {
+        if (trObj.barcode === limitBarcode) {
           trObj.html.style = "display: table-row;";
+        } else {
+          trObj.html.style = "display: none;";
         }
         tbody.appendChild(trObj.html);
       } else {
@@ -139,16 +148,6 @@
     }
   }
 
-  var historyTable = document.getElementById('checkouthistt'),
-    h1Elts = document.getElementsByTagName('h1'),
-    groupItems,
-    h1Parent,
-    h1Sibling,
-    itemRowArray,
-    itemHistoryEntries = [],
-    wrapper,
-    lastSortCode;
-
   if (historyTable && h1Elts) {
 
     itemRowArray = historyTable.children[1].children;
@@ -156,7 +155,7 @@
       for (var tr of itemRowArray) {
         itemHistoryEntries.push(new ItemHistoryEntry(tr));
       }
-      sortTable(itemHistoryEntries,"checkoutDESC",null);
+      sortTable(itemHistoryEntries,"checkoutDESC","");
     }
 
     var sheet = window.document.styleSheets[1];
@@ -185,7 +184,6 @@
       td8 = document.createElement("td"),
       td9 = document.createElement("td"),
       div1 = document.createElement("div"),
-      div2 = document.createElement("div"),
       input1 = document.createElement("input"),
       input2 = document.createElement("input"),
       span1 = document.createElement("span"),
@@ -242,31 +240,29 @@
     input1.id = "groupItems";
     input1.type = "checkbox";
     input1.style = "cursor: pointer;";
-    span1.textContent = " Group by barcode";
-    
-    div1.appendChild(input1);
+    span1.textContent = "Group by barcode: ";
+
     div1.appendChild(span1);
+    div1.appendChild(input1);
     wrapper.appendChild(div1);
-    
-    div2.style = "margin-top: 10px;";
+
     input2.id = "limitBarcode";
     input2.type = "text";
     input2.maxLength = "14";
     input2.addEventListener('input', function (e) {
       var lb = document.getElementById('limitBarcode');
       if (lb && lb.value.length === 14) {
-        resetTable = ture;
+        resetTable = true;
         sortTable(itemHistoryEntries, lastSortCode, lb.value);
       } else if (resetTable) {
         resetTable = false;
-        sortTable(itemHistoryEntries, lastSortCode, null);
+        sortTable(itemHistoryEntries, lastSortCode, "");
       }
     });
-    span2.textContent = " Limit by barcode";
-    
-    div2.appendChild(input2);
-    div2.appendChild(span2);
-    wrapper.appendChild(div2);
+    span2.textContent = " Restrict to: ";
+
+    div1.appendChild(span2);
+    div1.appendChild(input2);
 
     h1Parent = h1Elts[h1Elts.length-1].parentElement;
     h1Sibling = h1Parent.children[1];
@@ -295,7 +291,7 @@
         if (lb && lb.value.length === 14) {
           sortTable(itemHistoryEntries, lastSortCode, lb.value);
         } else {
-          sortTable(itemHistoryEntries, lastSortCode, null);
+          sortTable(itemHistoryEntries, lastSortCode, "");
         }
       });
     }
