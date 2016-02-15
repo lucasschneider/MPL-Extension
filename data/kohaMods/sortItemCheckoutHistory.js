@@ -249,6 +249,7 @@
     input2.id = "limitBarcode";
     input2.type = "text";
     input2.maxLength = "14";
+    input2.placeholder = "<enter full barcode>";
     input2.addEventListener('input', function (e) {
       var lb = document.getElementById('limitBarcode');
       if (lb && lb.value.length === 14) {
