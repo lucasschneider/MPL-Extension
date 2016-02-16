@@ -19,11 +19,13 @@
     this.date = "";
     this.dueDate = "";
     this.returnDate = "";
+    this.owningLibrary = "";
 
     if (htmlTR.children.length > 7) {
       this.date = htmlTR.children[0].textContent.replace(/\s/g, "") !== "" ? new Date(htmlTR.children[0].textContent.replace(/\s/g, "")) : new Date();
       this.name = htmlTR.children[1].textContent.trim();
       this.barcode = htmlTR.children[2].textContent.trim();
+      this.owningLibrary = htmlTR.children[3].textContent.trim();
       this.dueDate = htmlTR.children[6].textContent.replace(/\s/g, "") !== "" ? new Date(htmlTR.children[6].textContent.replace(/\s/g, "")) : new Date();
       this.returnDate = htmlTR.children[7].textContent.replace(/\s/g, "") !== "" ? new Date(htmlTR.children[7].textContent.replace(/\s/g, "")) : new Date();
     }
@@ -31,14 +33,17 @@
 
   function sortTable(itemHistoryEntries, sortCode, limitBarcode) {
     lastSortCode = sortCode;
-    var groupItems = document.getElementById('groupItems');
+    var groupItems = document.getElementById('groupItems'),
+      libCode = document.getElementsByClassName('loggedinusername')[0].textContent.trim().substr(0,3).toUpperCase();
 
     switch(sortCode) {
       // Due date, ASC
       case "dueASC":
         itemHistoryEntries.sort(function(a, b) {
           if (groupItems && groupItems.checked) {
-            if (a.barcode < b.barcode) return -1;
+            if (a.owningLibrary < b.owningLibrary) return -1;
+            else if (a.owningLibrary > b.owningLibrary) return 1;
+            else if (a.barcode < b.barcode) return -1;
             else if (a.barcode > b.barcode) return 1;
           }
           if (a.dueDate < b.dueDate) return -1;
@@ -52,7 +57,9 @@
       case "dueDESC":
         itemHistoryEntries.sort(function(a, b) {
           if (groupItems && groupItems.checked) {
-            if (a.barcode < b.barcode) return -1;
+            if (a.owningLibrary < b.owningLibrary) return -1;
+            else if (a.owningLibrary > b.owningLibrary) return 1;
+            else if (a.barcode < b.barcode) return -1;
             else if (a.barcode > b.barcode) return 1;
           }
           if (b.dueDate < a.dueDate) return -1;
@@ -66,7 +73,9 @@
       case "returnASC":
         itemHistoryEntries.sort(function(a, b) {
           if (groupItems && groupItems.checked) {
-            if (a.barcode < b.barcode) return -1;
+            if (a.owningLibrary < b.owningLibrary) return -1;
+            else if (a.owningLibrary > b.owningLibrary) return 1;
+            else if (a.barcode < b.barcode) return -1;
             else if (a.barcode > b.barcode) return 1;
           }
           if (a.returnDate < b.returnDate) return -1;
@@ -80,7 +89,9 @@
       case "returnDESC":
         itemHistoryEntries.sort(function(a, b) {
           if (groupItems && groupItems.checked) {
-            if (a.barcode < b.barcode) return -1;
+            if (a.owningLibrary < b.owningLibrary) return -1;
+            else if (a.owningLibrary > b.owningLibrary) return 1;
+            else if (a.barcode < b.barcode) return -1;
             else if (a.barcode > b.barcode) return 1;
           }
           if (b.returnDate < a.returnDate) return -1;
@@ -94,7 +105,9 @@
       case "checkoutASC":
         itemHistoryEntries.sort(function(a, b) {
           if (groupItems && groupItems.checked) {
-            if (a.barcode < b.barcode) return -1;
+            if (a.owningLibrary < b.owningLibrary) return -1;
+            else if (a.owningLibrary > b.owningLibrary) return 1;
+            else if (a.barcode < b.barcode) return -1;
             else if (a.barcode > b.barcode) return 1;
           }
           if (a.date < b.date) return -1;
@@ -109,7 +122,9 @@
       default:
         itemHistoryEntries.sort(function(a, b) {
           if (groupItems && groupItems.checked) {
-            if (a.barcode < b.barcode) return -1;
+            if (a.owningLibrary < b.owningLibrary) return -1;
+            else if (a.owningLibrary > b.owningLibrary) return 1;
+            else if (a.barcode < b.barcode) return -1;
             else if (a.barcode > b.barcode) return 1;
           }
           if (b.date < a.date) return -1;
@@ -118,6 +133,14 @@
           else if (a.name > b.name) return 1;
           else return 0;
         });
+    }
+
+    if (groupItems && groupItems.checked && limitBarcode && limitBarcode.length !== 14) {
+      itemHistoryEntries.sort(function(a, b) {
+        if (a.owningLibrary === libCode && b.owningLibrary !== libCode) return -1;
+        if (b.owningLibrary === libCode && a.owningLibrary !== libCode) return 1;
+        else return 0;
+      });
     }
 
     var tbody = document.createElement('tbody');
@@ -134,7 +157,6 @@
         trObj.html.style = "display: table-row;";
         tbody.appendChild(trObj.html);
       }
-      
     }
 
     var historyTable = document.getElementById('checkouthistt'),
@@ -283,12 +305,12 @@
           if (lb && lb.value.length === 14) {
             sortTable(itemHistoryEntries, this.id, lb.value);
           } else {
-            sortTable(itemHistoryEntries, this.id, null);
+            sortTable(itemHistoryEntries, this.id, "");
           }
         }
       });
       groupItems.addEventListener('click', function () {
-        var lb = document.getElementById('limitbarcode');
+        var lb = document.getElementById('limitBarcode');
         if (lb && lb.value.length === 14) {
           sortTable(itemHistoryEntries, lastSortCode, lb.value);
         } else {
