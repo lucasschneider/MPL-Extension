@@ -135,7 +135,7 @@
         });
     }
 
-    if (groupItems && groupItems.checked && limitBarcode && limitBarcode.length !== 14) {
+    if (groupItems && groupItems.checked && limitBarcode.length !== 14) {
       itemHistoryEntries.sort(function(a, b) {
         if (a.owningLibrary === libCode && b.owningLibrary !== libCode) return -1;
         if (b.owningLibrary === libCode && a.owningLibrary !== libCode) return 1;
