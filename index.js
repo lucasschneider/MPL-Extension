@@ -2,6 +2,8 @@
 var { ActionButton } = require("sdk/ui/button/action"),
   {ToggleButton} = require('sdk/ui/button/toggle'),
   panels = require("sdk/panel"),
+  contextMenu = require("sdk/context-menu"),
+  clipboard = require("sdk/clipboard"),
   pageMod = require("sdk/page-mod"),
   prefs = require("sdk/simple-prefs").prefs,
   Request = require("sdk/request").Request,
@@ -667,6 +669,15 @@ function portListener(worker) {
     }).get();
   });
 }
+
+/*** Add context menu for copying patron info to spreadsheet for email lists ***/
+var menuItem = contextMenu.Item({
+  label: "Copy Data for Email Lists (C)",
+  context: contextMenu.PageContext(),
+  contentScriptFile: self.data.url("kohaMods/copyForEmailList.js"),
+  accessKey: "c",
+  onMessage: function(copyTxt) {clipboard.set(copyTxt)}
+});
 
 /*** KOHA MODS ***/
 function onPrefChange(prefName) {
