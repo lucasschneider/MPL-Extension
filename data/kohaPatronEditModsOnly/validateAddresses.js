@@ -2,9 +2,9 @@
   /*** CHECK AGAINST LIST OF UNACCEPTABLE
        AND RESTRICTED ADDRESSES ***/
 
-  /* Define address object */
+  // Define address object
   var Address = function (addrRegEx, addr, place) {
-    // addrRegEx formatted to be inserted at a regex literal
+    // addrRegEx formatted to be inserted as a regex literal
     this.addrRegEx = addrRegEx;
     // The place/organization of the restricted address
     this.place = place;
@@ -14,6 +14,7 @@
     addr,
     city;
 
+  /** Restore the save button if the override buttton is clicked */
   function restoreSave() {
     var field = document.getElementsByClassName('action')[0];
     if (field !== null && field.childElementCount === 3) {
@@ -25,6 +26,9 @@
     return false;
   }
 
+  /** Replace the save button at the bottom of the screen with
+    * an override button if the patron has an unacceptable
+	* address */
   function blockSubmit() {
     var field = document.getElementsByClassName('action')[0],
       button;
@@ -42,6 +46,7 @@
     return false;
   }
 
+  /** Calculate the current date */
   function curDate() {
     var date = new Date(),
       year = date.getFullYear(),
@@ -53,6 +58,8 @@
     return month + '/' + day + '/' + year;
   }
 
+  /** Compare a patron's address to the list of unacceptable and
+    * restricted addresses */
   function parseBadAddr() {
     var addr = document.getElementById('address'),
       addr2 = document.getElementById('address2'),
@@ -127,6 +134,7 @@
     if (cc) cc = cc[0];
     if (addr && city && cityRegEx.test(city.value) && bn) {
       addrVal = addr2 !== null && (addr2.value !== null && addr2.value !== "") ? addr.value + " " + addr2.value : addr.value;
+	  // Test for Hospitality House
       if (/1490 martin s/i.test(addrVal)) {
         foundBadAddr = true;
         if (cc) {
@@ -150,6 +158,7 @@
           bn.value += "Patron's account is Limited Use due to address (Hospitality House, 1490 Martin St). Patron must show proof of valid residential address in order to remove restrictions. " + curDate() + " " + initial;
           if (wasLU) alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
         }
+      // Test for Salvation Army address
       } else if (/630 e(ast)? washington a/i.test(addrVal)) {
         foundBadAddr = true;
         if (cc) {
@@ -228,10 +237,10 @@
         if (field && field[0].children[0].value === 'Override Block') {
           restoreSave();
         }
-        if (cc.value === "LU") {
+        if (cc.value === "LU" && /Patron must show proof of valid residential address in order to remove restrictions/.test(bn.value)) {
           cc.value = "AD";
           alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
-        } else if (cc.value === "LUJ") {
+        } else if (cc.value === "LUJ" && /Patron must show proof of valid residential address in order to remove restrictions/.test(bn.value)) {
           cc.value = "JU";
           alert('Please delete the circulation note regarding the patron\'s pervious limited use address');
         }

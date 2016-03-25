@@ -17,6 +17,10 @@ var { ActionButton } = require("sdk/ui/button/action"),
   region;
 self = require("sdk/self");
 tabs = require("sdk/tabs");
+
+/** The addresses below are for querying Google Maps
+  * when a patron wants to know the geographically
+  * closest library to their residential address */
 var libraryAddresses = [
   // MPL  [0-8]
   ["HPB","733+N+High+Point+Rd,+Madison,+WI+53717"],
@@ -142,6 +146,8 @@ if (prefs.skin === "MPL") {
   });
 }
 
+/** Create the panel for the toolbar that appears when
+  * your skin is set to MPL */
 panel = panels.Panel({
     width: 300,
     height: 300,
@@ -151,7 +157,9 @@ panel = panels.Panel({
     onHide: handleHide
   });
 
-// Panel listener
+/** the functions below abbly listeners to each of the links
+  * present on the panel */
+// Add a payment plan note to a patron's record
 panel.port.on("addPaymentPlanNote", function () {
   panel.hide();
   tabs.activeTab.attach({
@@ -159,6 +167,7 @@ panel.port.on("addPaymentPlanNote", function () {
   });
 });
 
+// Add a lost library card note to a patron's record
 panel.port.on("addLostCardNote", function () {
   panel.hide();
   tabs.activeTab.attach({
@@ -166,6 +175,7 @@ panel.port.on("addLostCardNote", function () {
   });
 });
 
+// Calculate a patron's PSTAT based on their alternate address
 panel.port.on("addr2PSTAT", function () {
   panel.hide();
   if (/^https?\:\/\/scls-staff\.kohalibrary\.com\/cgi-bin\/koha\/members\/memberentry\.pl.*/.test(tabs.activeTab.url)) {
@@ -181,6 +191,7 @@ panel.port.on("addr2PSTAT", function () {
   }
 });
 
+// Toggle the panel view
 function handleChange (state) {
   if (state.checked) {
     panel.show({
@@ -188,11 +199,15 @@ function handleChange (state) {
     });
   }
 }
-
 function handleHide() {
   button.state('window', {checked: false});
 }
 
+/** The following function serves as the means of communication for
+  * all content scripts. This includes querying the Census Geocoder
+  * for geographies, printing a patron's barcode from their account
+  * screen, and calculating the geographically closest library to a
+  * a patron's residence */
 function portListener(worker) {
   currWorker = worker;
   // On geocoder query
@@ -670,7 +685,7 @@ function portListener(worker) {
   });
 }
 
-/*** Add context menu for copying patron info to spreadsheet for email lists ***/
+/** Add context menu for copying patron info to spreadsheet for email lists */
 var menuItem = contextMenu.Item({
   label: "Copy Data for Email Lists (C)",
   context: contextMenu.PageContext(),
@@ -679,16 +694,18 @@ var menuItem = contextMenu.Item({
   onMessage: function(copyTxt) {clipboard.set(copyTxt)}
 });
 
-/*** KOHA MODS ***/
+/** Apply following scripts to all Koha staff client pages */
 function onPrefChange(prefName) {
   if (mod !== null) {
     mod.destroy();
   }
+  // Default scripts
   var kohaMods = [
     self.data.url("kohaMods/sortLibraries.js"),
     self.data.url("kohaMods/fixSessionCkoDiv.js"),
     self.data.url("kohaMods/printBarcode.js")
   ];
+  // Optional scripts
   if (prefs.patronMsg) kohaMods.push(self.data.url("kohaMods/patronMessages.js"));
   if (prefs.autoUserId) kohaMods.push(self.data.url("kohaMods/autofillUserId.js"));
   if (prefs.selectPSTAT) kohaMods.push(self.data.url("kohaMods/selectPSTAT.js"));
@@ -705,14 +722,18 @@ function onPrefChange(prefName) {
     onAttach: portListener
   });
 }
+// Immediately apply changes to the "Disable dropbox" feature
 onPrefChange("");
 require("sdk/simple-prefs").on("disableDropbox", onPrefChange);
 
-/*** KOHA PATRON EDIT MODS ***/
+/** Apply following scripts to Koha staff client pages
+  * only when a patron's account is being edited */
+// Default scripts
 var kohaPatronEditMods = [
   self.data.url("kohaPatronEditModsOnly/standardFormat.js"),
   self.data.url("kohaPatronEditModsOnly/collegeExp.js")
 ];
+// Optional Scripts
 if (prefs.forceDigest) kohaPatronEditMods.push(self.data.url("kohaPatronEditModsOnly/forceDigest.js"));
 if (prefs.restrictNotificationOptions) kohaPatronEditMods.push(self.data.url("kohaPatronEditModsOnly/restrictNotificationOptions.js"));
 if (prefs.updateAccountType) kohaPatronEditMods.push(self.data.url("kohaPatronEditModsOnly/updateAccountType.js"));
@@ -724,6 +745,8 @@ pageMod.PageMod({
   contentScriptFile: kohaPatronEditMods
 });
 
+/** Apply script to item's issue history page that
+  * will sort the table chronologically */
 pageMod.PageMod({
   include: /^https?\:\/\/scls-staff\.kohalibrary\.com\/cgi-bin\/koha\/catalogue\/issuehistory.pl.*/,
   attachTo: ["top","frame"],
