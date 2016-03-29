@@ -1,5 +1,6 @@
 /*** CUSTOM PREDEFINED MESSAGES ***/
-var msgSelect = document.getElementById('type');
+var msgSelect = document.getElementById('type'),
+  initials = "";
 
 if(msgSelect != null) {
   if (msgSelect.options[4].value === "Special Note") {
@@ -10,7 +11,24 @@ if(msgSelect != null) {
   cardAtNxtCko.value = "Patron must have library card at next checkout. ";
   cardAtNxtCko.textContent = "Have card at next CKO";
   msgSelect.insertBefore(cardAtNxtCko,msgSelect.options[1]);
-  
+
+  if (/mad|hpb|seq|pin|mea|smb|msb|haw|lak/i.test(document.getElementsByClassName('loggedinusername')[0].textContent.trim())) {
+    var laptopAgreement = document.createElement('option');
+    laptopAgreement.value = "Patron has signed Laptop/iPad Loan Agreement form. Form on file.";
+    laptopAgreement.textContent = "Patron signed laptop agreement";
+    msgSelect.insertBefore(laptopAgreement,msgSelect.options[2]);
+  }
+
+  msgSelect.onchange = function () {
+    // Code from Koha
+    this.form.borrower_message.value=this.options[this.selectedIndex].value;
+    // Added function
+    if (msgSelect.selectedOptions[0].value === "Patron has signed Laptop/iPad Loan Agreement form. Form on file.") {
+      initials = prompt("Enter your initials and library location (e.g. LS/MAD)");
+      document.getElementById('borrower_message').value += " (" + initials + ")";
+    }
+  }
+ 
   var addNotesLabel = document.createElement('label');
   addNotesLabel.setAttribute('for','addNotes');
   addNotesLabel.setAttribute('style','display: inline-block;');
@@ -35,6 +53,7 @@ if(msgSelect != null) {
   addNotesContainer.appendChild(addNotesLabel);
   addNotesContainer.appendChild(addNotes);
   msgSelect.parentElement.parentElement.insertBefore(addNotesContainer,msgSelect.parentElement.parentElement.children[2]);
+
 
   var returnedMailGroup = document.createElement('optgroup');
   returnedMailGroup.label = 'Returned Mail';
