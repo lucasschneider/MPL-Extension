@@ -17,15 +17,22 @@
       names = this.value.split(' ');
       len = names.length;
       if (len > 1 && names[1] && /[A-Za-z]/.test(names[1][0])) {
-        initials.value = names[1][0].toUpperCase();
+        initials.value = names[1][0].toUpperCase().replace(/[.,\/#!@$%\^&\*;{}=\-_`~]/g,"");
       } else {
         initials.value = "";
       }
     }
   }
 
-  var firstName = document.getElementById('firstname');
-  if (firstName !== null) {
+  var firstName = document.getElementById('firstname'),
+    initials = document.getElementById('initials');
+  if (firstName) {
     firstName.addEventListener('blur', parseName);
+  }
+  // Forbid punctuation
+  if (initials) {
+    initials.addEventListener('blur', function () {
+      this.value = this.value.replace(/[.,\/#!@$%\^&\*;{}=\-_`~]/g,"");
+    });
   }
   }()); //end use strict
