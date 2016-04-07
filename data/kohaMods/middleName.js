@@ -17,7 +17,7 @@
       names = this.value.split(' ');
       len = names.length;
       if (len > 1 && names[1] && /[A-Za-z]/.test(names[1][0])) {
-        initials.value = names[1][0].toUpperCase().replace(/[.,\/#!@$%\^&\*;{}=\-_`~]/g,"");
+        initials.value = names[1][0].toUpperCase();//.replace(/[.,\/#!@$%\^&\*;{}=\-_`~]/g,"");
       } else {
         initials.value = "";
       }
@@ -29,10 +29,10 @@
   if (firstName) {
     firstName.addEventListener('blur', parseName);
   }
-  // Forbid punctuation
+  /*// Forbid punctuation
   if (initials) {
     initials.addEventListener('blur', function () {
       this.value = this.value.replace(/[.,\/#!@$%\^&\*;{}=\-_`~]/g,"");
     });
-  }
+  }*/
   }()); //end use strict
