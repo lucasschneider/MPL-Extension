@@ -42,8 +42,8 @@
       addrRegExLast = /.*/,
       fullAddrRegEx = new RegExp(),
       addressVal,
-      date,
-      year;
+      date = new Date(),
+      year = date.getUTCFullYear();
 
     if (zip !== null && addr !== null && expiry !== null) {
       addressVal = addr2 !== null ? addr.value + " " + addr2.value : addr.value;
@@ -51,7 +51,6 @@
         for (var i = 0; i < dormAddr.length; i++) {
           fullAddrRegEx = new RegExp(addrRegExFirst.source + dormAddr[i].addrRegEx + addrRegExLast.source, "i");
           if (fullAddrRegEx.test(addressVal)) {
-            date = new Date();
             switch (parseInt(date.getUTCMonth(), 10)) {
             case 0:
             case 1:
@@ -62,7 +61,9 @@
             case 4:
               if (parseInt(date.getUTCDate(), 10) < 15) {
                 year = date.getUTCFullYear();
-              }
+              } else {
+				  year = (parseInt(date.getUTCFullYear(), 10) + 1).toString();
+			  }
               break;
             default:
               year = (parseInt(date.getUTCFullYear(), 10) + 1).toString();
