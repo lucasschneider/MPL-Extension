@@ -191,6 +191,21 @@ panel.port.on("addr2PSTAT", function () {
   }
 });
 
+function refineCalSearch() {
+	tabs.activeTab.attach({
+      contentScriptFile: self.data.url('mplQuickLinks/calendarAnnouncements.js')
+    });
+}
+
+// Add a lost library card note to a patron's record
+panel.port.on("calendarAnnouncements", function () {
+  panel.hide();
+  tabs.open({
+    url: "http://host.evanced.info/madison/evanced/eventspr.asp",
+    onLoad: refineCalSearch
+  });  
+});
+
 // Toggle the panel view
 function handleChange (state) {
   if (state.checked) {

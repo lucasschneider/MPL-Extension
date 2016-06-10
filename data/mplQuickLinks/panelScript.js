@@ -1,6 +1,7 @@
 var addNote = document.getElementById('addNote'),
   addLostNote = document.getElementById('addLostNote'),
   addr2PSTAT = document.getElementById('addr2PSTAT'),
+  calendarAnnouncements = document.getElementById('calendarAnnouncements'),
   QLToggle = document.getElementById('QLToggle'),
   TToggle = document.getElementById('TToggle'),
   quickLinks = document.getElementById('quickLinks'),
@@ -20,6 +21,12 @@ if (addLostNote) {
 if (addr2PSTAT) {
   addr2PSTAT.addEventListener('click', function () {
     self.port.emit('addr2PSTAT');
+  });
+}
+
+if (calendarAnnouncements) {
+  calendarAnnouncements.addEventListener('click', function () {
+    self.port.emit('calendarAnnouncements');
   });
 }
 
