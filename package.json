@@ -16,7 +16,7 @@
 
   "icon": "resource://3338f72b-be88-4c0b-98ec-d24eeef851b4-at-jetpack/data/MPL/icon-32.png",
   "icon64": "resource://3338f72b-be88-4c0b-98ec-d24eeef851b4-at-jetpack/data/MPL/icon-64.png",
-  "permissions": {"private-browsing": true},
+  "permissions": {"private-browsing": true, "multiprocess": true},
 
   "preferences": [{
     "name": "skin",
