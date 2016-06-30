@@ -311,7 +311,11 @@
                 sortID = "D-5.04";
                 matchAddr = userEnteredAddress.toUpperCase();
                 generatedZip = "53719";
-              } else{
+              } else if (/.*camino del sol/i.test(userEnteredAddress) && /madison/i.test(userEnteredCity)) {
+		        sortID = "D-23.01";
+				matchAddr = userEnteredAddress.toUpperCase();
+				generatedZip = "53704";
+			  } else {
                 sortID = "D-" + data[3];
               }
               break;
